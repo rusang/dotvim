@@ -1,0 +1,9 @@
+set vertical-split = yes
+set line-graphics = utf-8
+set editor-line-number = yes
+set main-view-line-number = yes
+set blame-view-line-number = yes
+#set commit-order = topo
+set main-view-date = relative
+set blame-view = line-number:yes
+
