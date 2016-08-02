@@ -123,6 +123,8 @@ alias ssdown_web2='sudo systemctl stop  shadowsocks@client_web_putong.service'
 alias ssdown_you='sudo systemctl stop  shadowsocks@client_youtube.service'
 alias wirerestart='sudo systemctl restart network.service'
 alias npaper='zsh ~/.autostart/feh.sh'
+alias 2='cd ../..'
+alias 3='cd ../../..'
 
 #color{{{
 autoload colors
@@ -574,4 +576,14 @@ POWERLINE_BASH_SELECT=1
 # gp=" --config http.proxy=127.0.0.1:9050"
 #
 #
-#
+
+#powerline-zsh-theme settings
+#默认配置如下
+# POWERLINE_GIT_CLEAN="✔"
+# POWERLINE_GIT_DIRTY="✘"
+# POWERLINE_GIT_ADDED="%F{green}✚%F{black}"
+# POWERLINE_GIT_MODIFIED="%F{blue}✹%F{black}"
+# POWERLINE_GIT_DELETED="%F{red}✖%F{black}"
+# POWERLINE_GIT_UNTRACKED="%F{yellow}✭%F{black}"
+# POWERLINE_GIT_RENAMED="➜"
+# POWERLINE_GIT_UNMERGED="═"

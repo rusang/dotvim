@@ -1121,6 +1121,17 @@ nnoremap <leader>b :Unite buffer<cr>
 nnoremap <leader>s :Unite -quick-match buffer<cr>
 
 "---------------------------------------------------------------
+"unite-giti-vim settings
+"---------------------------------------------------------------
+nnoremap <space>b :Unite giti/branch_all<cr>
+nnoremap <space>s :Unite giti/status<cr>
+
+"---------------------------------------------------------------
 "vim-bbye settings
 "---------------------------------------------------------------
 nnoremap <Leader>q :Bdelete<CR>
+nnoremap <Leader>qa :qa<CR>
+nnoremap <Leader>ww :w<CR>
+nnoremap <Leader>wq :wq<CR>
+
+
