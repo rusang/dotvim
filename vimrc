@@ -1133,5 +1133,8 @@ nnoremap <Leader>q :Bdelete<CR>
 nnoremap <Leader>qa :qa<CR>
 nnoremap <Leader>ww :w<CR>
 nnoremap <Leader>wq :wq<CR>
+imap <C-i> <Esc>
 
 
+"start deoplete plugin -- 补全插件
+" let g:deoplete#enable_at_startup = 1
