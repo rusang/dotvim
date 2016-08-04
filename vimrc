@@ -169,6 +169,7 @@ Bundle 'ZoomWin'
 "Plugin 'garbas/vim-snipmate'
 "Plugin 'honza/vim-snippets'
 "snipmate 插件
+" Plugin 'christoomey/vim-tmux-navigator'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle 'garbas/vim-snipmate'
@@ -1133,8 +1134,20 @@ nnoremap <Leader>q :Bdelete<CR>
 nnoremap <Leader>qa :qa<CR>
 nnoremap <Leader>ww :w<CR>
 nnoremap <Leader>wq :wq<CR>
-imap <C-i> <Esc>
+"ctrl+i 设置为esc
+imap <C-]> <Esc>
+
+
+
+
+"在插入模式,设置ctrl+\为退出文件 :
+map! <C-\> <ESC>:q<CR>
 
 
 "start deoplete plugin -- 补全插件
 " let g:deoplete#enable_at_startup = 1
+"
+"---------------------------------------------------------------
+"tmux settings
+"---------------------------------------------------------------
+" let g:tmux_navigator_save_on_switch = 1
