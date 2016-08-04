@@ -1132,6 +1132,7 @@ nnoremap <space>s :Unite giti/status<cr>
 "---------------------------------------------------------------
 nnoremap <Leader>q :Bdelete<CR>
 nnoremap <Leader>qa :qa<CR>
+nnoremap <Leader>qi :q!<CR>
 nnoremap <Leader>ww :w<CR>
 nnoremap <Leader>wq :wq<CR>
 "ctrl+i 设置为esc
