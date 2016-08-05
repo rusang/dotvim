@@ -1152,3 +1152,5 @@ map! <C-\> <ESC>:q<CR>
 "tmux settings
 "---------------------------------------------------------------
 " let g:tmux_navigator_save_on_switch = 1
+"
+"
