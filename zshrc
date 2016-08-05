@@ -88,7 +88,7 @@ alias cls='clear'
 alias mntusb='mount /dev/sdc1 /mnt/usb'
 alias umntusb='umount  /mnt/usb'
 alias ll='ls -l'
-alias tmux='tmux -2'
+alias tmux2='tmux -2'
 alias la='ls -a'
 alias v='vim'
 alias javac="javac -J-Dfile.encoding=utf8"
