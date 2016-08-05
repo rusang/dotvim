@@ -85,7 +85,10 @@ source $ZSH/oh-my-zsh.sh
 
 ###########################added by rusang from here########################
 alias cls='clear'
+alias mntusb='mount /dev/sdc1 /mnt/usb'
+alias umntusb='umount  /mnt/usb'
 alias ll='ls -l'
+alias tmux='tmux -2'
 alias la='ls -a'
 alias v='vim'
 alias javac="javac -J-Dfile.encoding=utf8"
@@ -593,3 +596,4 @@ export STANDARD_CACHE_DIR="${XDG_CACHE_HOME:-${HOME}/.cache}/pip"
 export WHEELHOUSE="${STANDARD_CACHE_DIR}/wheelhouse"
 export PIP_FIND_LINKS="file://${WHEELHOUSE}"
 export PIP_WHEEL_DIR="${WHEELHOUSE}"
+#

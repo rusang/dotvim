@@ -1135,8 +1135,9 @@ nnoremap <Leader>qa :qa<CR>
 nnoremap <Leader>qi :q!<CR>
 nnoremap <Leader>ww :w<CR>
 nnoremap <Leader>wq :wq<CR>
+" nnoremap <C-s>wq :wq<CR>
 "ctrl+i 设置为esc
-imap <C-]> <Esc>
+imap <C-z> <Esc>
 
 
 
