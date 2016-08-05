@@ -85,6 +85,8 @@ source $ZSH/oh-my-zsh.sh
 
 ###########################added by rusang from here########################
 alias cls='clear'
+alias mntusb='mount /dev/sdc1 /mnt/usb'
+alias umntusb='umount  /mnt/usb'
 alias ll='ls -l'
 alias la='ls -a'
 alias v='vim'
@@ -575,3 +577,4 @@ POWERLINE_BASH_SELECT=1
 #
 #
 #
+
