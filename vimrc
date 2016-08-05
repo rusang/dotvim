@@ -1139,9 +1139,6 @@ nnoremap <Leader>wq :wq<CR>
 "ctrl+i 设置为esc
 imap <C-z> <Esc>
 
-
-
-
 "在插入模式,设置ctrl+\为退出文件 :
 map! <C-\> <ESC>:q<CR>
 
