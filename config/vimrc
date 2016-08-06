@@ -1137,7 +1137,11 @@ nnoremap <Leader>ww :w<CR>
 nnoremap <Leader>wq :wq<CR>
 " nnoremap <C-s>wq :wq<CR>
 "ctrl+i 设置为esc
-imap <C-z> <Esc>
+imap <C-e> <Esc>
+
+
+
+
 
 "在插入模式,设置ctrl+\为退出文件 :
 map! <C-\> <ESC>:q<CR>
