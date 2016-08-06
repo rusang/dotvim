@@ -574,11 +574,6 @@ POWERLINE_BASH_SELECT=1
 # source /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
 # export HTTP_PROXY="http://127.0.0.1:9050"
 # export HTTPS_PROXY="http://127.0.0.1:9050"
-# export GIT_PROXY_COMMAND="/home/ssliao/hosts/socks5proxywrapper"
-# export GIT_SSH="/home/ssliao/hosts/socks5proxyssh"
-# gp=" --config http.proxy=127.0.0.1:9050"
-#
-#
 
 #powerline-zsh-theme settings
 #默认配置如下
