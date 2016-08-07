@@ -1141,7 +1141,10 @@ nnoremap <Leader>wq :wq<CR>
 "ctrl+i 设置为esc
 imap <C-e> <Esc>
 
-nnoremap <C-b> :Bookmark 
+"---------------------------------------------------------------
+"cscope and nerdtree settings
+"---------------------------------------------------------------
+nnoremap <C-m> :Bookmark 
 
 nnoremap <space>c :cscope add ~/.cscope/projects/
 
@@ -1163,14 +1166,26 @@ map! <C-\> <ESC>:q<CR>
 "vim-easymotion settings
 "---------------------------------------------------------------
 " 更改快捷键
-let g:EasyMotion_leader_key = 'f'
-" map f <Plug>(easymotion-prefix)
-" map ff <Plug>(easymotion-s)
-" map fs <Plug>(easymotion-f)
-" map fl <Plug>(easymotion-lineforward)
-" map fj <Plug>(easymotion-j)
-" map fk <Plug>(easymotion-k)
-" map fh <Plug>(easymotion-linebackward)
+" let g:EasyMotion_leader_key = 'f'
+
+" ff 全屏搜索
+" fs 往下搜索
+" fF 往上搜索
+" fl 行内向右搜索
+" fj 行间向下搜索
+" fk 行间向上搜索
+" fh 行内向左搜索
+" fb 往上搜索一个单词开始处
+" fge 往上搜索一个单词结尾处
+" fe 往下搜索一个单词结尾处
+" fw 往下搜索一个单词开始处
+map f <Plug>(easymotion-prefix)
+map ff <Plug>(easymotion-s)
+map fs <Plug>(easymotion-f)
+map fl <Plug>(easymotion-lineforward)
+map fj <Plug>(easymotion-j)
+map fk <Plug>(easymotion-k)
+map fh <Plug>(easymotion-linebackward)
 " 忽略大小写
 let g:EasyMotion_smartcase = 1
 "---------------------------------------------------------------
@@ -1192,9 +1207,9 @@ map z/ <Plug>(incsearch-easymotion-/)
 map z? <Plug>(incsearch-easymotion-?)
 map zg/ <Plug>(incsearch-easymotion-stay)
 
-" map e/ <Plug>(incsearch-fuzzy-/)
-" map e? <Plug>(incsearch-fuzzy-?)
-" map eg/ <Plug>(incsearch-fuzzy-stay)
+map f/ <Plug>(incsearch-fuzzy-/)
+map f? <Plug>(incsearch-fuzzy-?)
+map fg/ <Plug>(incsearch-fuzzy-stay)
 
 
 " map z/ <Plug>(incsearch-fuzzyspell-/)
