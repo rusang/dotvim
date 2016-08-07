@@ -224,7 +224,7 @@ nmap cS :%s/\s\+$//g<CR>:noh<CR>
 " 常规模式下输入 cM 清除行尾 ^M 符号
 nmap cM :%s/\r$//g<CR>:noh<CR>
 
-set ignorecase                                        "搜索模式里忽略大小写
+" set ignorecase                                        "搜索模式里忽略大小写
 set smartcase                                         "如果搜索模式包含大写字符，不使用 'ignorecase' 选项，只有在输入搜索模式并且打开 'ignorecase' 选项时才会使用
 " set noincsearch                                       "在输入要搜索的文字时，取消实时匹配
 
@@ -635,6 +635,7 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " 常规模式下输入 F2 调用插件
 nmap <F2> :NERDTreeToggle<CR>
+let NERDTreeShowBookmarks=1
 
 " -----------------------------------------------------------------------------
 "  < omnicppcomplete 插件配置 >
@@ -1133,13 +1134,19 @@ nnoremap <space>s :Unite giti/status<cr>
 nnoremap <Leader>q :Bdelete<CR>
 nnoremap <Leader>qa :qa<CR>
 nnoremap <Leader>qi :q!<CR>
+nnoremap <Leader>qq :q<CR>
 nnoremap <Leader>ww :w<CR>
 nnoremap <Leader>wq :wq<CR>
 " nnoremap <C-s>wq :wq<CR>
 "ctrl+i 设置为esc
-imap <C-z> <Esc>
+imap <C-e> <Esc>
 
+"---------------------------------------------------------------
+"cscope and nerdtree settings
+"---------------------------------------------------------------
+nnoremap <C-m> :Bookmark 
 
+nnoremap <space>c :cscope add ~/.cscope/projects/
 
 
 "在插入模式,设置ctrl+\为退出文件 :
@@ -1155,3 +1162,190 @@ map! <C-\> <ESC>:q<CR>
 " let g:tmux_navigator_save_on_switch = 1
 "
 "
+"---------------------------------------------------------------
+"vim-easymotion settings
+"---------------------------------------------------------------
+" 更改快捷键
+" let g:EasyMotion_leader_key = 'f'
+
+" ff 全屏搜索
+" fs 往下搜索
+" fF 往上搜索
+" fl 行内向右搜索
+" fj 行间向下搜索
+" fk 行间向上搜索
+" fh 行内向左搜索
+" fb 往上搜索一个单词开始处
+" fge 往上搜索一个单词结尾处
+" fe 往下搜索一个单词结尾处
+" fw 往下搜索一个单词开始处
+map f <Plug>(easymotion-prefix)
+map ff <Plug>(easymotion-s)
+map fs <Plug>(easymotion-f)
+map fl <Plug>(easymotion-lineforward)
+map fj <Plug>(easymotion-j)
+map fk <Plug>(easymotion-k)
+map fh <Plug>(easymotion-linebackward)
+" 忽略大小写
+let g:EasyMotion_smartcase = 1
+"---------------------------------------------------------------
+"vim-easymotion settings
+"---------------------------------------------------------------
+" map /  <Plug>(incsearch-forward)
+" map ?  <Plug>(incsearch-backward)
+" map g/ <Plug>(incsearch-stay)
+
+let g:incsearch#auto_nohlsearch = 1
+" map n  <Plug>(incsearch-nohl-n)
+" map N  <Plug>(incsearch-nohl-N)
+" map *  <Plug>(incsearch-nohl-*)
+" map #  <Plug>(incsearch-nohl-#)
+" map g* <Plug>(incsearch-nohl-g*)
+" map g# <Plug>(incsearch-nohl-g#)
+
+map z/ <Plug>(incsearch-easymotion-/)
+map z? <Plug>(incsearch-easymotion-?)
+map zg/ <Plug>(incsearch-easymotion-stay)
+
+map f/ <Plug>(incsearch-fuzzy-/)
+map f? <Plug>(incsearch-fuzzy-?)
+map fg/ <Plug>(incsearch-fuzzy-stay)
+
+
+" map z/ <Plug>(incsearch-fuzzyspell-/)
+" map z? <Plug>(incsearch-fuzzyspell-?)
+" map zg/ <Plug>(incsearch-fuzzyspell-stay)
+
+
+
+" You can use other keymappings like <C-l> instead of <CR> if you want to
+" use these mappings as default search and somtimes want to move cursor with
+" EasyMotion.
+" function! s:incsearch_config(...) abort
+  " return incsearch#util#deepextend(deepcopy({
+  " \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+  " \   'keymap': {
+  " \     "\<CR>": '<Over>(easymotion)'
+  " \   },
+  " \   'is_expr': 0
+  " \ }), get(a:, 1, {}))
+" endfunction
+" 
+" noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
+" noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
+" noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
+
+
+
+function! s:config_easyfuzzymotion(...) abort
+    return extend(copy({
+    \   'converters': [
+    \     incsearch#config#fuzzy#converter(),
+    \   ],
+    \   'modules': [incsearch#config#easymotion#module()],
+    \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+    \   'is_expr': 0,
+    \   'is_stay': 1
+    \ }), get(a:, 1, {}))
+endfunction
+
+noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
+
+
+
+function! s:config_fuzzyall(...) abort
+  return extend(copy({
+  \   'converters': [
+  \     incsearch#config#fuzzy#converter(),
+  \     incsearch#config#fuzzyspell#converter()
+  \   ],
+  \ }), get(a:, 1, {}))
+endfunction
+
+noremap <silent><expr> e/ incsearch#go(<SID>config_fuzzyall())
+noremap <silent><expr> e? incsearch#go(<SID>config_fuzzyall({'command': '?'}))
+noremap <silent><expr> eg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1}))
+"
+"
+"---------------------------------------------------------------
+"Nerd tree 操作说明
+"----------------------------------------------------------------
+"ctrl + w + h    光标 focus 左侧树形目录
+"ctrl + w + l    光标 focus 右侧文件显示窗口
+"ctrl + w + w    光标自动在左右侧窗口切换
+"ctrl + w + r    移动当前窗口的布局位置
+"
+"o       在已有窗口中打开文件、目录或书签，并跳到该窗口
+"go      在已有窗口 中打开文件、目录或书签，但不跳到该窗口
+"t       在新 Tab 中打开选中文件/书签，并跳到新 Tab
+"T       在新 Tab 中打开选中文件/书签，但不跳到新 Tab
+"i       split 一个新窗口打开选中文件，并跳到该窗口
+"gi      split 一个新窗口打开选中文件，但不跳到该窗口
+"s       vsplit 一个新窗口打开选中文件，并跳到该窗口
+"gs      vsplit 一个新 窗口打开选中文件，但不跳到该窗口
+"!       执行当前文件
+"O       递归打开选中 结点下的所有目录
+"x       合拢选中结点的父目录
+"X       递归 合拢选中结点下的所有目录
+"e       Edit the current dif
+"
+"双击    相当于 NERDTree-o
+"中键    对文件相当于 NERDTree-i，对目录相当于 NERDTree-e
+"
+"D       删除当前书签
+"
+"P       跳到根结点
+"p       跳到父结点
+"K       跳到当前目录下同级的第一个结点
+"J       跳到当前目录下同级的最后一个结点
+"k       跳到当前目录下同级的前一个结点
+"j       跳到当前目录下同级的后一个结点
+"
+"C       将选中目录或选中文件的父目录设为根结点
+"u       将当前根结点的父目录设为根目录，并变成合拢原根结点
+"U       将当前根结点的父目录设为根目录，但保持展开原根结点
+"r       递归刷新选中目录
+"R       递归刷新根结点
+"m       显示文件系统菜单
+"cd      将 CWD 设为选中目录
+"
+"I       切换是否显示隐藏文件
+"f       切换是否使用文件过滤器
+"F       切换是否显示文件
+"B       切换是否显示书签
+"
+"q       关闭 NerdTree 窗口
+"?       切换是否显示 Quick Help
+"
+"切换标签页
+"
+":tabnew [++opt选项] ［＋cmd］ 文件      建立对指定文件新的tab
+":tabc   关闭当前的 tab
+":tabo   关闭所有其他的 tab
+":tabs   查看所有打开的 tab
+":tabp   前一个 tab
+":tabn   后一个 tab
+"
+"标准模式下：
+"gT      前一个 tab
+"gt      后一个 tab
+"
+"MacVim 还可以借助快捷键来完成 tab 的关闭、切换
+"cmd+w   关闭当前的 tab
+"cmd+{   前一个 tab
+"cmd+ }   后一个 tab
+"
+"NerdTree 在 .vimrc 中的常用配置
+"
+"" 在 vim 启动的时候默认开启 NERDTree（autocmd 可以缩写为 au）
+" autocmd VimEnter * NERDTree
+
+" 按下 F2 调出/隐藏 NERDTree
+" map  :silent! NERDTreeToggle
+"
+" " 将 NERDTree 的窗口设置在 vim 窗口的右侧（默认为左侧）
+" let NERDTreeWinPos="right"
+"
+" " 当打开 NERDTree 窗口时，自动显示 Bookmarks
+" let NERDTreeShowBookmarks=1
+" -------------------------------------------------------------------
