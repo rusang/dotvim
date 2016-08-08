@@ -1144,7 +1144,7 @@ imap <C-e> <Esc>
 "---------------------------------------------------------------
 "cscope and nerdtree settings
 "---------------------------------------------------------------
-nnoremap <C-m> :Bookmark 
+nnoremap <space>m :Bookmark 
 
 nnoremap <space>c :cscope add ~/.cscope/projects/
 
@@ -1203,9 +1203,13 @@ let g:incsearch#auto_nohlsearch = 1
 " map g* <Plug>(incsearch-nohl-g*)
 " map g# <Plug>(incsearch-nohl-g#)
 
-map z/ <Plug>(incsearch-easymotion-/)
-map z? <Plug>(incsearch-easymotion-?)
-map zg/ <Plug>(incsearch-easymotion-stay)
+" map z/ <Plug>(incsearch-easymotion-/)
+" map z? <Plug>(incsearch-easymotion-?)
+" map zg/ <Plug>(incsearch-easymotion-stay)
+
+map / <Plug>(incsearch-easymotion-/)
+map ? <Plug>(incsearch-easymotion-?)
+map g/ <Plug>(incsearch-easymotion-stay)
 
 map f/ <Plug>(incsearch-fuzzy-/)
 map f? <Plug>(incsearch-fuzzy-?)
