@@ -128,6 +128,8 @@ alias wirerestart='sudo systemctl restart network.service'
 alias npaper='zsh ~/.autostart/feh.sh'
 alias 2='cd ../..'
 alias 3='cd ../../..'
+alias 4='cd ../../../..'
+alias 5='cd ../../../../..'
 
 #color{{{
 autoload colors
