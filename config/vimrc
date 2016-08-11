@@ -1110,17 +1110,68 @@ let g:vim_run_command_map = {
 "---------------------------------------------------------------
 "unite.vim settings
 "---------------------------------------------------------------
+let g:unite_source_output_shellcmd_colors = 1
 
 inoremap <silent><buffer><expr> <C-s> unite#do_action('split')
 inoremap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+" The prefix key.
+nnoremap    [unite]   <Nop>
+nmap 9  [unite]
 
 "disable pagedown and pageup
 nnoremap <leader>f :Unite file_rec/async<cr>
-nnoremap <leader>b :Unite buffer<cr>
+nnoremap <leader>b :Unite buffer bookmark<cr>
 
-" let g:unite_source_history_yank_enable = 1
-" nnoremap <space>y :Unite history/unite<cr>
+let g:unite_source_history_yank_enable = 1
+nnoremap <space>y :Unite history/unite<cr>
 nnoremap <leader>s :Unite -quick-match buffer<cr>
+
+let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
+let g:unite_source_menu_menus.git = {
+    \ 'description' : '            gestionar repositorios git
+        \                            ⌘ [espacio]g',
+    \}
+let g:unite_source_menu_menus.git.command_candidates = [
+    \['▷ tig                                                        ⌘ ,gt',
+        \'normal ,gt'],
+    \['▷ git status       (Fugitive)                                ⌘ ,gs',
+        \'Gstatus'],
+    \['▷ git diff         (Fugitive)                                ⌘ ,gd',
+        \'Gdiff'],
+    \['▷ git commit       (Fugitive)                                ⌘ ,gc',
+        \'Gcommit'],
+    \['▷ git log          (Fugitive)                                ⌘ ,gl',
+        \'exe "silent Glog | Unite quickfix"'],
+    \['▷ git blame        (Fugitive)                                ⌘ ,gb',
+        \'Gblame'],
+    \['▷ git stage        (Fugitive)                                ⌘ ,gw',
+        \'Gwrite'],
+    \['▷ git checkout     (Fugitive)                                ⌘ ,go',
+        \'Gread'],
+    \['▷ git rm           (Fugitive)                                ⌘ ,gr',
+        \'Gremove'],
+    \['▷ git mv           (Fugitive)                                ⌘ ,gm',
+        \'exe "Gmove " input("destino: ")'],
+    \['▷ git push         (Fugitive, salida por buffer)             ⌘ ,gp',
+        \'Git! push'],
+    \['▷ git pull         (Fugitive, salida por buffer)             ⌘ ,gP',
+        \'Git! pull'],
+    \['▷ git prompt       (Fugitive, salida por buffer)             ⌘ ,gi',
+        \'exe "Git! " input("comando git: ")'],
+    \['▷ git cd           (Fugitive)',
+        \'Gcd'],
+    \]
+" nnoremap <silent>[menu]g :Unite -silent -start-insert menu:git<CR>
+nnoremap <silent>[unite]g :Unite -silent -start-insert menu:git<CR>
+nnoremap <silent>[unite]s :Unite output/shellcmd<CR>
+nnoremap <silent>[unite]f :Unite -silent -start-insert file_mru<CR>
+nnoremap <silent>[unite]o :Unite file:../
+nnoremap <silent>[unite]d :Unite directory_mru<CR>
+nnoremap <silent>[unite]B :UniteBookmarkAdd<CR>
+nnoremap <silent>[unite]b :Unite bookmark:*<CR>
+nnoremap <silent>[unite]bf :UniteTodoAddBuffer<CR>
+
+"---------------------------end of unite.vim settings-----------
 
 "---------------------------------------------------------------
 "unite-giti-vim settings
@@ -1134,7 +1185,7 @@ nnoremap <space>s :Unite giti/status<cr>
 nnoremap <Leader>q :Bdelete<CR>
 nnoremap <Leader>qa :qa<CR>
 nnoremap <Leader>qi :q!<CR>
-nnoremap <Leader>qq :q<CR>
+" nnoremap <Leader>qq :q<CR>
 nnoremap <Leader>ww :w<CR>
 nnoremap <Leader>wq :wq<CR>
 " nnoremap <C-s>wq :wq<CR>
@@ -1352,4 +1403,14 @@ noremap <silent><expr> eg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1}))
 "
 " " 当打开 NERDTree 窗口时，自动显示 Bookmarks
 " let NERDTreeShowBookmarks=1
+
+
 " -------------------------------------------------------------------
+"unite-colorscheme.vim settings
+" -------------------------------------------------------------------
+let g:unite_colorscheme_blacklist = [ 
+            \ 'blue', 'darkblue', 'delek', 'evening',
+            \ 'desert', 'elflord', 'koehler', 'morning',
+            \ 'murphy', 'pablo', 'peachpuff', 'ron',
+            \ 'slate', 'torte', 'zellner' ]
+
