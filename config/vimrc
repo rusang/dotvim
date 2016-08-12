@@ -608,7 +608,7 @@ imap <c-l> <Right>
 let mapleader=","                           "<Leader>更改为，按键
 let NERDSpaceDelims = 1                     "在左注释符之后，右注释符之前留有空格
 " Add spaces after comment delimiters by default
-"let g:NERDSpaceDelims = 1
+let g:NERDSpaceDelims = 1
 
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
@@ -620,7 +620,7 @@ let g:NERDDefaultAlign = 'left'
 let g:NERDAltDelims_java = 1
 
 " Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+" let g:NERDCustomDelimiters = { 'c': { 'left': '/*','right': '*/' } }
 
 " Allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDCommentEmptyLines = 1
@@ -1189,6 +1189,8 @@ nnoremap <Leader>qi :q!<CR>
 nnoremap <Leader>ww :w<CR>
 nnoremap <Leader>wq :wq<CR>
 " nnoremap <C-s>wq :wq<CR>
+" 回到最初的状态，撤销所有修改
+" nnoremap <A-u> :u1000<CR> " not work
 "ctrl+i 设置为esc
 imap <C-e> <Esc>
 
@@ -1408,9 +1410,15 @@ noremap <silent><expr> eg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1}))
 " -------------------------------------------------------------------
 "unite-colorscheme.vim settings
 " -------------------------------------------------------------------
-let g:unite_colorscheme_blacklist = [ 
-            \ 'blue', 'darkblue', 'delek', 'evening',
-            \ 'desert', 'elflord', 'koehler', 'morning',
-            \ 'murphy', 'pablo', 'peachpuff', 'ron',
-            \ 'slate', 'torte', 'zellner' ]
+"Disable following theme
+" let g:unite_colorscheme_blacklist = [
+            " \ 'blue', 'darkblue', 'delek', 'evening',
+            " \ 'desert', 'elflord', 'koehler', 'morning',
+            " \ 'murphy', 'pablo', 'peachpuff', 'ron',
+            " \ 'slate', 'torte', 'zellner' ]
 
+let g:unite_colorscheme_blacklist = [
+            \ 'blue','darkblue','evening','morning','murphy',
+            \ 'ron','shine','peachpuff','koehler','industry',
+            \ 'elflord','Tomorrow-Night-Bright','darkburn',
+            \ 'desert_terminal']
