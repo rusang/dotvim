@@ -1196,7 +1196,6 @@ nnoremap <space>s :Unite giti/status<cr>
 "vim-bbye settings
 "---------------------------------------------------------------
 nnoremap <Leader>q :Bdelete<CR>
-nnoremap <Leader>p :pwd<CR>
 nnoremap <Leader>qa :qa<CR>
 nnoremap <Leader>qi :q!<CR>
 nnoremap <Leader>qq :q<CR>
@@ -1436,3 +1435,14 @@ let g:unite_colorscheme_blacklist = [
             \ 'ron','shine','peachpuff','koehler','industry',
             \ 'elflord','Tomorrow-Night-Bright','darkburn',
             \ 'desert_terminal']
+
+
+
+
+
+
+"--------------------------------------------------------------------
+"other settings
+"--------------------------------------------------------------------
+nnoremap <Leader>p :pwd<CR>
+nnoremap <Leader>c :Unite colorscheme<CR>
