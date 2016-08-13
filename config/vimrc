@@ -1112,8 +1112,9 @@ let g:vim_run_command_map = {
 "---------------------------------------------------------------
 let g:unite_source_output_shellcmd_colors = 1
 
-inoremap <silent><buffer><expr> <C-s> unite#do_action('split')
-inoremap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+" inoremap <silent><buffer><expr> <C-s> unite#do_action('split')
+" inoremap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+
 " The prefix key.
 nnoremap    [unite]   <Nop>
 nmap 9  [unite]
@@ -1125,6 +1126,21 @@ nnoremap <leader>b :Unite buffer bookmark<cr>
 let g:unite_source_history_yank_enable = 1
 nnoremap <space>y :Unite history/unite<cr>
 nnoremap <leader>s :Unite -quick-match buffer<cr>
+
+" nnoremap <silent>[menu]g :Unite -silent -start-insert menu:git<CR>
+" nnoremap <silent>[unite]g :Unite -silent -start-insert menu:git<CR>
+nnoremap <silent>[unite]s :Unite output/shellcmd<CR>
+nnoremap <silent>[unite]f :Unite -silent -start-insert file_mru<CR>
+nnoremap <leader>[unite]r :Unite -silent -start-insert file_rec/async<CR>
+nnoremap <silent>[unite]j :Unite -silent -start-insert jump<CR>
+nnoremap <silent>[unite]y :Unite -silent  -vertical history/yank<CR>
+nnoremap <silent>[unite]g :Unite -silent  -vertical gitlog:all<CR>
+nnoremap <silent>[unite]l :Unite -silent  -vertical gitlog<CR>
+nnoremap <silent>[unite]o :Unite file:../
+nnoremap <silent>[unite]d :Unite -silent -start-insert directory_mru<CR>
+nnoremap <silent>[unite]B :UniteBookmarkAdd<CR>
+nnoremap <silent>[unite]b :Unite bookmark:*<CR>
+nnoremap <silent>[unite]bf :UniteTodoAddBuffer<CR>
 
 let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
 let g:unite_source_menu_menus.git = {
@@ -1161,17 +1177,9 @@ let g:unite_source_menu_menus.git.command_candidates = [
     \['▷ git cd           (Fugitive)',
         \'Gcd'],
     \]
-" nnoremap <silent>[menu]g :Unite -silent -start-insert menu:git<CR>
-nnoremap <silent>[unite]g :Unite -silent -start-insert menu:git<CR>
-nnoremap <silent>[unite]s :Unite output/shellcmd<CR>
-nnoremap <silent>[unite]f :Unite -silent -start-insert file_mru<CR>
-nnoremap <silent>[unite]o :Unite file:../
-nnoremap <silent>[unite]d :Unite directory_mru<CR>
-nnoremap <silent>[unite]B :UniteBookmarkAdd<CR>
-nnoremap <silent>[unite]b :Unite bookmark:*<CR>
-nnoremap <silent>[unite]bf :UniteTodoAddBuffer<CR>
-
-"---------------------------end of unite.vim settings-----------
+"---------------------------------------------------------------
+"end of unite.vim settings
+"---------------------------------------------------------------
 
 "---------------------------------------------------------------
 "unite-giti-vim settings
@@ -1185,7 +1193,7 @@ nnoremap <space>s :Unite giti/status<cr>
 nnoremap <Leader>q :Bdelete<CR>
 nnoremap <Leader>qa :qa<CR>
 nnoremap <Leader>qi :q!<CR>
-" nnoremap <Leader>qq :q<CR>
+nnoremap <Leader>qq :q<CR>
 nnoremap <Leader>ww :w<CR>
 nnoremap <Leader>wq :wq<CR>
 " nnoremap <C-s>wq :wq<CR>
