@@ -954,8 +954,9 @@ endif
 " Bundle 'powerline/powerline'
 set guifont=Liberation\ Mono\ for\ Powerline\ 12
 " set guifont=DejaVu\ Sans:s12
-
-" air-line
+"----------------------------------------------------------
+" air-line setings
+"----------------------------------------------------------
 let g:airline_powerline_fonts = 1
 " let g:airline#extensions#tabline#enabled = 1
 " let g:airline#extensions#hunks#enabled = 0
@@ -964,19 +965,19 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
     endif
 
-   " unicode symbols
-    let g:airline_left_sep = '»'
-    let g:airline_left_sep = '▶'
-    let g:airline_right_sep = '«'
-    let g:airline_right_sep = '◀'
-    let g:airline_symbols.linenr = '␊'
-    let g:airline_symbols.linenr = '␤'
-    let g:airline_symbols.linenr = '¶'
-    let g:airline_symbols.branch = '⎇'
-    let g:airline_symbols.paste = 'ρ'
-    let g:airline_symbols.paste = 'Þ'
-    let g:airline_symbols.paste = '∥'
-    let g:airline_symbols.whitespace = 'Ξ'
+" unicode symbols
+" let g:airline_left_sep = '»'
+" let g:airline_left_sep = '▶'
+" let g:airline_right_sep = '«'
+" let g:airline_right_sep = '◀'
+" let g:airline_symbols.linenr = '␊'
+" let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+" let g:airline_symbols.branch = '⎇'
+" let g:airline_symbols.paste = 'ρ'
+" let g:airline_symbols.paste = 'Þ'
+" let g:airline_symbols.paste = '∥'
+" let g:airline_symbols.whitespace = 'Ξ'
 
 "" airline symbols
 let g:airline_left_sep = ''
@@ -1134,8 +1135,6 @@ nnoremap <silent>[unite]f :Unite -silent -start-insert file_mru<CR>
 nnoremap <leader>[unite]r :Unite -silent -start-insert file_rec/async<CR>
 nnoremap <silent>[unite]j :Unite -silent -start-insert jump<CR>
 nnoremap <silent>[unite]y :Unite -silent  -vertical history/yank<CR>
-nnoremap <silent>[unite]g :Unite -silent  -vertical gitlog:all<CR>
-nnoremap <silent>[unite]l :Unite -silent  -vertical gitlog<CR>
 nnoremap <silent>[unite]o :Unite file:../
 nnoremap <silent>[unite]d :Unite -silent -start-insert directory_mru<CR>
 nnoremap <silent>[unite]B :UniteBookmarkAdd<CR>
@@ -1182,6 +1181,12 @@ let g:unite_source_menu_menus.git.command_candidates = [
 "---------------------------------------------------------------
 
 "---------------------------------------------------------------
+"unite-git-log settings
+"---------------------------------------------------------------
+nnoremap <silent>[unite]g :Unite -silent  -vertical gitlog:all<CR>
+nnoremap <silent>[unite]l :Unite -silent  -vertical gitlog<CR>
+let g:unite_source_gitlog_default_opts = '--graph --color=auto --pretty=format:''%h -%d %s (%cr) <%an>'' --abbrev-commit --date=relative'
+"---------------------------------------------------------------
 "unite-giti-vim settings
 "---------------------------------------------------------------
 nnoremap <space>b :Unite giti/branch_all<cr>
@@ -1191,6 +1196,7 @@ nnoremap <space>s :Unite giti/status<cr>
 "vim-bbye settings
 "---------------------------------------------------------------
 nnoremap <Leader>q :Bdelete<CR>
+nnoremap <Leader>p :pwd<CR>
 nnoremap <Leader>qa :qa<CR>
 nnoremap <Leader>qi :q!<CR>
 nnoremap <Leader>qq :q<CR>
