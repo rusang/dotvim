@@ -1434,9 +1434,15 @@ let g:unite_colorscheme_blacklist = [
             \ 'blue','darkblue','evening','morning','murphy',
             \ 'ron','shine','peachpuff','koehler','industry',
             \ 'elflord','Tomorrow-Night-Bright','darkburn',
-            \ 'desert_terminal']
+            \ 'desert_terminal',
+            \]
 
 
+"--------------------------------------------------------------------
+"vim-markdown settings
+"--------------------------------------------------------------------
+let g:instant_markdown_slow = 1
+let g:instant_markdown_autostart = 1
 
 
 
