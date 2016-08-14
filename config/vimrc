@@ -997,7 +997,7 @@ set fenc=
 let g:airline_section_y = 'BN: %{bufnr("%")}'
 set list
 set listchars=tab:•\ ,trail:•,extends:»,precedes:« " Unprintable chars mapping"
-
+" set listchars=tab:>-
 
 " -----------------------------------------------------------------------------
 "  < neocomplcache 插件配置 >
