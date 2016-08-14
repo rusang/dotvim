@@ -404,7 +404,7 @@ func! Link()
                     echohl WarningMsg | echo " linking..."
                     silent make
                 elseif expand("%:e") == "cpp" || expand("%:e") == "cxx"
-                    setlocal makeprg=g++\ -o\ %<\ %<.o   
+                    setlocal makeprg=g++\ -o\ %<\ %<.o
                     echohl WarningMsg | echo " linking..."
                     silent make
                 endif
@@ -647,8 +647,8 @@ let NERDTreeShowBookmarks=1
 " 我使用上面的参数生成标签后，对函数使用跳转时会出现多个选择
 " 所以我就将--c++-kinds=+p参数给去掉了，如果大侠有什么其它解决方法希望不要保留呀
 " 下面由ssliao修改
-"map <C-F4> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>  
-"nmap <F4> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q -f ~/.vim/tags/tags_self<CR> 
+"map <C-F4> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+"nmap <F4> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q -f ~/.vim/tags/tags_self<CR>
 "set tags+=~/.vim/tags/tags_self
 nmap <F4> :cs add ./cscope.out .<CR><CR><CR> :cs reset<CR>
 set completeopt=menu                        "关闭预览窗口
@@ -870,47 +870,47 @@ let g:miniBufExplorerMoreThanOne=0
 "-- WinManager setting --
 let g:winManagerWindowLayout='FileExplorer|TagList' " 设置我们要管理的插件
 let g:persistentBehaviour=0 " 如果所有编辑文件都关闭了，退出vim
-nmap wm :WMToggle<cr> 
+nmap wm :WMToggle<cr>
 
 
 
 "/* 当新建 .h .c .hpp .cpp 等文件时自动调用SetTitle 函数*/
-"autocmd BufNewFile *.[ch],*.hpp,*.cpp exec ":call SetTitle()" 
+"autocmd BufNewFile *.[ch],*.hpp,*.cpp exec ":call SetTitle()"
 
 "/* 加入注释 */
 " func SetComment()
-"     call setline(1,"/*==================================") 
+"     call setline(1,"/*==================================")
 "    call append(line("."),   "*   Copyright (C) ".strftime("%Y")." All rights reserved.")
-"    call append(line(".")+1, "*   ") 
-"    call append(line(".")+2, "*   文件名称：".expand("%:t")) 
+"    call append(line(".")+1, "*   ")
+"    call append(line(".")+2, "*   文件名称：".expand("%:t"))
 "    call append(line(".")+3, "*   创 建 者：herb")
-"    call append(line(".")+4, "*   创建日期：".strftime("%Y年%m月%d日")) 
-"    call append(line(".")+5, "*   描    述：") 
+"    call append(line(".")+4, "*   创建日期：".strftime("%Y年%m月%d日"))
+"    call append(line(".")+5, "*   描    述：")
 "    call append(line(".")+6, "*")
-"    call append(line(".")+7, "================================================================*/") 
+"    call append(line(".")+7, "================================================================*/")
 " endfunc
 
 "/* 定义函数SetTitle，自动插入文件头 */
 "func SetTitle()
 "     call SetComment()
-"     if expand("%:e") == 'hpp' 
-"  call append(line(".")+8, "#ifndef _".toupper(expand("%:t:r"))."_H") 
-"  call append(line(".")+9, "#define _".toupper(expand("%:t:r"))."_H") 
-"  call append(line(".")+10, "#ifdef __cplusplus") 
-"  call append(line(".")+11, "extern \"C\"") 
-"  call append(line(".")+12, "{") 
-"  call append(line(".")+13, "#endif") 
-"  call append(line(".")+14, "") 
-" call append(line(".")+15, "#ifdef __cplusplus") 
-" call append(line(".")+16, "}") 
-" call append(line(".")+17, "#endif") 
-" call append(line(".")+18, "#endif //".toupper(expand("%:t:r"))."_H") 
-"    elseif expand("%:e") == 'h' 
-" call append(line(".")+8, "#pragma once") 
-"    elseif &filetype == 'c' 
-" call append(line(".")+8,"#include \"".expand("%:t:r").".h\"") 
-"    elseif &filetype == 'cpp' 
-" call append(line(".")+8, "#include \"".expand("%:t:r").".h\"") 
+"     if expand("%:e") == 'hpp'
+"  call append(line(".")+8, "#ifndef _".toupper(expand("%:t:r"))."_H")
+"  call append(line(".")+9, "#define _".toupper(expand("%:t:r"))."_H")
+"  call append(line(".")+10, "#ifdef __cplusplus")
+"  call append(line(".")+11, "extern \"C\"")
+"  call append(line(".")+12, "{")
+"  call append(line(".")+13, "#endif")
+"  call append(line(".")+14, "")
+" call append(line(".")+15, "#ifdef __cplusplus")
+" call append(line(".")+16, "}")
+" call append(line(".")+17, "#endif")
+" call append(line(".")+18, "#endif //".toupper(expand("%:t:r"))."_H")
+"    elseif expand("%:e") == 'h'
+" call append(line(".")+8, "#pragma once")
+"    elseif &filetype == 'c'
+" call append(line(".")+8,"#include \"".expand("%:t:r").".h\"")
+"    elseif &filetype == 'cpp'
+" call append(line(".")+8, "#include \"".expand("%:t:r").".h\"")
 "    endif
 "endfunc
 
@@ -1210,7 +1210,7 @@ imap <C-e> <Esc>
 "---------------------------------------------------------------
 "cscope and nerdtree settings
 "---------------------------------------------------------------
-nnoremap <space>m :Bookmark 
+nnoremap <space>m :Bookmark
 
 nnoremap <space>c :cscope add ~/.cscope/projects/
 
@@ -1300,7 +1300,7 @@ map fg/ <Plug>(incsearch-fuzzy-stay)
   " \   'is_expr': 0
   " \ }), get(a:, 1, {}))
 " endfunction
-" 
+"
 " noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
 " noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
 " noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
