@@ -35,7 +35,7 @@ snippet inch
 snippet db
 	double  ${1}
 snippet un
-	unsigned ${1} 
+	unsigned ${1}
 # ifndef...define...endif
 snippet ndef
 	#ifndef $1
@@ -43,12 +43,21 @@ snippet ndef
 	#endif /* ifndef $1 */
 # define
 snippet def
-	#define  
+	#define
+# ifdef...#else...endif
+snippet ifeldef
+	#ifdef ${1:FOO}
+		${2:#define }
+	#else
+		${3:#define }
+	#endif /* ifdef $1 */
+
 # ifdef...endif
 snippet ifdef
 	#ifdef ${1:FOO}
 		${2:#define }
-	#endif
+	#endif /* ifdef $1 */
+
 # if
 snippet #if
 	#if ${1:FOO}
@@ -67,32 +76,32 @@ snippet once
 ## Control Statements
 # if
 snippet if
-	if (${1:true}) 
+	if (${1:true})
 	{
 		${0}
 	}
 # if1
 snippet iff
-	if (${1:true}) 
+	if (${1:true})
 		${0}
 snippet ife
-	if (${1:true}) 
+	if (${1:true})
 	{
 		${2}
 	}
-	else 
+	else
 	{
 		${0}
 	}
 # else
 snippet el
-	else 
+	else
 	{
 		${0}
 	}
 # else if
 snippet elif
-	else if (${1:true}) 
+	else if (${1:true})
 	{
 		${0}
 	}
@@ -104,7 +113,7 @@ snippet t
 	${1:/* condition */} ? ${2:a} : ${3:b}
 # switch
 snippet switch
-	switch (${1:/* variable */}) 
+	switch (${1:/* variable */})
 	{
 		case ${2:/* variable case */}:
 			${3}
@@ -114,7 +123,7 @@ snippet switch
 	}
 # switch without default
 snippet switchndef
-	switch (${1:/* variable */}) 
+	switch (${1:/* variable */})
 	{
 		case ${2:/* variable case */}:
 			${3}
@@ -131,19 +140,19 @@ snippet ret
 ## Loops
 # for
 snippet for
-	for (${2:i} = 0; $2 < ${1:count}; $2${3:++}) 
+	for (${2:i} = 0; $2 < ${1:count}; $2${3:++})
 	{
 		${4}
 	}
 # for (custom)
 snippet forr
-	for (${1:i} = ${2:0}; ${3:$1 < 10}; $1${4:++}) 
+	for (${1:i} = ${2:0}; ${3:$1 < 10}; $1${4:++})
 	{
 		${5}
 	}
 # while
 snippet wh
-	while (${1:/* condition */}) 
+	while (${1:/* condition */})
 	{
 		${2}
 	}
@@ -171,7 +180,7 @@ snippet td
 	${0}
 # struct
 snippet st
-	struct ${1:`vim_snippets#Filename('$1_t', 'name')`} 
+	struct ${1:`vim_snippets#Filename('$1_t', 'name')`}
 	{
 		${2:/* data */}
 	}${3: /* optional variable list */};
@@ -286,14 +295,14 @@ snippet gpl
 	/*
 	 * This program is free software; you can redistribute it and/or modify
 	 * it.This program is distributed in the hope that it will be useful,
-	 * but WITHOUT ANY WARRANTY.If you found some COPYRIGHT ISSUES,PLEASE 
+	 * but WITHOUT ANY WARRANTY.If you found some COPYRIGHT ISSUES,PLEASE
 	 * CONTRACT ME by email,I will make it right in the first time!!!
 	 * Copyright (C) rusang, `strftime("%Y-%m-%d")`
 	 * @email：rusangliao@163.com or 459257658@qq.com
 	 *
-	 * FileName:    ${1}  
+	 * FileName:    ${1}
 	 * Description: ${2}
-	 * Notes:	    ${3}       
+	 * Notes:	    ${3}
 	 */
 	${0}
 
@@ -301,9 +310,9 @@ snippet gpl
 snippet com
 	/*
 	 *	函数说明:
-	 *		${1}  
+	 *		${1}
 	 *	参数说明:
-	 *		${2} 
+	 *		${2}
 	 *	返回值:
 	 *		${3}
 	 */
@@ -313,7 +322,7 @@ snippet com
 # comment
 snippet comf
 	/*
-	 *	${1}	
+	 *	${1}
 	 */
 	${0}
 
