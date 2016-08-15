@@ -40,7 +40,7 @@ snippet un
 snippet ndef
 	#ifndef $1
 	#define ${1:SYMBOL} ${2:value}
-	#endif
+	#endif /* ifndef $1 */
 # define
 snippet def
 	#define  
@@ -125,6 +125,8 @@ snippet case
 	case ${1:/* variable case */}:
 		${2}
 		${3:break;}
+snippet ret
+	return ${0};
 ##
 ## Loops
 # for
@@ -180,6 +182,9 @@ snippet tds
 	{
 		${3:/* data */}
 	} ${1:`vim_snippets#Filename('$1_t', 'name')`};
+
+snippet enum
+	enum ${1:name} { ${0} };
 # typedef enum
 snippet tde
 	typedef enum {
