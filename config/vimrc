@@ -635,8 +635,16 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " 常规模式下输入 F2 调用插件
 nmap <F2> :NERDTreeToggle<CR>
-let NERDTreeShowBookmarks=1
-
+let NERDTreeShowBookmarks = 1
+"显示隐藏文件，shift+i可切换
+" let NERDTreeShowHidden=1
+" 设置文件过滤器
+" let NERDTreeIgnore = ['\.o$']
+" let NERDTreeIgnore=['\.vim$', '\~$']
+" This will cause all dirs ending in ".d" to be ignored and all files ending  in ".o" to be ignored
+" let NERDTreeIgnore=['.d$[[dir]]', '.o$[[file]]']
+let NERDTreeIgnore=['.swp$[[file]]', '.o$[[file]]']
+let NERDTreeShowLineNumbers = 1
 " -----------------------------------------------------------------------------
 "  < omnicppcomplete 插件配置 >
 " -----------------------------------------------------------------------------
