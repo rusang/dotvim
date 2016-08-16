@@ -1348,6 +1348,7 @@ noremap <silent><expr> e? incsearch#go(<SID>config_fuzzyall({'command': '?'}))
 noremap <silent><expr> eg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1}))
 "
 "
+function HowtoUseNerd()
 "---------------------------------------------------------------
 "Nerd tree 操作说明
 "----------------------------------------------------------------
@@ -1429,7 +1430,7 @@ noremap <silent><expr> eg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1}))
 "
 " " 当打开 NERDTree 窗口时，自动显示 Bookmarks
 " let NERDTreeShowBookmarks=1
-
+endfunction
 
 " -------------------------------------------------------------------
 "unite-colorscheme.vim settings
