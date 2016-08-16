@@ -34,6 +34,13 @@ make_find_arg()
     local FILETYPES=("c" "cc" "cpp" "h" 
     "mk" 'sh' 
     "java" 
+    "md"
+    "pl"
+    "hpp"
+    "MD"
+    "in"
+    "txt"
+    "s" 
     "S")
     # 文件名，如Makefile
 
