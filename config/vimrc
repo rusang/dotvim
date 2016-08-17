@@ -1429,4 +1429,6 @@ nnoremap <space>cw :NERDTreeClose<CR> :cw<CR>
 nnoremap <space>cn :cn<CR>
 nnoremap <space>cp :cp<CR>
 nnoremap <space>cc :close<CR>
+nnoremap <space>hi :GitGutterLineHighlightsEnable<CR>
+nnoremap <space>hn :GitGutterLineHighlightsDisable<CR>
 
