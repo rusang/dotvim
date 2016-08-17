@@ -1407,11 +1407,12 @@ function Example(lineno)
     return "Exception"
 endfunction
 let g:SignatureMarkTextHL = function("Example")
+let g:SignatureMarkTextHLDynamic = 1
 
 " let g:gitgutter_diff_args = '-w'
 " let g:gitgutter_diff_base = '<commit SHA>'
 " let g:gitgutter_highlight_lines = 1
-set updatetime=250
+set updatetime=200
 
 "同步运行
 let g:gitgutter_async = 0
@@ -1419,11 +1420,12 @@ let g:gitgutter_async = 0
 "nerdtree-ack settings
 "--------------------------------------------------------------------
 "JUST PRESS ms in NERDtree place
+"
 
 "--------------------------------------------------------------------
 "other settings
 "--------------------------------------------------------------------
-nnoremap <Leader>p :pwd<CR>
+nnoremap <space>p :pwd<CR>
 nnoremap <Leader>c :Unite colorscheme<CR>
 nnoremap <space>cw :NERDTreeClose<CR> :cw<CR>
 nnoremap <space>cn :cn<CR>
