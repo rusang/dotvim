@@ -1376,7 +1376,7 @@ let g:instant_markdown_autostart = 1
 "ack.vim settings
 "--------------------------------------------------------------------
 " If you want to open a quickview window with 30 lines you can do:
-" let g:ack_qhandler = "botright copen 30"
+let g:ack_qhandler = "botright copen 20"
 let g:ackhighlight = 1
 let g:ack_autoclose = 1
 nnoremap <Leader>a :Ack!<Space>
