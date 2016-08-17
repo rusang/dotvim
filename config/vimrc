@@ -1399,7 +1399,22 @@ let g:ack_default_options =
 " This option list all maps create on quickfix/Location list window.  Example, if you want to open the result in the middle of the screen:
 " let g:ack_mappings = { "o": "<CR>zz"  }
 
+"--------------------------------------------------------------------
+"vim-signature settings
+"--------------------------------------------------------------------
+" let g:SignatureMarkTextHL = "Exception"
+function Example(lineno)
+    return "Exception"
+endfunction
+let g:SignatureMarkTextHL = function("Example")
 
+" let g:gitgutter_diff_args = '-w'
+" let g:gitgutter_diff_base = '<commit SHA>'
+" let g:gitgutter_highlight_lines = 1
+set updatetime=250
+
+"同步运行
+let g:gitgutter_async = 0
 "--------------------------------------------------------------------
 "nerdtree-ack settings
 "--------------------------------------------------------------------
@@ -1413,4 +1428,5 @@ nnoremap <Leader>c :Unite colorscheme<CR>
 nnoremap <space>cw :NERDTreeClose<CR> :cw<CR>
 nnoremap <space>cn :cn<CR>
 nnoremap <space>cp :cp<CR>
+nnoremap <space>cc :close<CR>
 
