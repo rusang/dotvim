@@ -52,15 +52,15 @@ if !exists("g:ack_lhandler")
 endif
 
 if !exists("g:ackhighlight")
-  let g:ackhighlight = 1
+  let g:ackhighlight = 0
 endif
 
 if !exists("g:ack_autoclose")
-  let g:ack_autoclose = 1
+  let g:ack_autoclose = 0
 endif
 
 if !exists("g:ack_autofold_results")
-  let g:ack_autofold_results = 1
+  let g:ack_autofold_results = 0
 endif
 
 if !exists("g:ack_use_cword_for_empty_search")
