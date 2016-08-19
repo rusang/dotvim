@@ -1425,6 +1425,36 @@ let g:gitgutter_async = 0
 "JUST PRESS ms in NERDtree place
 "
 
+
+"--------------------------------------------------------------------
+"vim-colorscheme  settings
+"--------------------------------------------------------------------
+" colorscheme     molokai     "This is fine
+colorscheme     hybrid_material "Also fine
+" colorscheme     jellyx
+" colorscheme     landscape   "透明的
+" colorscheme      lizard256
+" colorscheme         mophiaSmoke "透明的
+" colorscheme        vimbrant  "注释有点看不清楚
+" colorscheme       Benokai   "全黑的
+" colorscheme         meta5       "This is fine
+
+
+"--------------------------------------------------------------------
+"CtrlSF settings
+"--------------------------------------------------------------------
+" let g:ctrlsf_auto_close = 1
+" let g:ctrlsf_indent = 2
+let g:ctrlsf_selected_line_hl = 'op'
+" let g:ctrlsf_winsize = '30%'
+let g:ctrlsf_mapping = {
+        \ "next": "n",
+        \ "prev": "N",
+        \ "openb": "",
+        \ }
+
+nnoremap <space>sf :CtrlSF  
+
 "--------------------------------------------------------------------
 "other settings
 "--------------------------------------------------------------------
