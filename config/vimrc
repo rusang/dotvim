@@ -1125,7 +1125,7 @@ let g:vim_run_command_map = {
 " inoremap <silent><buffer><expr> <C-s> unite#do_action('split')
 " inoremap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
 
-" The prefix key.
+" The unit prefix key.
 nnoremap    [unite]   <Nop>
 nmap 9  [unite]
 
@@ -1145,7 +1145,7 @@ nnoremap <silent><Leader>f :Unite -silent -start-insert file_rec/async<CR>
 nnoremap <silent><space>f :Unite -silent file<CR>
 nnoremap <silent><space>d :Unite -silent directory<CR>
 nnoremap <silent>[unite]j :Unite -silent -start-insert jump<CR>
-nnoremap <silent>[unite]y :Unite -silent  -vertical history/yank<CR>
+nnoremap <silent>[unite]a :Unite -silent  -vertical history/yank<CR>
 nnoremap <silent>[unite]o :Unite file:../
 nnoremap <silent>[unite]d :Unite -silent -start-insert directory_mru<CR>
 nnoremap <silent>[unite]B :UniteBookmarkAdd<CR>
@@ -1446,14 +1446,18 @@ colorscheme     hybrid_material "Also fine
 " let g:ctrlsf_auto_close = 1
 " let g:ctrlsf_indent = 2
 let g:ctrlsf_selected_line_hl = 'op'
-" let g:ctrlsf_winsize = '30%'
+" let g:ctrlsf_winsize = '40%'
 let g:ctrlsf_mapping = {
         \ "next": "n",
         \ "prev": "N",
         \ "openb": "",
         \ }
 
-nnoremap <space>sf :CtrlSF  
+" The unit prefix key.
+nnoremap    [ctrlsf]   <Nop>
+nmap 8  [ctrlsf]
+nnoremap [ctrlsf]f :CtrlSF  
+nnoremap [ctrlsf]o : CtrlSFOpen <CR>
 
 "--------------------------------------------------------------------
 "other settings
