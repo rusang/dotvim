@@ -558,7 +558,7 @@ let g:indentLine_color_term = 239
 " " 快速浏览和操作Buffer
 " " 主要用于同时打开多个文件并相与切换
 
-" " let g:miniBufExplMapWindowNavArrows = 1     "用Ctrl加方向键切换到上下左右的窗口中去
+" let g:miniBufExplMapWindowNavArrows = 1     "用Ctrl加方向键切换到上下左右的窗口中去
 " let g:miniBufExplMapWindowNavVim = 1        "用<C-k,j,h,l>切换到上下左右的窗口中去
 " let g:miniBufExplMapCTabSwitchBufs = 1      "功能增强（不过好像只有在Windows中才有用）
 " "                                            <C-Tab> 向前循环切换到每个buffer上,并在但前窗口打开
@@ -885,7 +885,7 @@ au BufRead,BufNewFile,BufEnter * cd %:p:h
 " 秒内，而<Leader>cs是先按"\"键再按"c"又再按"s"键
 
 "let mapleader=","                           "<Leader>更改为，按键
-let g:miniBufExplorerMoreThanOne=0
+" let g:miniBufExplorerMoreThanOne=0          "决定是否打开minibufexplorer
 
 "-- WinManager setting --
 let g:winManagerWindowLayout='FileExplorer|TagList' " 设置我们要管理的插件
