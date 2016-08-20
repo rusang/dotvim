@@ -1438,10 +1438,12 @@ let g:unite_tig_default_line_count = 100
 let g:unite_tig_default_date_format = 'relative'
 "
 " ,ut にて起動
-nnoremap <silent> <leader>ut :<C-u>Unite tig -no-split<CR>
+" nnoremap <silent> <leader>ut :<C-u>Unite tig -no-split<CR>
+nnoremap <silent> <leader>ut :<C-u>Unite tig <CR>
 
 " 選択時に自動でdiff表示する場合
 nnoremap <silent> <leader>uta :<C-u>Unite tig -no-split -auto-preview<CR>
+" nnoremap <silent> <leader>uta :<C-u>Unite tig  -auto-preview<CR>
 
 
 "--------------------------------------------------------------------
