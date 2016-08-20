@@ -783,6 +783,18 @@ if has("cscope")
     nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
     nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 endif
+" The cscope prefix key.
+nnoremap    [cscope]   <Nop>
+nmap 2  [cscope]
+noremap [cscope]f :cs f   
+noremap [cscope]e :cs e   
+noremap [cscope]g :cs g   
+noremap [cscope]t :cs t   
+noremap [cscope]i :cs i   
+noremap [cscope]d :cs d   
+noremap [cscope]s :cs s   
+noremap [cscope]c :cs c   
+
 
 " -----------------------------------------------------------------------------
 "  < ctags 工具配置 >
