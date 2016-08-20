@@ -1484,6 +1484,31 @@ colorscheme     hybrid_material "Also fine
 " colorscheme       Benokai   "全黑的
 " colorscheme         meta5       "This is fine
 
+"--------------------------------------------------------------------
+"A.vim settings
+"--------------------------------------------------------------------
+":A switches to the header file corresponding to the current file being edited
+nnoremap <space>a :A<CR>
+
+"(or vise versa)
+":AS splits and switches
+nnoremap <space>as :AS<CR> 
+":AV vertical splits and switches
+nnoremap <space>av :AV<CR> 
+":AT new tab and switches
+":AN cycles through matches
+":IH switches to file under cursor
+nnoremap <space>ih :IH<CR> 
+":IHS splits and switches
+nnoremap <space>ihs :IHS<CR> 
+":IHV vertical splits and switches
+nnoremap <space>ihv :IHV<CR> 
+":IHT new tab and switches
+":IHN cycles through matches
+"<Leader>ih switches to file under cursor
+"<Leader>is switches to the alternate file of file under cursor (e.g. on
+"<foo.h> switches to foo.cpp)
+"<Leader>ihn cycles through matches
 
 "--------------------------------------------------------------------
 "CtrlSF settings
