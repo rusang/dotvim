@@ -1418,6 +1418,32 @@ let g:ack_mappings = { "o": "<CR>zz"  }
 " This option list all maps create on quickfix/Location list window.  Example, if you want to open the result in the middle of the screen:
 " let g:ack_mappings = { "o": "<CR>zz"  }
 
+
+"--------------------------------------------------------------------
+"vim-tig settings
+"--------------------------------------------------------------------
+let g:tig_executable = 'tig'
+" let g:tig_default_command = 'status'
+" let g:tig_on_exit = 'bw!'
+" let g:tig_open_command = 'new'
+
+
+"--------------------------------------------------------------------
+"vim-unite-tig settings
+"--------------------------------------------------------------------
+" 表示する数を 20に指定 (defalut:50)
+let g:unite_tig_default_line_count = 100
+
+" 日時表示形式を相対表示の指定 (defalut:iso)
+let g:unite_tig_default_date_format = 'relative'
+"
+" ,ut にて起動
+nnoremap <silent> <leader>ut :<C-u>Unite tig -no-split<CR>
+
+" 選択時に自動でdiff表示する場合
+nnoremap <silent> <leader>uta :<C-u>Unite tig -no-split -auto-preview<CR>
+
+
 "--------------------------------------------------------------------
 "vim-signature settings
 "--------------------------------------------------------------------
