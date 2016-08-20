@@ -1475,6 +1475,7 @@ let g:gitgutter_async = 0
 "--------------------------------------------------------------------
 " colorscheme     molokai     "This is fine
 colorscheme     hybrid_material "Also fine
+" colorscheme     alduin  "Also fine
 " colorscheme     jellyx
 " colorscheme     landscape   "透明的
 " colorscheme      lizard256
