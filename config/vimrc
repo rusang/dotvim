@@ -1214,6 +1214,10 @@ let g:unite_source_gitlog_default_opts = '--graph --color=auto --pretty=format:'
 "---------------------------------------------------------------
 nnoremap <space>b :Unite giti/branch_all<cr>
 nnoremap <space>s :Unite giti/status<cr>
+nnoremap <space>ci :Git ci<cr>
+nnoremap <space>di :Git diff<cr>
+nnoremap <space>pp :Git push origin  
+nnoremap <space>r :Git remote -v<cr>
 
 "---------------------------------------------------------------
 "vim-bbye settings
@@ -1393,7 +1397,7 @@ let g:ack_autofold_results = 1
 let g:ackhighlight = 1
 let g:ack_autoclose = 1
 nnoremap <Leader>a :Ack!<Space>
-" nnoremap <Leader><space> :<C-P><CR>
+nnoremap <Leader><space> :<C-P><CR>
 let g:ack_default_options = " -s -H --nocolor --nogroup --column --smart-case --follow"
 let g:ack_mappings = { "o": "<CR>zz"  }
 "g:ack_mappings
@@ -1413,6 +1417,32 @@ let g:ack_mappings = { "o": "<CR>zz"  }
 
 " This option list all maps create on quickfix/Location list window.  Example, if you want to open the result in the middle of the screen:
 " let g:ack_mappings = { "o": "<CR>zz"  }
+
+
+"--------------------------------------------------------------------
+"vim-tig settings
+"--------------------------------------------------------------------
+let g:tig_executable = 'tig'
+" let g:tig_default_command = 'status'
+" let g:tig_on_exit = 'bw!'
+" let g:tig_open_command = 'new'
+
+
+"--------------------------------------------------------------------
+"vim-unite-tig settings
+"--------------------------------------------------------------------
+" 表示する数を 20に指定 (defalut:50)
+let g:unite_tig_default_line_count = 100
+
+" 日時表示形式を相対表示の指定 (defalut:iso)
+let g:unite_tig_default_date_format = 'relative'
+"
+" ,ut にて起動
+nnoremap <silent> <leader>ut :<C-u>Unite tig -no-split<CR>
+
+" 選択時に自動でdiff表示する場合
+nnoremap <silent> <leader>uta :<C-u>Unite tig -no-split -auto-preview<CR>
+
 
 "--------------------------------------------------------------------
 "vim-signature settings
@@ -1482,4 +1512,5 @@ nnoremap <space>cp :cp<CR>
 nnoremap <space>cc :close<CR>
 nnoremap <space>hi :GitGutterLineHighlightsEnable<CR>
 nnoremap <space>hn :GitGutterLineHighlightsDisable<CR>
+
 
