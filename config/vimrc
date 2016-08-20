@@ -1483,3 +1483,4 @@ nnoremap <space>cc :close<CR>
 nnoremap <space>hi :GitGutterLineHighlightsEnable<CR>
 nnoremap <space>hn :GitGutterLineHighlightsDisable<CR>
 
+
