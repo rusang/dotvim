@@ -55,6 +55,7 @@ if !exists("g:ackhighlight")
   let g:ackhighlight = 0
 endif
 
+
 if !exists("g:ack_autoclose")
   let g:ack_autoclose = 0
 endif
