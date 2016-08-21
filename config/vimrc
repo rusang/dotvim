@@ -889,6 +889,8 @@ au BufRead,BufNewFile,BufEnter * cd %:p:h
 " let g:miniBufExplCloseOnSelect = 1
 map <Leader>mc :MBEClose<cr>       "disable MiniBufExplorer
 map <Leader>mo :MBEOpen<cr>        "enable MiniBufExplorer
+" let g:miniBufExplHideWhenDiff = 1
+let g:miniBufExplorerAutoStart = 0  "disable MiniBufExplorer autostart
 "-- WinManager setting --
 let g:winManagerWindowLayout='FileExplorer|TagList' " 设置我们要管理的插件
 let g:persistentBehaviour=0 " 如果所有编辑文件都关闭了，退出vim
