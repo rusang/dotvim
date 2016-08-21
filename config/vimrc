@@ -885,8 +885,10 @@ au BufRead,BufNewFile,BufEnter * cd %:p:h
 " 秒内，而<Leader>cs是先按"\"键再按"c"又再按"s"键
 
 "let mapleader=","                           "<Leader>更改为，按键
-" let g:miniBufExplorerMoreThanOne=0          "决定是否打开minibufexplorer
-
+" let g:miniBufExplorerMoreThanOne=0         
+" let g:miniBufExplCloseOnSelect = 1
+map <Leader>mc :MBEClose<cr>       "disable MiniBufExplorer
+map <Leader>mo :MBEOpen<cr>        "enable MiniBufExplorer
 "-- WinManager setting --
 let g:winManagerWindowLayout='FileExplorer|TagList' " 设置我们要管理的插件
 let g:persistentBehaviour=0 " 如果所有编辑文件都关闭了，退出vim
