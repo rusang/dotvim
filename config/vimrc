@@ -785,15 +785,15 @@ if has("cscope")
 endif
 " The cscope prefix key.
 nnoremap    [cscope]   <Nop>
-nmap 2  [cscope]
-noremap [cscope]f :cs f   
-noremap [cscope]e :cs e   
-noremap [cscope]g :cs g   
-noremap [cscope]t :cs t   
-noremap [cscope]i :cs i   
-noremap [cscope]d :cs d   
-noremap [cscope]s :cs s   
-noremap [cscope]c :cs c   
+nmap 1  [cscope]
+noremap [cscope]f : cs f f   
+noremap [cscope]e : cs f e   
+noremap [cscope]g : cs f g   
+noremap [cscope]t : cs f t   
+noremap [cscope]i : cs f i   
+noremap [cscope]d : cs f d   
+noremap [cscope]s : cs f s   
+noremap [cscope]c : cs f c   
 
 
 " -----------------------------------------------------------------------------
@@ -1517,10 +1517,14 @@ nnoremap <space>ihv :IHV<CR>
 " let g:ctrlsf_indent = 2
 let g:ctrlsf_selected_line_hl = 'op'
 " let g:ctrlsf_winsize = '40%'
+" let g:ctrlsf_mapping = {
+        " \ "next": "n",
+        " \ "prev": "N",
+        " \ "openb": "",
+        " \ }
 let g:ctrlsf_mapping = {
         \ "next": "n",
         \ "prev": "N",
-        \ "openb": "",
         \ }
 
 " The unit prefix key.
@@ -1528,6 +1532,13 @@ nnoremap    [ctrlsf]   <Nop>
 nmap 8  [ctrlsf]
 nnoremap [ctrlsf]f :CtrlSF  
 nnoremap [ctrlsf]o : CtrlSFOpen <CR>
+
+
+"--------------------------------------------------------------------
+" GitGutter settings
+"--------------------------------------------------------------------
+nnoremap <space>hi :GitGutterLineHighlightsEnable<CR>
+nnoremap <space>hn :GitGutterLineHighlightsDisable<CR>
 
 "--------------------------------------------------------------------
 "other settings
@@ -1538,7 +1549,5 @@ nnoremap <space>cw :NERDTreeClose<CR> :cw<CR>
 nnoremap <space>cn :cn<CR>
 nnoremap <space>cp :cp<CR>
 nnoremap <space>cc :close<CR>
-nnoremap <space>hi :GitGutterLineHighlightsEnable<CR>
-nnoremap <space>hn :GitGutterLineHighlightsDisable<CR>
 
 
