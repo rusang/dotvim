@@ -717,7 +717,7 @@ let c_cpp_comments = 0
 " 常规模式下输入 tt 调用插件，如果有打开 TagList 窗口则先将其关闭 //ssliao
 nmap tt :TlistClose<CR>:TagbarToggle<CR>
 
-let g:tagbar_width=10                       "设置窗口宽度
+let g:tagbar_width=20                       "设置窗口宽度
 let g:tagbar_left=1                         "在右侧窗口中显示
 "let g:tagbar_right=1                         "在右侧窗口中显示
 
@@ -1232,7 +1232,7 @@ nnoremap <Leader>qi :q!<CR>
 nnoremap <Leader>qq :q<CR>
 nnoremap <Leader>ww :w<CR>
 nnoremap <Leader>wq :wq<CR>
-" nnoremap <C-s>wq :wq<CR>
+" nnoremap <C-s> : <ESC> :wq<CR>
 " 回到最初的状态，撤销所有修改
 " nnoremap <A-u> :u1000<CR> " not work
 "ctrl+i 设置为esc
@@ -1479,6 +1479,7 @@ let g:gitgutter_async = 0
 "--------------------------------------------------------------------
 " colorscheme     molokai     "This is fine
 colorscheme     hybrid_material "Also fine
+" colorscheme     vj   "Also fine
 " colorscheme     alduin  "Also fine
 " colorscheme     jellyx
 " colorscheme     landscape   "透明的
@@ -1517,6 +1518,25 @@ nnoremap <space>ihv :IHV<CR>
 "--------------------------------------------------------------------
 "CtrlSF settings
 "--------------------------------------------------------------------
+"Usage:
+"      :CtrlSF [arguments] {pattern} [path] ... 
+"Arguments                                                  *ctrlsf-arguments*
+"'-after', '-A'                              *ctrlsf_args_A*
+" '-before', '-B'                             *ctrlsf_args_B*
+" '-context', '-C'                           *ctrlsf_args_C*
+" '-filetype'
+":CtrlSF -filetype vim foo
+"'-filematch', '-G'                       *ctrlsf_args_G*
+" '-ignorecase', '-I'                     *ctrlsf_args_I*
+" '-ignoredir'
+":CtrlSF -ignoredir "bower_components"
+" '-literal', '-L'      Use pattern as literal string.
+":CtrlSF -L foo.*
+" '-matchcase', '-S'    Make this search be case-sensitive.
+" '-regex', '-R'        Use pattern as regular expression.
+" '-smartcase'          Make this search be smart-cased.
+"--------------------------------------------------------------------
+"
 " let g:ctrlsf_auto_close = 1
 " let g:ctrlsf_indent = 2
 let g:ctrlsf_selected_line_hl = 'op'
@@ -1536,6 +1556,7 @@ nnoremap    [ctrlsf]   <Nop>
 nmap 8  [ctrlsf]
 nnoremap [ctrlsf]f :CtrlSF  
 nnoremap [ctrlsf]o : CtrlSFOpen <CR>
+nnoremap [ctrlsf]p : CtrlSFUpdate <CR>
 
 
 "--------------------------------------------------------------------
