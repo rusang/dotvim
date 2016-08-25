@@ -1593,6 +1593,17 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 " Tell Neosnippet about the other snippets
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
+
+
+"--------------------------------------------------------------------
+"ycm  settings
+"--------------------------------------------------------------------
+let g:ycm_global_ycm_extra_conf = "~/.vim/config/.ycm_extra_conf.py"
+" let g:ycm_key_list_select_completion=[]
+" let g:ycm_key_list_previous_completion=[]
+let g:UltiSnipsExpandTrigger="<c-j>"
+
+
 "--------------------------------------------------------------------
 "other settings
 "--------------------------------------------------------------------
