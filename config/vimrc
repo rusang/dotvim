@@ -1598,10 +1598,13 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 "--------------------------------------------------------------------
 "ycm  settings
 "--------------------------------------------------------------------
-let g:ycm_global_ycm_extra_conf = "~/.vim/config/.ycm_extra_conf.py"
+let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
 " let g:ycm_key_list_select_completion=[]
 " let g:ycm_key_list_previous_completion=[]
 let g:UltiSnipsExpandTrigger="<c-j>"
+let g:ycm_server_use_vim_stdout = 1
+let g:ycm_server_log_level = 'debug'
+let g:ycm_enable_diagnostic_highlighting = 1
 
 
 "--------------------------------------------------------------------
