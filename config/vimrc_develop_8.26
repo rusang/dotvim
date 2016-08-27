@@ -683,63 +683,12 @@ set completeopt=menu                        "关闭预览窗口
 " -----------------------------------------------------------------------------
 " 增强源代码浏览，其功能就像Windows中的"Source Insight"
 nmap <F3> :SrcExplToggle<CR>                "打开/闭浏览窗口
-" // The switch of the Source Explorer 
-" nmap <F8> :SrcExplToggle<CR>
 
-" // Set the height of Source Explorer window
-let g:SrcExpl_winHeight = 8
-
-" // Set 100 ms for refreshing the Source Explorer
-let g:SrcExpl_refreshTime = 100
-
-" // Set "Enter" key to jump into the exact definition context
-let g:SrcExpl_jumpKey = "<ENTER>"
-
-" // Set "Space" key for back from the definition context
-let g:SrcExpl_gobackKey = "<SPACE>"
-
-" // In order to avoid conflicts, the Source Explorer should know what plugins
-" // except itself are using buffers. And you need add their buffer names into
-" // below listaccording to the command ":buffers!"
-" let g:SrcExpl_pluginList = [
-"         \ "__Tag_List__",
-"         \ "_NERD_tree_"
-"     \ ]
-let g:SrcExpl_pluginList = [
-        \ "Tagbar",
-        \ "_NERD_tree_",
-        \ "*unite*"
-    \ ]
-" 
-" // Enable/Disable the local definition searching, and note that this is not
-" // guaranteed to work, the Source Explorer doesn't check the syntax for now.
-" // It only searches for a match with the keyword according to command 'gd'
-let g:SrcExpl_searchLocalDef = 1
-
-" // Do not let the Source Explorer update the tags file when opening
-let g:SrcExpl_isUpdateTags = 0
-
-" // Use 'Exuberant Ctags' with '--sort=foldcase -R .' or '-L cscope.files' to
-" // create/update the tags file
-let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ."
-
-" // Set "<F12>" key for updating the tags file artificially
-" let g:SrcExpl_updateTagsKey = "<F12>"
-
-" // Set "<F3>" key for displaying the previous definition in the jump list
-" let g:SrcExpl_prevDefKey = "<F3>"
-
-" // Set "<F4>" key for displaying the next definition in the jump list
-" let g:SrcExpl_nextDefKey = "<F4>"
-"
-"
-"
-
-" -----------------------------------------------------------------------------
-"  < supertab 插件配置 >
-" -----------------------------------------------------------------------------
-" 我主要用于配合 omnicppcomplete 插件，在按 Tab 键时自动补全效果更好更快
-" let g:supertabdefaultcompletiontype = "<c-x><c-u>"
+" " -----------------------------------------------------------------------------
+" "  < supertab 插件配置 >
+" " -----------------------------------------------------------------------------
+" " 我主要用于配合 omnicppcomplete 插件，在按 Tab 键时自动补全效果更好更快
+" " let g:supertabdefaultcompletiontype = "<c-x><c-u>"
 
 " -----------------------------------------------------------------------------
 "  < std_c 插件配置 >
@@ -758,18 +707,6 @@ let c_cpp_comments = 0
 " -----------------------------------------------------------------------------
 "  < Syntastic 插件配置 >
 " -----------------------------------------------------------------------------
-let g:syntastic_check_on_open = 1
-let g:syntastic_cpp_include_dirs = ['/usr/include/']
-let g:syntastic_cpp_remove_include_errors = 1
-let g:syntastic_cpp_check_header = 1
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
-"set error or warning signs
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
-""whether to show balloons
-let g:syntastic_enable_balloons = 1
-
 " 用于保存文件时查检语法
 
 " -----------------------------------------------------------------------------
@@ -849,14 +786,14 @@ endif
 " The cscope prefix key.
 nnoremap    [cscope]   <Nop>
 nmap 1  [cscope]
-noremap [cscope]f : cs f f
-noremap [cscope]e : cs f e
-noremap [cscope]g : cs f g
-noremap [cscope]t : cs f t
-noremap [cscope]i : cs f i
-noremap [cscope]d : cs f d
-noremap [cscope]s : cs f s
-noremap [cscope]c : cs f c
+noremap [cscope]f : cs f f   
+noremap [cscope]e : cs f e   
+noremap [cscope]g : cs f g   
+noremap [cscope]t : cs f t   
+noremap [cscope]i : cs f i   
+noremap [cscope]d : cs f d   
+noremap [cscope]s : cs f s   
+noremap [cscope]c : cs f c   
 
 
 " -----------------------------------------------------------------------------
@@ -948,7 +885,7 @@ au BufRead,BufNewFile,BufEnter * cd %:p:h
 " 秒内，而<Leader>cs是先按"\"键再按"c"又再按"s"键
 
 "let mapleader=","                           "<Leader>更改为，按键
-" let g:miniBufExplorerMoreThanOne=0
+" let g:miniBufExplorerMoreThanOne=0         
 " let g:miniBufExplCloseOnSelect = 1
 map <Leader>mc :MBEClose<cr>       "disable MiniBufExplorer
 map <Leader>mo :MBEOpen<cr>        "enable MiniBufExplorer
@@ -1086,6 +1023,102 @@ set list
 set listchars=tab:•\ ,trail:•,extends:»,precedes:« " Unprintable chars mapping"
 " set listchars=tab:>-
 
+" -----------------------------------------------------------------------------
+"  < neocomplcache 插件配置 >
+" -----------------------------------------------------------------------------
+" 关键字补全、文件路径补全、tag补全等等，各种，非常好用，速度超快。
+" let g:neocomplcache_enable_at_startup = 1     "vim 启动时启用插件
+" let g:neocomplcache_disable_auto_complete = 1 "不自动弹出补全列表
+" 在弹出补全列表后用 <c-p> 或 <c-n> 进行上下选择效果比较好
+"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+" Enable heavy features.
+" Use camel case completion.
+"let g:neocomplcache_enable_camel_case_completion = 1
+" Use underbar completion.
+"let g:neocomplcache_enable_underbar_completion = 1
+
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplcache_keyword_patterns')
+    let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplcache#undo_completion()
+" inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplcache#smart_close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+" inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+" inoremap <expr><C-y>  neocomplcache#close_popup()
+" inoremap <expr><C-e>  neocomplcache#cancel_popup()
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
+
+" For cursor moving in insert mode(Not recommended)
+"inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
+"inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
+"inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
+"inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
+" Or set this.
+"let g:neocomplcache_enable_cursor_hold_i = 1
+" Or set this.
+"let g:neocomplcache_enable_insert_char_pre = 1
+
+" AutoComplPop like behavior.
+"let g:neocomplcache_enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplcache_enable_auto_select = 1
+"let g:neocomplcache_disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplcache_force_omni_patterns')
+  let g:neocomplcache_force_omni_patterns = {}
+endif
+let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplcache_force_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 
 "---------------------------------------------------------------
@@ -1187,7 +1220,7 @@ nnoremap <space>b :Unite giti/branch_all<cr>
 nnoremap <space>s :Unite giti/status<cr>
 nnoremap <space>ci :Git ci<cr>
 nnoremap <space>di :Git diff<cr>
-nnoremap <space>pp :Git push origin
+nnoremap <space>pp :Git push origin  
 nnoremap <space>r :Git remote -v<cr>
 
 "---------------------------------------------------------------
@@ -1464,17 +1497,17 @@ nnoremap <space>a :A<CR>
 
 "(or vise versa)
 ":AS splits and switches
-nnoremap <space>as :AS<CR>
+nnoremap <space>as :AS<CR> 
 ":AV vertical splits and switches
-nnoremap <space>av :AV<CR>
+nnoremap <space>av :AV<CR> 
 ":AT new tab and switches
 ":AN cycles through matches
 ":IH switches to file under cursor
-nnoremap <space>ih :IH<CR>
+nnoremap <space>ih :IH<CR> 
 ":IHS splits and switches
-nnoremap <space>ihs :IHS<CR>
+nnoremap <space>ihs :IHS<CR> 
 ":IHV vertical splits and switches
-nnoremap <space>ihv :IHV<CR>
+nnoremap <space>ihv :IHV<CR> 
 ":IHT new tab and switches
 ":IHN cycles through matches
 "<Leader>ih switches to file under cursor
@@ -1486,7 +1519,7 @@ nnoremap <space>ihv :IHV<CR>
 "CtrlSF settings
 "--------------------------------------------------------------------
 "Usage:
-"      :CtrlSF [arguments] {pattern} [path] ...
+"      :CtrlSF [arguments] {pattern} [path] ... 
 "Arguments                                                  *ctrlsf-arguments*
 "'-after', '-A'                              *ctrlsf_args_A*
 " '-before', '-B'                             *ctrlsf_args_B*
@@ -1521,7 +1554,7 @@ let g:ctrlsf_mapping = {
 " The unit prefix key.
 nnoremap    [ctrlsf]   <Nop>
 nmap 8  [ctrlsf]
-nnoremap [ctrlsf]f :CtrlSF
+nnoremap [ctrlsf]f :CtrlSF  
 nnoremap [ctrlsf]o : CtrlSFOpen <CR>
 nnoremap [ctrlsf]p : CtrlSFUpdate <CR>
 
@@ -1537,9 +1570,9 @@ nnoremap <space>hn :GitGutterLineHighlightsDisable<CR>
 "neosnippet.vim  settings
 "--------------------------------------------------------------------
 " Plugin key-mappings.
-imap <C-j>     <Plug>(neosnippet_expand_or_jump)
-smap <C-j>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-j>     <Plug>(neosnippet_expand_target)
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
 "imap <expr><TAB>
@@ -1565,35 +1598,14 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 "--------------------------------------------------------------------
 "ycm  settings
 "--------------------------------------------------------------------
-let g:ycm_global_ycm_extra_conf = '~/.vim/config/.ycm_extra_conf.py'
-" let g:ycm_python_binary_path = '/usr/bin/python2.7'
-" let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
-
-let g:ycm_confirm_extra_conf = 0
+let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
 " let g:ycm_key_list_select_completion=[]
 " let g:ycm_key_list_previous_completion=[]
-let g:UltiSnipsExpandTrigger = "<c-j>"
+let g:UltiSnipsExpandTrigger="<c-j>"
 let g:ycm_server_use_vim_stdout = 1
 let g:ycm_server_log_level = 'debug'
 let g:ycm_enable_diagnostic_highlighting = 1
 
-"let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
-let g:ycm_collect_identifiers_from_tags_files = 1
-set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口
-inoremap <expr> <space>       pumvisible() ? "\<C-y>" : "\<space>"  "按空格键即选中当前项
-let g:ycm_cache_omnifunc=0 " 禁止缓存匹配项,每次都重新生成匹配项
-let g:ycm_seed_identifiers_with_syntax = 1
-" let g:ycm_confirm_extra_conf = 0
-"在注释输入中也能补全
-let g:ycm_complete_in_comments = 1
-"在字符串输入中也能补全
-let g:ycm_complete_in_strings = 1
-"注释和字符串中的文字也会被收入补全
-let g:ycm_collect_identifiers_from_comments_and_strings = 0
-
-
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR> " 跳转到定义处
 
 "--------------------------------------------------------------------
 "other settings
