@@ -643,8 +643,49 @@ let NERDTreeShowBookmarks = 1
 " let NERDTreeIgnore=['\.vim$', '\~$']
 " This will cause all dirs ending in ".d" to be ignored and all files ending  in ".o" to be ignored
 " let NERDTreeIgnore=['.d$[[dir]]', '.o$[[file]]']
-let NERDTreeIgnore=['.swp$[[file]]', '.o$[[file]]']
+" 忽略一些文件的显示
+" let NERDTreeIgnore=['\.pyc','\~$','\.swp']
+let NERDTreeIgnore=['.swp$[[file]]', '.o$[[file]]','\.pyc','\~$','\.swp']
 let NERDTreeShowLineNumbers = 1
+autocmd FileType nerdtree nmap <buffer> <CR> go
+
+
+
+
+" -----------------------------------------------------------------------------
+"  < nerdtree-git-plugin 插件配置 >
+" -----------------------------------------------------------------------------
+
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔",
+    \ "Unknown"   : "?"
+    \ }
+
+
+" -----------------------------------------------------------------------------
+"  < nerdtree-tab-plugin 插件配置 >
+" -----------------------------------------------------------------------------
+" 关闭NERDTree快捷键
+" map <leader>t :NERDTreeToggle<CR>
+" 显示行号
+" let NERDTreeShowLineNumbers=1
+let NERDTreeAutoCenter=1
+" 是否显示隐藏文件
+" let NERDTreeShowHidden=1
+" 设置宽度
+" let NERDTreeWinSize=31
+" 在终端启动vim时，共享NERDTree
+let g:nerdtree_tabs_open_on_console_startup=1
+" 显示书签列表
+" let NERDTreeShowBookmarks=1
+
 " -----------------------------------------------------------------------------
 "  < omnicppcomplete 插件配置 >
 " -----------------------------------------------------------------------------
@@ -1170,6 +1211,7 @@ let g:unite_source_menu_menus.git.command_candidates = [
     \['▷ git cd           (Fugitive)',
         \'Gcd'],
     \]
+nnoremap <silent>[unite]m :Unite -silent -start-insert menu:git<CR>
 "---------------------------------------------------------------
 "end of unite.vim settings
 "---------------------------------------------------------------
@@ -1565,7 +1607,7 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 "--------------------------------------------------------------------
 "ycm  settings
 "--------------------------------------------------------------------
-" let g:ycm_global_ycm_extra_conf = '~/.vim/config/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/config/.ycm_extra_conf.py'
 " let g:ycm_python_binary_path = '/usr/bin/python2.7'
 " let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
 
