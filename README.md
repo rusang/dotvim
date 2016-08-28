@@ -11,3 +11,8 @@ Initializtion
     sudo ln -s ~/.vim/script/mygl.sh   /usr/local/bin/mygl
     sudo ln -s ~/.vim/script/backlight.sh  /usr/local/bin/backlight
     sudo cp ~/.vim/lock_fancy/*     /usr/local/bin/
+
+
+These plugins are other people's accomplishment, if you found this repo is not appropriate,
+Please contact me by email at www.royliao1026@gmail.com. I will delete them immediately!
+BTW,you are welcome to clone it!
