@@ -645,7 +645,8 @@ let NERDTreeShowBookmarks = 1
 " let NERDTreeIgnore=['.d$[[dir]]', '.o$[[file]]']
 " 忽略一些文件的显示
 " let NERDTreeIgnore=['\.pyc','\~$','\.swp']
-let NERDTreeIgnore=['.swp$[[file]]', '.o$[[file]]','\.pyc','\~$','\.swp']
+" let NERDTreeIgnore=['.swp$[[file]]', '.o$[[file]]','\.pyc','\~$','\.swp']
+let NERDTreeIgnore=['\.swp', '\.o','\.pyc','\~$','\.swp']
 let NERDTreeShowLineNumbers = 1
 autocmd FileType nerdtree nmap <buffer> <CR> go
 
@@ -660,7 +661,7 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
     \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
+    \ "Renamed"   : "≛",
     \ "Unmerged"  : "═",
     \ "Deleted"   : "✖",
     \ "Dirty"     : "✗",
@@ -682,7 +683,7 @@ let NERDTreeAutoCenter=1
 " 设置宽度
 " let NERDTreeWinSize=31
 " 在终端启动vim时，共享NERDTree
-let g:nerdtree_tabs_open_on_console_startup=1
+" let g:nerdtree_tabs_open_on_console_startup=1
 " 显示书签列表
 " let NERDTreeShowBookmarks=1
 
@@ -1636,6 +1637,9 @@ let g:ycm_collect_identifiers_from_comments_and_strings = 0
 
 
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR> " 跳转到定义处
+nnoremap <space>t :YcmCompleter GetType<CR> " 跳转到定义处
+nnoremap <leader>dc :YcmCompleter GetDoc<CR> " 跳转到定义处
+
 
 "--------------------------------------------------------------------
 "color_code settings delete it cause it not work
