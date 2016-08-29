@@ -580,16 +580,6 @@ imap <c-j> <Down>
 imap <c-h> <Left>
 
 " Ctrl + L 插入模式下光标向右移动
-imap <c-l> <Right>" Ctrl + K 插入模式下光标向上移动
-imap <c-k> <Up>
-
-" Ctrl + J 插入模式下光标向下移动
-imap <c-j> <Down>
-
-" Ctrl + H 插入模式下光标向左移动
-imap <c-h> <Left>
-
-" Ctrl + L 插入模式下光标向右移动
 imap <c-l> <Right>
 
 
@@ -1664,4 +1654,4 @@ nnoremap <space>cp :cp<CR>
 nnoremap <space>cc :close<CR>
 
 
-
+imap <C-o> <esc>o
