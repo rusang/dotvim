@@ -1600,7 +1600,7 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 "--------------------------------------------------------------------
 "ycm  settings
 "--------------------------------------------------------------------
-" let g:ycm_global_ycm_extra_conf = '~/.vim/config/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/config/.ycm_extra_conf.py'
 " let g:ycm_python_binary_path = '/usr/bin/python2.7'
 " let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
 " if getcwd() =~ "kernel"
@@ -1629,13 +1629,14 @@ let g:ycm_complete_in_comments = 1
 let g:ycm_complete_in_strings = 1
 "注释和字符串中的文字也会被收入补全
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
+"关闭加载提示
+let g:ycm_confirm_extra_conf = 0
 
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_complete_in_comments_and_strings=1
 let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-Tab>'
-let g:ycm_confirm_extra_conf = 1
 " let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
 let g:tern_show_argument_hints='on_hold'
 let g:indent_guides_start_level = 2
@@ -1646,6 +1647,18 @@ let g:ycm_always_populate_location_list = 1
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR> " 跳转到定义处
 nnoremap <space>t :YcmCompleter GetType<CR> " 跳转到定义处
 nnoremap <leader>dc :YcmCompleter GetDoc<CR> " 跳转到定义处
+
+
+"--------------------------------------------------------------------
+"jedi-vim settings
+"--------------------------------------------------------------------
+" Completion <C-Space>
+" Goto assignments <leader>g (typical goto function)
+" Goto definitions <leader>d (follow identifier as far as possible, includes imports and statements)
+" Show Documentation/Pydoc K (shows a popup with assignments)
+" Renaming <leader>r
+" Usages <leader>n (shows all the usages of a name)
+" Open module, e.g. :Pyimport os (opens the os module)
 
 
 "--------------------------------------------------------------------
