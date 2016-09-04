@@ -1572,9 +1572,9 @@ nnoremap <space>hn :GitGutterLineHighlightsDisable<CR>
 "neosnippet.vim  settings
 "--------------------------------------------------------------------
 " Plugin key-mappings.
-imap <C-j>     <Plug>(neosnippet_expand_or_jump)
-smap <C-j>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-j>     <Plug>(neosnippet_expand_target)
+imap <Tab>     <Plug>(neosnippet_expand_or_jump)
+smap <Tab>     <Plug>(neosnippet_expand_or_jump)
+xmap <Tab>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
 "imap <expr><TAB>
@@ -1611,7 +1611,7 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/config/.ycm_extra_conf.py'
 
 " let g:ycm_key_list_select_completion=[]
 " let g:ycm_key_list_previous_completion=[]
-let g:UltiSnipsExpandTrigger = "<c-j>"
+let g:UltiSnipsExpandTrigger = "<Tab>"
 let g:ycm_server_use_vim_stdout = 1
 let g:ycm_server_log_level = 'debug'
 let g:ycm_enable_diagnostic_highlighting = 1
