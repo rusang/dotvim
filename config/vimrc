@@ -1674,6 +1674,22 @@ nmap <F1> :YcmGenerateConfig<CR>                "打开/闭浏览窗口
 
 
 "--------------------------------------------------------------------
+"DoxygenToolkit settings
+"--------------------------------------------------------------------
+" let g:DoxygenToolkit_briefTag_funcName = "yes"
+let loaded_DoxygenToolkit = 1
+let g:DoxygenToolkit_briefTag_pre="@brief "
+let g:DoxygenToolkit_paramTag_pre="@param "
+let g:DoxygenToolkit_returnTag="@Returns "
+" let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
+" let g:DoxygenToolkit_blockFooter="--------------------------------------------------------------------------"
+let g:DoxygenToolkit_authorName="Roy.Liao <royliao1026@gmail.com>"
+let g:DoxygenToolkit_licenseTag="MIT License"
+"create doxygen comment
+map <leader>do :Dox<CR>
+map <leader>da :DoxAuthor<Cr>
+map <leader>dl :DoxLic<cr>
+"--------------------------------------------------------------------
 "other settings
 "--------------------------------------------------------------------
 nnoremap <space>p :pwd<CR>
