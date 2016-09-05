@@ -1572,9 +1572,9 @@ nnoremap <space>hn :GitGutterLineHighlightsDisable<CR>
 "neosnippet.vim  settings
 "--------------------------------------------------------------------
 " Plugin key-mappings.
-imap <Tab>     <Plug>(neosnippet_expand_or_jump)
-smap <Tab>     <Plug>(neosnippet_expand_or_jump)
-xmap <Tab>     <Plug>(neosnippet_expand_target)
+imap <C-j>     <Plug>(neosnippet_expand_or_jump)
+smap <C-j>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-j>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
 "imap <expr><TAB>
@@ -1611,7 +1611,7 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/config/.ycm_extra_conf.py'
 
 " let g:ycm_key_list_select_completion=[]
 " let g:ycm_key_list_previous_completion=[]
-let g:UltiSnipsExpandTrigger = "<Tab>"
+let g:UltiSnipsExpandTrigger = "<c-j>"
 let g:ycm_server_use_vim_stdout = 1
 let g:ycm_server_log_level = 'debug'
 let g:ycm_enable_diagnostic_highlighting = 1
@@ -1689,6 +1689,23 @@ let g:DoxygenToolkit_licenseTag="MIT License"
 map <leader>do :Dox<CR>
 map <leader>da :DoxAuthor<Cr>
 map <leader>dl :DoxLic<cr>
+
+
+"--------------------------------------------------------------------
+"auot-format settings
+"--------------------------------------------------------------------
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+" let g:formatterpath = ['/some/path/to/a/folder', '/home/superman/formatters']
+let g:formatterpath = [ '~/.vim/formatter/bin']
+" let g:formatdef_harttle = '"astyle --style=attach --pad-oper"'
+" let g:formatters_cpp = ['harttle']
+" let g:formatters_java = ['harttle']
+" let g:formatdef_uncrustify = '"uncrustify"'
+" let g:formatters_cpp = ['uncrustify']
+" let g:formatters_java = ['uncrustify']
+
 "--------------------------------------------------------------------
 "other settings
 "--------------------------------------------------------------------
