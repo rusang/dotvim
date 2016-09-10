@@ -690,7 +690,8 @@ let NERDTreeAutoCenter=1
 "map <C-F4> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 "nmap <F4> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q -f ~/.vim/tags/tags_self<CR>
 "set tags+=~/.vim/tags/tags_self
-nmap <F4> :cs add ./cscope.out .<CR><CR><CR> :cs reset<CR>
+" nmap <F4> :cs add ./cscope.out .<CR><CR><CR> :cs reset<CR>
+nmap <F4> :Autoformat<CR>
 set completeopt=menu                        "关闭预览窗口
 
 " -----------------------------------------------------------------------------
@@ -1692,7 +1693,7 @@ map <leader>dl :DoxLic<cr>
 
 
 "--------------------------------------------------------------------
-"auot-format settings
+"auto-format settings
 "--------------------------------------------------------------------
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
@@ -1700,15 +1701,27 @@ let g:autoformat_remove_trailing_spaces = 0
 " let g:formatterpath = ['/some/path/to/a/folder', '/home/superman/formatters']
 let g:formatterpath = [ '~/.vim/formatter/bin']
 " let g:formatdef_harttle = '"astyle --style=attach --pad-oper"'
-" let g:formatters_cpp = ['harttle']
-" let g:formatters_java = ['harttle']
+" let g:formatdef_harttle = '"astyle --style=linux --pad-oper"'
+let g:formatdef_harttle = '"astyle --style=ansi --pad-oper"'
+let g:formatters_cpp = ['harttle']
+let g:formatters_java = ['harttle']
 " let g:formatdef_uncrustify = '"uncrustify"'
 " let g:formatters_cpp = ['uncrustify']
 " let g:formatters_java = ['uncrustify']
-autocmd FileType c noremap <buffer> <c-f> :call Uncrustify('c')<CR>
-autocmd FileType c vnoremap <buffer> <c-f> :call RangeUncrustify('c')<CR>
-autocmd FileType cpp noremap <buffer> <c-f> :call Uncrustify('cpp')<CR>
-autocmd FileType cpp vnoremap <buffer> <c-f> :call RangeUncrustify('cpp')<CR>
+" autocmd FileType c noremap <buffer> <c-f> :call Uncrustify('c')<CR>
+" autocmd FileType c vnoremap <buffer> <c-f> :call RangeUncrustify('c')<CR>
+" autocmd FileType cpp noremap <buffer> <c-f> :call Uncrustify('cpp')<CR>
+" autocmd FileType cpp vnoremap <buffer> <c-f> :call RangeUncrustify('cpp')<CR>
+
+"--------------------------------------------------------------------
+"gist-vim settings
+"--------------------------------------------------------------------
+let g:gist_clip_command = 'xclip -selection clipboard'
+
+"--------------------------------------------------------------------
+"vim-clang-format settings
+"--------------------------------------------------------------------
+" let g:clang_format#code_style = 'llvm'
 
 "--------------------------------------------------------------------
 "other settings
