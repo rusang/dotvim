@@ -51,7 +51,7 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump fancy-ctrl-z tmux)
+plugins=(git autojump fancy-ctrl-z tmux zsh-autosuggestions web-search lighthouse)
 
 # User configuration
 
@@ -599,3 +599,5 @@ export WHEELHOUSE="${STANDARD_CACHE_DIR}/wheelhouse"
 export PIP_FIND_LINKS="file://${WHEELHOUSE}"
 export PIP_WHEEL_DIR="${WHEELHOUSE}"
 #
+# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source  ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
