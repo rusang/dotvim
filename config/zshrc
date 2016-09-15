@@ -57,6 +57,8 @@ plugins=(git autojump fancy-ctrl-z tmux zsh-autosuggestions web-search lighthous
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
+# export LD_LIBRARY_PATH=$HOME/.vim/bundle/gdbmgr/gdbmgr/src:$PATH
+export LD_PRELOAD=$LD_PRELOAD:/usr/lib/libutil.so
 
 source $ZSH/oh-my-zsh.sh
 # source ~/.oh-my-zsh/plugins/incr/incr*.zsh
