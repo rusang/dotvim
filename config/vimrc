@@ -1704,6 +1704,7 @@ let g:formatterpath = [ '~/.vim/formatter/bin']
 " let g:formatdef_harttle = '"astyle --style=linux --pad-oper"'
 let g:formatdef_harttle = '"astyle --style=ansi --pad-oper"'
 let g:formatters_cpp = ['harttle']
+let g:formatters_c = ['harttle']
 let g:formatters_java = ['harttle']
 " let g:formatdef_uncrustify = '"uncrustify"'
 " let g:formatters_cpp = ['uncrustify']
@@ -1723,6 +1724,15 @@ let g:gist_clip_command = 'xclip -selection clipboard'
 "--------------------------------------------------------------------
 " let g:clang_format#code_style = 'llvm'
 
+
+"--------------------------------------------------------------------
+"vim-wheel settings
+"--------------------------------------------------------------------
+let g:wheel#map#up   = '<c-k>'
+let g:wheel#map#down = '<c-j>'
+let g:wheel#line#threshold = 10  " lines from start or end
+let g:wheel#map#mouse = 1       " 1=natural, 0=disable, -1=reverse
+let g:wheel#scroll_on_wrap = 1      " 0=disable, 1=enable (default)
 "--------------------------------------------------------------------
 "other settings
 "--------------------------------------------------------------------
