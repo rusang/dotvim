@@ -1117,8 +1117,8 @@ set fenc=
 " let g:airline_section_b = 'branch'
 " let g:airline_section_b = '%{getcwd()}'
 " let g:airline_section_y = 'BN: %{bufnr("%")}'
-" set list
-" set listchars=tab:•\ ,trail:•,extends:»,precedes:« " Unprintable chars mapping"
+set list
+set listchars=tab:•\ ,trail:•,extends:»,precedes:« " Unprintable chars mapping"
 let g:indentLine_char = '¦'
 " set listchars=tab:>-
 "---------------------------------------------------------------
