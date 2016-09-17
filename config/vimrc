@@ -1117,11 +1117,21 @@ set fenc=
 " let g:airline_section_b = 'branch'
 " let g:airline_section_b = '%{getcwd()}'
 " let g:airline_section_y = 'BN: %{bufnr("%")}'
-set list
-set listchars=tab:•\ ,trail:•,extends:»,precedes:« " Unprintable chars mapping"
+" set list
+" set listchars=tab:•\ ,trail:•,extends:»,precedes:« " Unprintable chars mapping"
+let g:indentLine_char = '¦'
 " set listchars=tab:>-
-
-
+"---------------------------------------------------------------
+"indentLine配置
+"---------------------------------------------------------------
+" Vim
+" let g:indentLine_color_term = 239
+"GVim
+" let g:indentLine_color_gui = '#A4E57E'
+let g:indentLine_color_gui = '#7c8473'
+" none X terminal
+" let g:indentLine_color_tty_light = 7 " (default: 4)
+" let g:indentLine_color_dark = 1 " (default: 2)
 
 "---------------------------------------------------------------
 "vim-run配置
