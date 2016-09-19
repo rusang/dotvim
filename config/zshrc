@@ -90,6 +90,34 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 ###########################added by rusang from here########################
+#{{{
+alias rm=trash
+alias r=trash
+alias rl='ls ~/.Trash'
+alias ur=undelfile
+
+undelfile()
+{
+    mv -i ~/.Trash/$@ ./
+}
+
+trash()
+{
+    mv $@ ~/.Trash/
+}
+
+cleartrash()
+{
+    echo -n "Are you sure delete all files of ~/.Trash? [yn]"
+    read  confirm
+    if [ "$confirm" = "y" ];then
+        /bin/rm -rf ~/.Trash/*
+        echo "delete done!"
+    else
+        echo "cancle delete!"
+    fi
+}
+#}}}
 alias cls='clear'
 alias mntusb='mount /dev/sdc1 /mnt/usb'
 alias umntusb='umount  /mnt/usb'
@@ -373,7 +401,7 @@ bindkey "\e\e" sudo-command-line
 #命令别名 {{{
 alias cp='cp -i'
 alias mv='mv -i'
-alias rm='rm -i'
+# alias rm='rm -i'
 alias la='ls -a'
 # alias p='sudo pacman'
 alias y='yaourt'
