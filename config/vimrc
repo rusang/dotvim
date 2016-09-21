@@ -131,37 +131,37 @@ else
 endif
 
 " 使用Vundle来管理Vundle，这个必须要有。
-Bundle 'gmarik/vundle'
+" Bundle 'gmarik/vundle'
 
 " 以下为要安装或更新的插件，不同仓库都有（具体书写规范请参考帮助）
-Bundle 'a.vim'
-Bundle 'Align'
-Bundle 'jiangmiao/auto-pairs'
-Bundle 'bufexplorer.zip'
-Bundle 'ccvext.vim'
-Bundle 'cSyntaxAfter'
-Bundle 'Yggdroot/indentLine'
+" Bundle 'a.vim'
+" Bundle 'Align'
+" Bundle 'jiangmiao/auto-pairs'
+" Bundle 'bufexplorer.zip'
+" Bundle 'ccvext.vim'
+" Bundle 'cSyntaxAfter'
+" Bundle 'Yggdroot/indentLine'
 " Bundle 'javacomplete'
 " Bundle 'vim-javacompleteex'               "更好的 Java 补全插件
-Bundle 'Mark--Karkat'
+" Bundle 'Mark--Karkat'
 " Bundle 'fholgado/minibufexpl.vim'         "好像与 Vundle 插件有一些冲突
-Bundle 'Shougo/neocomplcache.vim'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'OmniCppComplete'
+" Bundle 'Shougo/neocomplcache.vim'
+" Bundle 'scrooloose/nerdcommenter'
+" Bundle 'scrooloose/nerdtree'
+" Bundle 'OmniCppComplete'
 " Bundle 'Lokaltog/vim-powerline'
-Bundle 'repeat.vim'
-"Bundle 'msanders/snipmate.vim'
-Bundle 'wesleyche/SrcExpl'
+" Bundle 'repeat.vim'
+" Bundle 'msanders/snipmate.vim'
+" Bundle 'wesleyche/SrcExpl'
 " Bundle 'ervandew/supertab'                "有时与 snipmate 插件冲突
-Bundle 'std_c.zip'
-Bundle 'tpope/vim-surround'
-Bundle 'scrooloose/syntastic'
-Bundle 'majutsushi/tagbar'
-Bundle 'taglist.vim'
-Bundle 'TxtBrowser'
-Bundle 'ctrlp.vim'
-Bundle 'ZoomWin'
+" Bundle 'std_c.zip'
+" Bundle 'tpope/vim-surround'
+" Bundle 'scrooloose/syntastic'
+" Bundle 'majutsushi/tagbar'
+" Bundle 'taglist.vim'
+" Bundle 'TxtBrowser'
+" Bundle 'ctrlp.vim'
+" Bundle 'ZoomWin'
 
 "snipmate 插件
 "Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -170,10 +170,10 @@ Bundle 'ZoomWin'
 "Plugin 'honza/vim-snippets'
 "snipmate 插件
 " Plugin 'christoomey/vim-tmux-navigator'
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'garbas/vim-snipmate'
-Bundle 'honza/vim-snippets'
+" Bundle 'MarcWeber/vim-addon-mw-utils'
+" Bundle 'tomtom/tlib_vim'
+" Bundle 'garbas/vim-snipmate'
+" Bundle 'honza/vim-snippets'
 
 " -----------------------------------------------------------------------------
 "  < 编码配置 >
@@ -716,7 +716,7 @@ set completeopt=menu                        "关闭预览窗口
 " -----------------------------------------------------------------------------
 " 增强源代码浏览，其功能就像Windows中的"Source Insight"
 nmap <F3> :SrcExplToggle<CR>                "打开/闭浏览窗口
-" // The switch of the Source Explorer 
+" // The switch of the Source Explorer
 " nmap <F8> :SrcExplToggle<CR>
 
 " // Set the height of Source Explorer window
@@ -743,7 +743,7 @@ let g:SrcExpl_pluginList = [
         \ "_NERD_tree_",
         \ "*unite*"
     \ ]
-" 
+"
 " // Enable/Disable the local definition searching, and note that this is not
 " // guaranteed to work, the Source Explorer doesn't check the syntax for now.
 " // It only searches for a match with the keyword according to command 'gd'
@@ -1491,7 +1491,12 @@ let g:gitgutter_async = 0
 "vim-colorscheme  settings
 "--------------------------------------------------------------------
 " colorscheme     molokai     "This is fine
-colorscheme     hybrid_material "Also fine
+" colorscheme     monokai
+" colorscheme     wombat 　"透明的
+" colorscheme     candycode
+colorscheme       256-jungle
+" colorscheme       woju
+" colorscheme     hybrid_material "Also fine
 " colorscheme     vj   "Also fine
 " colorscheme     alduin  "Also fine
 " colorscheme     jellyx
