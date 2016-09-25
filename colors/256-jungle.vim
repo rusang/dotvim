@@ -10,12 +10,12 @@ let c_gnu = 1
 
 
 hi Normal	    ctermfg=253         ctermbg=234         cterm=None
-hi Cursor       ctermfg=253         ctermbg=57          cterm=None
+hi Cursor       ctermfg=253         ctermbg=57          cterm=Bold
 hi SpecialKey	ctermfg=70          ctermbg=None        cterm=None
-hi Directory	ctermfg=57          ctermbg=254         cterm=None
+hi Directory	ctermfg=69          ctermbg=None        cterm=None
 hi ErrorMsg     ctermfg=160         ctermbg=245         cterm=None
 hi PreProc	    ctermfg=243         ctermbg=None        cterm=Bold
-hi Search	    ctermfg=125         ctermbg=72        cterm=Bold
+hi Search	    ctermfg=125         ctermbg=72          cterm=Bold
 hi Type		    ctermfg=166         ctermbg=None        cterm=Bold
 hi Statement	ctermfg=172         ctermbg=None        cterm=Bold
 hi Comment	    ctermfg=240         ctermbg=None        cterm=None
