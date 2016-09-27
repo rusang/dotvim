@@ -1749,6 +1749,18 @@ let g:wheel#line#threshold = 10  " lines from start or end
 let g:wheel#map#mouse = 1       " 1=natural, 0=disable, -1=reverse
 let g:wheel#scroll_on_wrap = 1      " 0=disable, 1=enable (default)
 "--------------------------------------------------------------------
+"vim-clazone settings
+"--------------------------------------------------------------------
+" hi SignColumn ctermbg=0 ctermfg=0
+" function! ShowSignColumn()
+    " sign define dummy
+    " execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
+" endfunc
+" au BufRead,BufNewFile * call ShowSignColumn()
+"
+nnoremap ;c :Calzone<CR>
+
+"--------------------------------------------------------------------
 "other settings
 "--------------------------------------------------------------------
 nnoremap <space>p :pwd<CR>
@@ -1758,5 +1770,17 @@ nnoremap <space>cn :cn<CR>
 nnoremap <space>cp :cp<CR>
 nnoremap <space>cc :close<CR>
 
-
 imap <C-o> <esc>o
+
+" Commenting with #:
+" 1. visually select the text rows (using V as usual)
+" 2. :norm i#
+" Uncommenting #:
+" 1. visually select the text as before (or type gv to re-select the previous selection)
+" 2. :norm x
+" insert #if 0 - #endif around block of code
+" map ;' mz'aO<Esc>O#if 0<Esc>'zo<Esc>i#endif<Esc>
+map ;i :norm i
+map ;x :norm x
+map ;' mz'a<Esc>O#if 0<Esc>'zo<Esc>i#endif<Esc>
+" vmap ;' '<O<Esc>i#if 0<Esc>'>o<Esc>i#endif<Esc>
