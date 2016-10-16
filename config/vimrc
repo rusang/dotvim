@@ -1491,10 +1491,10 @@ let g:gitgutter_async = 0
 "vim-colorscheme  settings
 "--------------------------------------------------------------------
 " colorscheme     molokai     "This is fine
-" colorscheme     monokai
+colorscheme     monokai
 " colorscheme     wombat 　"透明的
 " colorscheme     candycode
-colorscheme       256-jungle
+" colorscheme       256-jungle
 " colorscheme       woju
 " colorscheme     hybrid_material "Also fine
 " colorscheme     vj   "Also fine
@@ -1718,9 +1718,12 @@ let g:formatterpath = [ '~/.vim/formatter/bin']
 " let g:formatdef_harttle = '"astyle --style=attach --pad-oper"'
 " let g:formatdef_harttle = '"astyle --style=linux --pad-oper"'
 let g:formatdef_harttle = '"astyle --style=ansi --pad-oper -U -f -c -C -w"'
+let g:formatters_h = ['harttle']
 let g:formatters_cpp = ['harttle']
 let g:formatters_c = ['harttle']
 let g:formatters_java = ['harttle']
+let g:formatters_py = ['harttle']
+let g:formatters_sh = ['harttle']
 " let g:formatdef_uncrustify = '"uncrustify"'
 " let g:formatters_cpp = ['uncrustify']
 " let g:formatters_java = ['uncrustify']
@@ -1775,6 +1778,7 @@ nnoremap <space>cw :NERDTreeClose<CR> :cw<CR>
 nnoremap <space>cn :cn<CR>
 nnoremap <space>cp :cp<CR>
 nnoremap <space>cc :close<CR>
+nnoremap <space>j <Esc>i<CR><Esc>
 
 imap <C-o> <esc>o
 
