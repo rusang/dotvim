@@ -1492,6 +1492,7 @@ let g:gitgutter_async = 0
 "--------------------------------------------------------------------
 " colorscheme     molokai     "This is fine
 colorscheme     monokai
+" colorscheme     zenburn
 " colorscheme     wombat 　"透明的
 " colorscheme     candycode
 " colorscheme       256-jungle
@@ -1756,7 +1757,8 @@ let g:wheel#scroll_on_wrap = 1      " 0=disable, 1=enable (default)
 "--------------------------------------------------------------------
 " hi SignColumn ctermbg=0 ctermfg=0
 " function! ShowSignColumn()
-    " sign define dummy
+
+" sign define dummy
     " execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
 " endfunc
 " au BufRead,BufNewFile * call ShowSignColumn()
@@ -1768,6 +1770,10 @@ nnoremap ;c :Calzone<CR>
 "--------------------------------------------------------------------
 let  g:C_UseTool_cmake   = 'yes'
 let  g:C_UseTool_doxygen = 'yes'
+
+"--------------------------------------------------------------------
+"python-mode settings
+"--------------------------------------------------------------------
 
 
 "--------------------------------------------------------------------
