@@ -586,7 +586,7 @@ export PATH="$PATH:/usr/local/arm/arm-2014.05/bin"
 export TMPDIR=/home/tmp/
 
 #arm-linux-gcc-4.4.3 friendlyarm
-export PATH=$PATH:/opt/FriendlyARM/toolschain/4.4.3/bin
+# export PATH=$PATH:/opt/FriendlyARM/toolschain/4.4.3/bin
 
 
 [[ -s ~/.autojump/etc/profile.d/autojump.sh  ]] && . ~/.autojump/etc/profile.d/autojump.sh
