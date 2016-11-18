@@ -18,6 +18,10 @@ endif
 " -----------------------------------------------------------------------------
 if has("gui_running")
     let g:isGUI = 1
+    "set cut copy paste hotkey
+    vmap <C-S-x> "+x
+    vmap <C-S-c> "+y
+    imap <C-S-v> <Esc>"+gP
 else
     let g:isGUI = 0
 endif

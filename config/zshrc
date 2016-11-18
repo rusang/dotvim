@@ -163,10 +163,14 @@ alias ssdown_web2='sudo systemctl stop  shadowsocks@client_web_putong.service'
 alias ssdown_you='sudo systemctl stop  shadowsocks@client_youtube.service'
 alias wirerestart='sudo systemctl restart network.service'
 alias npaper='zsh ~/.autostart/feh.sh'
+alias 1='cd ..'
 alias 2='cd ../..'
 alias 3='cd ../../..'
 alias 4='cd ../../../..'
 alias 5='cd ../../../../..'
+alias 6='cd ../../../../../..'
+alias 7='cd ../../../../../../..'
+alias 8='cd ../../../../../../../..'
 
 #color{{{
 autoload colors
