@@ -702,6 +702,7 @@ let NERDTreeAutoCenter=1
 "set tags+=~/.vim/tags/tags_self
 " nmap <F4> :cs add ./cscope.out .<CR><CR><CR> :cs reset<CR>
 nmap <F4> :Autoformat<CR>
+nmap <F5> :PymodeLintAuto<CR>
 set completeopt=menu                        "关闭预览窗口
 
 " -----------------------------------------------------------------------------
@@ -1789,7 +1790,7 @@ let  g:C_UseTool_doxygen = 'yes'
 "--------------------------------------------------------------------
 "undotree settings
 "--------------------------------------------------------------------
-nmap <F5> :UndotreeToggle<CR>
+nmap <F6> :UndotreeToggle<CR>
 
 "--------------------------------------------------------------------
 "other settings
