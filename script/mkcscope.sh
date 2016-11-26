@@ -33,7 +33,7 @@ make_find_name_arg()
 make_find_arg()
 {
     # 文件类型，如*.c
-    local FILETYPES=("c" "cc" "cpp" "h" 
+    local FILETYPES=("c" "cc" "cpp" "h" "cxx" "hpp"
     "mk" 'sh' 
     "java" 
     "md"
