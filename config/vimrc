@@ -1783,6 +1783,41 @@ let  g:C_UseTool_cmake   = 'yes'
 let  g:C_UseTool_doxygen = 'yes'
 
 "--------------------------------------------------------------------
+"rainbow_parentheses.vim
+"--------------------------------------------------------------------
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+let g:rbpt_max = 16
+" let g:rbpt_loadcmd_toggle = 0
+
+au VimEnter * RainbowParenthesesToggle
+"{}
+au Syntax * RainbowParenthesesLoadBraces
+"()
+au Syntax * RainbowParenthesesLoadRound
+"[]
+au Syntax * RainbowParenthesesLoadSquare
+"<>
+au Syntax * RainbowParenthesesLoadChevrons
+
+"--------------------------------------------------------------------
 "python-mode settings
 "--------------------------------------------------------------------
 
@@ -1790,7 +1825,10 @@ let  g:C_UseTool_doxygen = 'yes'
 "--------------------------------------------------------------------
 "undotree settings
 "--------------------------------------------------------------------
-nmap <F6> :UndotreeToggle<CR>
+" nmap <F6> :UndotreeToggle<CR>
+nmap <F6> :RainbowParenthesesLoadBraces<CR>
+nmap <F7> :RainbowParenthesesLoadRound<CR>
+" | RainbowParenthesesLoadSquare | RainbowParenthesesLoadChevrons<CR>
 
 "--------------------------------------------------------------------
 "other settings
