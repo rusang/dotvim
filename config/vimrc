@@ -999,7 +999,7 @@ au BufRead,BufNewFile,BufEnter * cd %:p:h
 map <Leader>mc :MBEClose<cr>       "disable MiniBufExplorer
 map <Leader>mo :MBEOpen<cr>        "enable MiniBufExplorer
 " let g:miniBufExplHideWhenDiff = 1
-let g:miniBufExplorerAutoStart = 0  "disable MiniBufExplorer autostart
+" let g:miniBufExplorerAutoStart = 0  "disable MiniBufExplorer autostart
 "-- WinManager setting --
 let g:winManagerWindowLayout='FileExplorer|TagList' " 设置我们要管理的插件
 let g:persistentBehaviour=0 " 如果所有编辑文件都关闭了，退出vim
@@ -1503,6 +1503,7 @@ let g:gitgutter_async = 0
 "--------------------------------------------------------------------
 " colorscheme     molokai     "This is fine
 colorscheme     monokai
+" colorscheme     solarized
 " colorscheme     zenburn
 " colorscheme     wombat 　"透明的
 " colorscheme     candycode
@@ -1822,6 +1823,15 @@ au Syntax * RainbowParenthesesLoadChevrons
 "--------------------------------------------------------------------
 
 
+
+"--------------------------------------------------------------------
+"clang_complete settings
+"--------------------------------------------------------------------
+" path to directory where library can be found
+" let g:clang_library_path='/usr/lib/llvm-3.8/lib'
+" or path directly to the library file
+let g:clang_library_path='/usr/lib/libclang.so.3.8'
+
 "--------------------------------------------------------------------
 "undotree settings
 "--------------------------------------------------------------------
@@ -1839,7 +1849,7 @@ nnoremap <space>cw :NERDTreeClose<CR> :cw<CR>
 nnoremap <space>cn :cn<CR>
 nnoremap <space>cp :cp<CR>
 nnoremap <space>cc :close<CR>
-nnoremap <space>j <Esc>i<CR><Esc>
+nnoremap <space>J <Esc>i<CR><Esc>
 
 imap <C-o> <esc>o
 
