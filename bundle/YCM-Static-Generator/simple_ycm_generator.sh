@@ -1,5 +1,6 @@
 #!/bin/bash
 
+rm -f .ycm_extra_conf.py
 function HELP {
 echo -e "Usage: ${0##*/} \t[-h] [-I INCLUDE_DIR] [-D DEFINITION]\n\
 \t\t\t\t[-E EXCLUDE_DIR] PROJECT_ROOT\n"

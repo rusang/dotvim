@@ -337,5 +337,6 @@ call s:_init()
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
+source /home/ssliao/.vim/bundle/ifdef-highlighting/syntax/ifdef.vim
 
 " vim: set sw=4 sts=4 et fdm=marker:
