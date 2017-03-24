@@ -241,7 +241,7 @@ set smartcase                                         "如果搜索模式包含�
 
 
 " 启用每行超过150列的字符提示（字体变蓝并加下划线），不启用就注释掉
-au BufWinEnter * let w:m2=matchadd('Underlined', '\%>' . 150 . 'v.\+', -1)
+au BufWinEnter * let w:m2=matchadd('Underlined', '\%>' . 200 . 'v.\+', -1)
 
 " -----------------------------------------------------------------------------
 "  < 界面配置 >
@@ -1839,6 +1839,12 @@ let g:clang_library_path='/usr/lib/libclang.so.3.8'
 nmap <F6> :RainbowParenthesesLoadBraces<CR>
 nmap <F7> :RainbowParenthesesLoadRound<CR>
 " | RainbowParenthesesLoadSquare | RainbowParenthesesLoadChevrons<CR>
+
+"--------------------------------------------------------------------
+"vim-expand-region settings
+"--------------------------------------------------------------------
+map v <Plug>(expand_region_expand)
+map <C-v> <Plug>(expand_region_shrink)
 
 "--------------------------------------------------------------------
 "other settings
