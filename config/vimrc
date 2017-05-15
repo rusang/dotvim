@@ -1728,8 +1728,8 @@ let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
 " let g:formatterpath = ['/some/path/to/a/folder', '/home/superman/formatters']
 let g:formatterpath = [ '~/.vim/formatter/bin']
-" let g:formatdef_harttle = '"astyle --style=attach --pad-oper"'
-" let g:formatdef_harttle = '"astyle --style=linux --pad-oper"'
+" let g:formatdef_harttle = '"astyle --style=attach --pad-oper -U -f -c -C -w"'
+" let g:formatdef_harttle = '"astyle --style=linux --pad-oper -U -f -c -C -w"'
 let g:formatdef_harttle = '"astyle --style=ansi --pad-oper -U -f -c -C -w"'
 let g:formatters_h = ['harttle']
 let g:formatters_cpp = ['harttle']
