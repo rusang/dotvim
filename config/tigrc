@@ -77,10 +77,10 @@ bind generic ca !?@git commit --amend --no-edit
 bind generic K view-help
 bind generic <C-w><C-w> view-next
 
-color diff-stat			95	default
-color date			172	default
+color diff-stat		blue	 default
+color date			blue	default
 color "Merge: "			cyan	default
-color graph-commit		red	default
+color graph-commit		cyan	default
 color id			167	default
 color "author "			95	default
 color "Commit: "		90	default
