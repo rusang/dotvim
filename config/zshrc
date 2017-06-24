@@ -89,7 +89,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-###########################added by rusang from here########################
+###########################added by oliver.liao from here########################
 #{{{
 alias rm=trash
 alias r=trash
