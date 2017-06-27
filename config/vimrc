@@ -1883,6 +1883,14 @@ let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the c
 let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
 let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets the color for files ending with _spec.rb
 
+"--------------------------------------------------------------------
+"unite-location settings
+"--------------------------------------------------------------------
+" nnoremap <silent> <space>up  :<C-u>Unite -resume<CR>
+" nnoremap <silent> <space>uj  :call execute('Unite -resume -select=+'.v:count1.' -immediately')<CR>
+" nnoremap <silent> <space>uk  :call execute('Unite -resume -select=-'.v:count1.' -immediately')<CR>
+nnoremap <silent> <space>uq  :<C-u>Unite  -auto-resize quickfix<CR>
+nnoremap <silent> <space>ul  :<C-u>Unite  -auto-resize location_list<CR>
 
 "--------------------------------------------------------------------
 "other settings
