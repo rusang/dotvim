@@ -108,3 +108,15 @@ hi cssClassName ctermfg=148 ctermbg=NONE cterm=NONE guifg=#a6e22e guibg=NONE gui
 hi cssValueLength ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
 hi cssCommonAttr ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=NONE
 hi cssBraces ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
+
+" for TagHighlight
+hi Class          guifg=#18E28D ctermfg=42
+hi DefinedName    guifg=#838ED7 ctermfg=104
+hi Enumerator     guifg=#F5A281 ctermfg=216
+hi EnumeratorName guifg=#FD6161 ctermfg=203
+hi Member         guifg=#66C1FF ctermfg=75
+hi Structure      guifg=#90B4B7 ctermfg=109
+hi Union          guifg=#F1C40F ctermfg=220
+hi GlobalConstant guifg=#16A085 ctermfg=36
+hi GlobalVariable guifg=#1ABC9C ctermfg=37 cterm=bold
+hi LocalVariable  guifg=#2ECC71 ctermfg=41

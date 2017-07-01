@@ -813,6 +813,12 @@ let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 ""whether to show balloons
 let g:syntastic_enable_balloons = 1
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_wq = 0
 
 " 用于保存文件时查检语法
 
@@ -1503,6 +1509,8 @@ let g:gitgutter_async = 0
 "--------------------------------------------------------------------
 " colorscheme     molokai     "This is fine
 colorscheme     monokai
+" colorscheme     flattr
+" colorscheme     slate
 " colorscheme     solarized
 " colorscheme     zenburn
 " colorscheme     wombat 　"透明的

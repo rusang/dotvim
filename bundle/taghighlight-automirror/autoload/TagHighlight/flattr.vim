@@ -95,6 +95,6 @@ hi Member         guifg=#66C1FF ctermfg=75
 hi Structure      guifg=#90B4B7 ctermfg=109
 hi Union          guifg=#F1C40F ctermfg=220
 hi GlobalConstant guifg=#16A085 ctermfg=36
-hi GlobalVariable guifg=#1ABC9C ctermfg=37  gui=italic,bold
+hi GlobalVariable guifg=#1ABC9C ctermfg=37
 hi LocalVariable  guifg=#2ECC71 ctermfg=41
 set background=dark

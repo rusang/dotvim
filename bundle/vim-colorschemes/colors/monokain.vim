@@ -104,6 +104,18 @@ hi Visual                        guibg=#403D3D
 hi WarningMsg      guifg=#FFFFFF guibg=#333333 gui=bold
 hi WildMenu        guifg=#66D9EF guibg=#000000
 
+" for TagHighlight
+hi Class          guifg=#18E28D ctermfg=42
+hi DefinedName    guifg=#838ED7 ctermfg=104
+hi Enumerator     guifg=#F5A281 ctermfg=216
+hi EnumeratorName guifg=#FD6161 ctermfg=203
+hi Member         guifg=#66C1FF ctermfg=75
+hi Structure      guifg=#90B4B7 ctermfg=109
+hi Union          guifg=#F1C40F ctermfg=220
+hi GlobalConstant guifg=#16A085 ctermfg=36
+hi GlobalVariable guifg=#1ABC9C ctermfg=37
+hi LocalVariable  guifg=#2ECC71 ctermfg=41
+
 if s:monokain_original == 1
 	hi Normal          guifg=#F8F8F2 guibg=#272822
 	hi Comment         guifg=#75715E
@@ -211,4 +223,15 @@ if &t_Co > 255
 	hi TabLineSel 	   ctermbg=DarkGrey
 	" Unselected
 	hi TabLine 	   ctermbg=Black
+    " for TagHighlight
+    hi Class          guifg=#18E28D ctermfg=42
+    hi DefinedName    guifg=#838ED7 ctermfg=104
+    hi Enumerator     guifg=#F5A281 ctermfg=216
+    hi EnumeratorName guifg=#FD6161 ctermfg=203
+    hi Member         guifg=#66C1FF ctermfg=75
+    hi Structure      guifg=#90B4B7 ctermfg=109
+    hi Union          guifg=#F1C40F ctermfg=220
+    hi GlobalConstant guifg=#16A085 ctermfg=36
+    hi GlobalVariable guifg=#1ABC9C ctermfg=37
+    hi LocalVariable  guifg=#2ECC71 ctermfg=41
 end
