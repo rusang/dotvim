@@ -33,7 +33,8 @@ hi Boolean ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
 hi Character ctermfg=0 ctermbg=3 cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
 hi Comment ctermfg=242 ctermbg=NONE cterm=NONE guifg=#75715e guibg=NONE gui=NONE
 hi Conditional ctermfg=135 ctermbg=NONE cterm=italic,bold guifg=#f92672 guibg=NONE gui=italic,bold
-hi Constant ctermfg=243 ctermbg=NONE cterm=italic guifg=NONE guibg=NONE gui=italic
+hi PreCondit guifg=#965b3f guibg=NONE guisp=NONE gui=NONE ctermfg=197 ctermbg=NONE cterm=bold
+hi Constant ctermfg=grey ctermbg=NONE cterm=bold guifg=NONE guibg=NONE gui=bold
 hi Define ctermfg=36 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
 hi DiffAdd ctermfg=231 ctermbg=64 cterm=bold guifg=#f8f8f2 guibg=#46830c gui=bold
 hi DiffDelete ctermfg=88 ctermbg=NONE cterm=NONE guifg=#8b0807 guibg=NONE gui=NONE
@@ -42,7 +43,7 @@ hi DiffText ctermfg=231 ctermbg=24 cterm=bold guifg=#f8f8f2 guibg=#204a87 gui=bo
 hi ErrorMsg ctermfg=231 ctermbg=233  cterm=NONE guifg=#f8f8f0 guibg=#f92672 gui=NONE
 hi WarningMsg ctermfg=NONE ctermbg=NONE  cterm=NONE guifg=#f8f8f0 guibg=#f92672 gui=NONE
 hi Float ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
-hi Function ctermfg=blue ctermbg=NONE cterm=bold guifg=#5faf5f guibg=NONE gui=bold
+hi Function ctermfg=36  ctermbg=NONE cterm=bold guifg=#5faf5f guibg=NONE gui=bold
 hi Identifier ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=italic
 hi Keyword ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
 hi Label ctermfg=196 ctermbg=NONE cterm=underline,bold guifg=#ff0000 guibg=NONE gui=underline,bold
@@ -62,6 +63,7 @@ hi Tag ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
 hi Title ctermfg=231 ctermbg=NONE cterm=bold guifg=#f8f8f2 guibg=NONE gui=bold
 hi Todo ctermfg=95 ctermbg=NONE cterm=inverse,bold guifg=#75715e guibg=NONE gui=inverse,bold
 hi Type ctermfg=lightgreen ctermbg=NONE cterm=NONE  guifg=#f92672 guibg=NONE gui=NONE
+hi Typedef guifg=#536991 guibg=NONE  gui=bold ctermfg=197 ctermbg=NONE cterm=bold
 hi Underlined ctermfg=NONE ctermbg=NONE cterm=underline guifg=NONE guibg=NONE gui=underline
 hi rubyClass ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
 hi rubyFunction ctermfg=148 ctermbg=NONE cterm=NONE guifg=#a6e22e guibg=NONE gui=NONE
@@ -120,10 +122,12 @@ hi EnumeratorName guifg=#9e9e9e  ctermfg=247
 " ok
 hi EnumerationValue guifg=#808080   ctermfg=241 cterm=bold gui=bold
 hi Member         guifg=#66C1FF ctermfg=75
+hi Namespace          guifg=#66C1FF ctermfg=green cterm=reverse,italic,bold gui=bold
 hi Structure      guifg=#90B4B7 ctermfg=63 cterm=bold gui=bold
-hi Union          guifg=#F1C40F ctermfg=220
+hi Union          guifg=#F1C40F ctermfg=220 cterm=bold gui=bold
 hi GlobalConstant guifg=#16A085 ctermfg=36
 " ok
 hi GlobalVariable guifg=#7F007F ctermfg=129 cterm=italic,bold gui=italic,bold
 hi Extern         guifg=#af00ff ctermfg=91 cterm=italic,bold gui=italic,bold
-hi LocalVariable  guifg=#0087af ctermfg=blue cterm=NONE GUI=NONE
+" hi LocalVariable  guifg=#0087af ctermfg=blue cterm=NONE GUI=NONE
+hi LocalVariable guifg=#efae87 guibg=NONE guisp=NONE gui=bold ctermfg=209 ctermbg=NONE cterm=bold

@@ -1509,6 +1509,7 @@ let g:gitgutter_async = 0
 "--------------------------------------------------------------------
 " colorscheme     molokai     "This is fine
 colorscheme     monokai
+" colorscheme    Revolution 
 " colorscheme     flattr
 " colorscheme     slate
 " colorscheme     solarized
@@ -1737,8 +1738,8 @@ let g:autoformat_remove_trailing_spaces = 0
 " let g:formatterpath = ['/some/path/to/a/folder', '/home/superman/formatters']
 let g:formatterpath = [ '~/.vim/formatter/bin']
 " let g:formatdef_harttle = '"astyle --style=attach --pad-oper -U -f -c -C -w"'
-let g:formatdef_harttle = '"astyle --style=linux --pad-oper -U -f -c -C -w"'
-" let g:formatdef_harttle = '"astyle --style=ansi --pad-oper -U -f -c -C -w"'
+" let g:formatdef_harttle = '"astyle --style=linux --pad-oper -U -f -c -C -w"'
+let g:formatdef_harttle = '"astyle --style=ansi --pad-oper -U -f -c -C -w"'
 let g:formatters_h = ['harttle']
 let g:formatters_cpp = ['harttle']
 let g:formatters_c = ['harttle']
@@ -1904,6 +1905,16 @@ nnoremap <silent> <space>ul  :<C-u>Unite  -auto-resize location_list<CR>
 "other settings
 "--------------------------------------------------------------------
 nmap <F12> :UpdateTypesFile<CR>
+
+"--------------------------------------------------------------------
+"vim-cpp-enhanced-highlight
+"--------------------------------------------------------------------
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_experimental_simple_template_highlight = 1
+let g:cpp_concepts_highlight = 1
+let c_no_curly_error=1
 
 "--------------------------------------------------------------------
 "other settings
