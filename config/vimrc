@@ -1903,6 +1903,11 @@ nnoremap <silent> <space>ul  :<C-u>Unite  -auto-resize location_list<CR>
 "--------------------------------------------------------------------
 "other settings
 "--------------------------------------------------------------------
+nmap <F12> :UpdateTypesFile<CR>
+
+"--------------------------------------------------------------------
+"other settings
+"--------------------------------------------------------------------
 nnoremap <space>p :pwd<CR>
 nnoremap <Leader>c :Unite colorscheme<CR>
 nnoremap <space>cw :NERDTreeClose<CR> :cw<CR>

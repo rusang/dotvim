@@ -30,25 +30,25 @@ hi Folded ctermfg=239 ctermbg=236 cterm=italic guifg=#75715e guibg=#272822 gui=N
 hi SignColumn ctermfg=NONE ctermbg=237 cterm=NONE guifg=NONE guibg=#3c3d37 gui=NONE
 hi Normal ctermfg=231 ctermbg=235 cterm=NONE guifg=#f8f8f2 guibg=#272822 gui=NONE
 hi Boolean ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
-hi Character ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
+hi Character ctermfg=0 ctermbg=3 cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
 hi Comment ctermfg=242 ctermbg=NONE cterm=NONE guifg=#75715e guibg=NONE gui=NONE
-hi Conditional ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
-hi Constant ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
-hi Define ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
+hi Conditional ctermfg=135 ctermbg=NONE cterm=italic,bold guifg=#f92672 guibg=NONE gui=italic,bold
+hi Constant ctermfg=243 ctermbg=NONE cterm=italic guifg=NONE guibg=NONE gui=italic
+hi Define ctermfg=36 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
 hi DiffAdd ctermfg=231 ctermbg=64 cterm=bold guifg=#f8f8f2 guibg=#46830c gui=bold
 hi DiffDelete ctermfg=88 ctermbg=NONE cterm=NONE guifg=#8b0807 guibg=NONE gui=NONE
 hi DiffChange ctermfg=NONE ctermbg=NONE cterm=NONE guifg=#f8f8f2 guibg=#243955 gui=NONE
 hi DiffText ctermfg=231 ctermbg=24 cterm=bold guifg=#f8f8f2 guibg=#204a87 gui=bold
 hi ErrorMsg ctermfg=231 ctermbg=233  cterm=NONE guifg=#f8f8f0 guibg=#f92672 gui=NONE
-hi WarningMsg ctermfg=231 ctermbg=233  cterm=NONE guifg=#f8f8f0 guibg=#f92672 gui=NONE
+hi WarningMsg ctermfg=NONE ctermbg=NONE  cterm=NONE guifg=#f8f8f0 guibg=#f92672 gui=NONE
 hi Float ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
-hi Function ctermfg=148 ctermbg=NONE cterm=NONE guifg=#a6e22e guibg=NONE gui=NONE
+hi Function ctermfg=blue ctermbg=NONE cterm=bold guifg=#5faf5f guibg=NONE gui=bold
 hi Identifier ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=italic
 hi Keyword ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
-hi Label ctermfg=186 ctermbg=NONE cterm=NONE guifg=#e6db74 guibg=NONE gui=NONE
+hi Label ctermfg=196 ctermbg=NONE cterm=underline,bold guifg=#ff0000 guibg=NONE gui=underline,bold
 hi NonText ctermfg=59 ctermbg=236 cterm=NONE guifg=#49483e guibg=#31322c gui=NONE
-hi Number ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
-hi Operator ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
+hi Number ctermfg=160 ctermbg=NONE cterm=italic guifg=#d70000  guibg=NONE gui=italic
+hi Operator ctermfg=72 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
 hi PreProc ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
 hi Special ctermfg=231 ctermbg=NONE cterm=NONE guifg=#f8f8f2 guibg=NONE gui=NONE
 hi SpecialComment ctermfg=242 ctermbg=NONE cterm=NONE guifg=#75715e guibg=NONE gui=NONE
@@ -56,11 +56,12 @@ hi SpecialComment ctermfg=242 ctermbg=NONE cterm=NONE guifg=#75715e guibg=NONE g
 hi SpecialKey ctermfg=59 ctermbg=NONE cterm=NONE guifg=#49483e guibg=NONE gui=NONE
 hi Statement ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
 hi StorageClass ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=italic
+" hi String ctermfg=0 ctermbg=3 cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
 hi String ctermfg=186 ctermbg=NONE cterm=NONE guifg=#e6db74 guibg=NONE gui=NONE
 hi Tag ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
 hi Title ctermfg=231 ctermbg=NONE cterm=bold guifg=#f8f8f2 guibg=NONE gui=bold
 hi Todo ctermfg=95 ctermbg=NONE cterm=inverse,bold guifg=#75715e guibg=NONE gui=inverse,bold
-hi Type ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
+hi Type ctermfg=lightgreen ctermbg=NONE cterm=NONE  guifg=#f92672 guibg=NONE gui=NONE
 hi Underlined ctermfg=NONE ctermbg=NONE cterm=underline guifg=NONE guibg=NONE gui=underline
 hi rubyClass ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
 hi rubyFunction ctermfg=148 ctermbg=NONE cterm=NONE guifg=#a6e22e guibg=NONE gui=NONE
@@ -110,13 +111,19 @@ hi cssCommonAttr ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui
 hi cssBraces ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
 
 " for TagHighlight
+hi link Type Comment
 hi Class          guifg=#18E28D ctermfg=42
-hi DefinedName    guifg=#838ED7 ctermfg=104
-hi Enumerator     guifg=#F5A281 ctermfg=216
-hi EnumeratorName guifg=#FD6161 ctermfg=203
+hi DefinedName    guifg=#838ED7 ctermfg=124 cterm=bold gui=bold
+hi Enumerator  ctermfg=247 ctermbg=247 cterm=NONE guifg=#64645e guibg=#64645e gui=NONE
+" hi Enumerator     guifg=#F5A281 ctermfg=216
+hi EnumeratorName guifg=#9e9e9e  ctermfg=247
+" ok
+hi EnumerationValue guifg=#808080   ctermfg=241 cterm=bold gui=bold
 hi Member         guifg=#66C1FF ctermfg=75
-hi Structure      guifg=#90B4B7 ctermfg=109
+hi Structure      guifg=#90B4B7 ctermfg=63 cterm=bold gui=bold
 hi Union          guifg=#F1C40F ctermfg=220
 hi GlobalConstant guifg=#16A085 ctermfg=36
-hi GlobalVariable guifg=#1ABC9C ctermfg=37 cterm=bold
-hi LocalVariable  guifg=#2ECC71 ctermfg=41
+" ok
+hi GlobalVariable guifg=#7F007F ctermfg=129 cterm=italic,bold gui=italic,bold
+hi Extern         guifg=#af00ff ctermfg=91 cterm=italic,bold gui=italic,bold
+hi LocalVariable  guifg=#0087af ctermfg=blue cterm=NONE GUI=NONE
