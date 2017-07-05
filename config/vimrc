@@ -309,8 +309,8 @@ map <c-F9> :call Compile()<CR>
 imap <c-F9> <ESC>:call Compile()<CR>
 
 " Ctrl + F10 一键保存并连接
-map <c-F10> :call Link()<CR>
-imap <c-F10> <ESC>:call Link()<CR>
+" map <c-F10> :call Link()<CR>
+" imap <c-F10> <ESC>:call Link()<CR>
 
 let s:LastShellReturn_C = 0
 let s:LastShellReturn_L = 0
@@ -1902,7 +1902,7 @@ nnoremap <silent> <space>uq  :<C-u>Unite  -auto-resize quickfix<CR>
 nnoremap <silent> <space>ul  :<C-u>Unite  -auto-resize location_list<CR>
 
 "--------------------------------------------------------------------
-"other settings
+"color type settings
 "--------------------------------------------------------------------
 nmap <F12> :UpdateTypesFile<CR>
 
@@ -1915,6 +1915,13 @@ let g:cpp_class_decl_highlight = 1
 let g:cpp_experimental_simple_template_highlight = 1
 let g:cpp_concepts_highlight = 1
 let c_no_curly_error=1
+
+"--------------------------------------------------------------------
+"color type settings
+"--------------------------------------------------------------------
+map <F10> <C-W>_<C-W><Bar>
+map <c-F10> <C-W>=
+
 
 "--------------------------------------------------------------------
 "other settings
