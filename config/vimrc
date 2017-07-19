@@ -1493,7 +1493,7 @@ let g:SignatureMarkTextHLDynamic = 1
 " let g:gitgutter_diff_args = '-w'
 " let g:gitgutter_diff_base = '<commit SHA>'
 " let g:gitgutter_highlight_lines = 1
-set updatetime=200
+" set updatetime=200
 
 "同步运行
 let g:gitgutter_async = 0
@@ -1919,7 +1919,9 @@ let c_no_curly_error=1
 "--------------------------------------------------------------------
 "color type settings
 "--------------------------------------------------------------------
+"最大化窗口
 map <F10> <C-W>_<C-W><Bar>
+"还原窗口大小
 map <c-F10> <C-W>=
 
 
@@ -1935,6 +1937,8 @@ nnoremap <space>cc :close<CR>
 nnoremap <space>J <Esc>i<CR><Esc>
 
 imap <C-o> <esc>o
+
+nnoremap <c-F8> :e!<CR>
 
 " Commenting with #:
 " 1. visually select the text rows (using V as usual)
