@@ -118,7 +118,44 @@ cleartrash()
         echo "cancle delete!"
     fi
 }
+#vimf - Open select file in vim
+vf()
+{
+    FILE=$(fzf) && vim "$FILE"
+}
+
+fzf_cd() {
+    zle -I; DIR=$(find ${1:-*} -path '*/\.*' -prune -o -type d -print 2>/dev/null | fzf) && cd "$DIR"; }; zle -N fzf_cd; bindkey '^O' fzf_cd
+
+# fzf_vf() {
+    # zle -I; FILE=$(fzf) && vim "$FILE"; }; zle -N fzf_vf; bindkey '^O' fzf_vf
+
+#fd - Cd select directory
+fd()
+{
+    DIR=$(find ${1:-*} -path '*/\.*' -prune -o -type d -print 2>/dev/null | fzf) && cd "$DIR"
+}
+
+#fd - Including hidden directories
+fda()
+{
+    DIR=$(find ${1:-.} -type d 2>/dev/null | fzf) && cd "$DIR"
+}
+
+#fh - Repeat history
+fh()
+{
+    eval $(history | fzf +s | sed 's/ *[0-9]* *//')
+}
+
+#fkill - kill process
+fkill()
+{
+    ps -ef | sed 1d | fzf -m | awk '{print $2}' | xargs kill -${1:-9}
+}
+
 #}}}
+eval $(thefuck --alias)
 alias cls='clear'
 alias mntusb='mount /dev/sdc1 /mnt/usb'
 alias umntusb='umount  /mnt/usb'
