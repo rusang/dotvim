@@ -213,7 +213,8 @@ filetype on                                           "启用文件类型侦测
 filetype plugin on                                    "针对不同的文件类型加载对应的插件
 filetype plugin indent on                             "启用缩进
 set smartindent                                       "启用智能对齐方式
-set expandtab                                         "将Tab键转换为空格
+" set expandtab                                         "将Tab键转换为空格
+set noexpandtab                                         "将Tab键转换为空格
 set tabstop=4                                         "设置Tab键的宽度
 set shiftwidth=4                                      "换行时自动缩进4个空格
 set smarttab                                          "指定按一次backspace就删除shiftwidth宽度的空格
@@ -899,14 +900,14 @@ endif
 " The cscope prefix key.
 nnoremap    [cscope]   <Nop>
 nmap 1  [cscope]
-noremap [cscope]f : cs f f
-noremap [cscope]e : cs f e
-noremap [cscope]g : cs f g
-noremap [cscope]t : cs f t
-noremap [cscope]i : cs f i
-noremap [cscope]d : cs f d
-noremap [cscope]s : cs f s
-noremap [cscope]c : cs f c
+noremap [cscope]f : cs f f 
+noremap [cscope]e : cs f e 
+noremap [cscope]g : cs f g 
+noremap [cscope]t : cs f t 
+noremap [cscope]i : cs f i 
+noremap [cscope]d : cs f d 
+noremap [cscope]s : cs f s 
+noremap [cscope]c : cs f c 
 
 
 " -----------------------------------------------------------------------------
@@ -1744,9 +1745,11 @@ let g:formatdef_harttle = '"astyle --style=linux --indent=tab --remove-braces --
 " let g:formatdef_harttle = '"astyle --style=attach --pad-oper -U -f -c -C -w"'
 " let g:formatdef_harttle = '"astyle --style=linux --pad-oper -U -f -c -C -w"'
 " let g:formatdef_harttle = '"astyle --style=ansi --pad-oper -U -f -c -C -w"'
+let g:formatters_c = ['harttle']
 let g:formatters_h = ['harttle']
 let g:formatters_cpp = ['harttle']
-let g:formatters_c = ['harttle']
+let g:formatters_hpp = ['harttle']
+let g:formatters_cxx = ['harttle']
 let g:formatters_java = ['harttle']
 let g:formatters_py = ['harttle']
 let g:formatters_sh = ['harttle']
