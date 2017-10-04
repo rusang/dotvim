@@ -1,0 +1,11 @@
+PLEASE REFER:
+
+https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture/Troubleshooting
+
+Run the following command:
+
+# alsactl restore
+
+If the problem persists, verify that the Auto-Mute option in alsamixer is set to Disabled
+
+

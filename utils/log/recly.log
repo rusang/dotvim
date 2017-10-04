@@ -1,0 +1,27 @@
+for i in  ; do echo ./tree/splaytree/c/splay_tree.h;iconv -f gb18030 -t utf8 ./tree/splaytree/c/splay_tree.h -o /tmp/iconv.tmp;mv /tmp/iconv.tmp ./tree/splaytree/c/splay_tree.h; done
+for i in `find ./ -name "*.h"`; do echo $i;enconv  -x gb2312 $i; done
+bash解释器错误解决方法： 有时候编写脚本时会出现类似标题列出的错误，这个问题大多数是因为你的脚本文件在windows下编辑过。windows下，每一行的结尾是
+，而在linux下文件的结尾是
+，那么你在windows下编辑过的文件在linux下打开看的时候每一行的结尾就会多出来一个字符,用cat -A urfile时你可以看到这个字符被显示为^M，这时候只需要删除这个字符就可以了。可以使用命令sed -i 's/$//' urfile,有时候编写脚本时会出现类似标题列出的错误，这个问题大多数是因为你的脚本文件在windows下编辑过。windows下，每一行的结尾是
+，而在linux下文件的结尾是
+，那么你在windows下编辑过的文件在linux下打开看的时候每一行的结尾就会多出来一个字符,用cat -A urfile时你可以看到这个字符被显示为^M，这时候只需要删除这个字符就可以了。可以使用命令sed -i 's/$//' urfile
+无线设置:
+工具：netctl
+1.wifi-menu 设置配置文件(在/etc/netctl 下)，以wlp3s0_429为例
+2.netctl start wlp3s0_429,在/etc/systemd/system 下产生相应的配置文件
+3.netctl enable wlp3s0_429(开机自动启动)
+注意：1.如果要用无线上网，一定要断开有线网络，并把有线网卡断开：如 ip link set dev(有线) down
+      2.多种无线管理工具相互之间互相排斥，只能使用一种，且要把其他都禁止掉  如：
+      sudo systemctl stop netcfg
+      sudo systemctl stop dhcpcd@.service
+      sudo systemctl stop NetworkManager.service
+
+      sudo systemctl disable netcfg
+      sudo systemctl disable dhcpcd@.service
+      sudo systemctl disable NetworkManager.service
+笔记本触摸板：安装驱动 xf86-input-synaptics 重启即可
+笔记本触摸板驱动可以参考wiki：https://wiki.archlinux.org/index.php/Touchpad_Synaptics_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29
+打开摄像头：xawtv -c /dev/video0
+或者vlc v4l:// :v4l-vdev=/dev/video0 :v4l-adev=/dev/audio2 
+多屏幕设置：slim-archlinux
+ss开启与配置： 在/etc/shadowsocks/下 使用命令：sslocal -c my.json
