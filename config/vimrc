@@ -221,6 +221,7 @@ set smarttab                                          "指定按一次backspace�
 set foldenable                                        "启用折叠
 set foldmethod=indent                                 "indent 折叠方式
 set modifiable
+set colorcolumn=80
 " set foldmethod=marker                                "marker 折叠方式
 
 " 用空格键来开关折叠
@@ -703,7 +704,9 @@ let NERDTreeAutoCenter=1
 "set tags+=~/.vim/tags/tags_self
 " nmap <F4> :cs add ./cscope.out .<CR><CR><CR> :cs reset<CR>
 nmap <F4> :Autoformat<CR>
-nmap <F5> :PymodeLintAuto<CR>
+" nmap <F5> :PymodeLintAuto<CR>
+nnoremap <F5> :%!xxd<CR>
+nnoremap <c-F5> :%!xxd -r<CR>
 set completeopt=menu                        "关闭预览窗口
 
 " -----------------------------------------------------------------------------
@@ -1711,7 +1714,6 @@ nnoremap <leader>dc :YcmCompleter GetDoc<CR> " 跳转到定义处
 "--------------------------------------------------------------------
 nmap <F1> :YcmGenerateConfig<CR>                "打开/闭浏览窗口
 
-
 "--------------------------------------------------------------------
 "DoxygenToolkit settings
 "--------------------------------------------------------------------
@@ -1859,8 +1861,8 @@ nmap <F7> :RainbowParenthesesLoadRound<CR>
 "--------------------------------------------------------------------
 "vim-expand-region settings
 "--------------------------------------------------------------------
-map v <Plug>(expand_region_expand)
-map <C-v> <Plug>(expand_region_shrink)
+" map v <Plug>(expand_region_expand)
+" map <C-v> <Plug>(expand_region_shrink)
 
 "--------------------------------------------------------------------
 " vim-nerdtree-syntax-highlight" settings

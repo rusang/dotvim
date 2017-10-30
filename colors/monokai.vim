@@ -44,7 +44,7 @@ hi DiffText ctermfg=231 ctermbg=24 cterm=bold guifg=#f8f8f2 guibg=#204a87 gui=bo
 hi ErrorMsg ctermfg=231 ctermbg=233  cterm=NONE guifg=#f8f8f0 guibg=#f92672 gui=NONE
 hi WarningMsg ctermfg=NONE ctermbg=NONE  cterm=NONE guifg=#f8f8f0 guibg=#f92672 gui=NONE
 hi Float ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
-hi Function ctermfg=cyan  ctermbg=NONE cterm=bold guifg=#5faf5f guibg=NONE gui=bold
+hi Function ctermfg=71  ctermbg=NONE cterm=bold guifg=#5faf5f guibg=NONE gui=bold
 hi Identifier ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=italic
 hi Keyword ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
 hi Label ctermfg=196 ctermbg=NONE cterm=underline,bold guifg=#ff0000 guibg=NONE gui=underline,bold
@@ -117,18 +117,22 @@ hi cssBraces ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
 " for TagHighlight
 hi link Type Comment
 hi Class          guifg=#18E28D ctermfg=42
-hi DefinedName    guifg=#838ED7 ctermfg=124 cterm=bold gui=bold
-hi Enumerator  ctermfg=247 ctermbg=247 cterm=NONE guifg=#64645e guibg=#64645e gui=NONE
+" hi DefinedName    guifg=#838ED7 ctermfg=124 cterm=bold gui=bold
+hi DefinedName    guifg=#af0000 ctermfg=124 cterm=bold gui=bold
+hi Enumerator  ctermfg=247 ctermbg=247 cterm=bold guifg=#64645e guibg=#64645e gui=NONE
 " hi Enumerator     guifg=#F5A281 ctermfg=216
-hi EnumeratorName guifg=#9e9e9e  ctermfg=247
+" hi EnumeratorName guifg=#9e9e9e  ctermfg=247
+hi EnumeratorName  ctermfg=241 ctermbg=NONE cterm=italic,bold guifg=#808080 guibg=NONE gui=italic,bold
 " ok
 hi EnumerationValue guifg=#808080   ctermfg=241 cterm=bold gui=bold
 hi Member         guifg=#66C1FF ctermfg=75
 hi Namespace          guifg=#66C1FF ctermfg=green cterm=reverse,italic,bold gui=bold
 hi Structure      guifg=#90B4B7 ctermfg=63 cterm=bold gui=bold
 hi Union          guifg=#F1C40F ctermfg=220 cterm=bold gui=bold
-hi GlobalConstant guifg=#16A085 ctermfg=36
+" hi GlobalConstant guifg=#16A085 ctermfg=36
+hi GlobalConstant guifg=#af00ff ctermfg=129 cterm=italic,bold gui=italic,bold
 " ok
-hi GlobalVariable guifg=#7F007F ctermfg=129 cterm=italic,bold gui=italic,bold
+" hi GlobalVariable guifg=#7F007F ctermfg=129 cterm=italic,bold gui=italic,bold
+hi GlobalVariable guifg=#af00ff ctermfg=129 cterm=italic,bold gui=italic,bold
 " hi LocalVariable  guifg=#0087af ctermfg=blue cterm=NONE GUI=NONE
 hi LocalVariable guifg=#efae87 guibg=NONE guisp=NONE gui=bold ctermfg=209 ctermbg=NONE cterm=bold
