@@ -1926,12 +1926,33 @@ let g:cpp_concepts_highlight = 1
 let c_no_curly_error=1
 
 "--------------------------------------------------------------------
-"color type settings
+"windows size settings
 "--------------------------------------------------------------------
 "最大化窗口
 map <F10> <C-W>_<C-W><Bar>
 "还原窗口大小
 map <c-F10> <C-W>=
+
+"--------------------------------------------------------------------
+"vim-rooter settings
+"--------------------------------------------------------------------
+"change to the current file dir
+nnoremap <space>cd :lcd %:p:h<CR>
+
+"change to the current project root dir
+nnoremap <space>ct :Rooter<CR>
+
+"By default vim-rooter doesn't resolve symbolic links. To resolve links:
+let g:rooter_resolve_links = 1
+
+" Don't change directory (default).
+" let g:rooter_change_directory_for_non_project_files = ''
+
+" Change to file's directory (similar to autochdir).
+" let g:rooter_change_directory_for_non_project_files = 'current'
+
+" Change to home directory.
+" let g:rooter_change_directory_for_non_project_files = 'home'
 
 
 "--------------------------------------------------------------------
