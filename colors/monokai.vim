@@ -35,7 +35,7 @@ hi Comment ctermfg=242 ctermbg=NONE cterm=NONE guifg=#75715e guibg=NONE gui=NONE
 hi Conditional ctermfg=135 ctermbg=NONE cterm=italic,bold guifg=#f92672 guibg=NONE gui=italic,bold
 hi Repeat ctermfg=135 ctermbg=NONE cterm=italic,bold guifg=#f92672 guibg=NONE gui=italic,bold
 hi PreCondit guifg=#965b3f guibg=NONE guisp=NONE gui=NONE ctermfg=197 ctermbg=NONE cterm=bold
-hi Constant ctermfg=grey ctermbg=NONE cterm=bold guifg=NONE guibg=NONE gui=bold
+hi Constant ctermfg=grey ctermbg=NONE cterm=bold guifg=#6c6c6c guibg=NONE gui=bold
 hi Define ctermfg=36 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
 hi DiffAdd ctermfg=231 ctermbg=64 cterm=bold guifg=#f8f8f2 guibg=#46830c gui=bold
 hi DiffDelete ctermfg=88 ctermbg=NONE cterm=NONE guifg=#8b0807 guibg=NONE gui=NONE
@@ -136,3 +136,9 @@ hi GlobalConstant guifg=#af00ff ctermfg=129 cterm=italic,bold gui=italic,bold
 hi GlobalVariable guifg=#af00ff ctermfg=129 cterm=italic,bold gui=italic,bold
 " hi LocalVariable  guifg=#0087af ctermfg=blue cterm=NONE GUI=NONE
 hi LocalVariable guifg=#efae87 guibg=NONE guisp=NONE gui=bold ctermfg=209 ctermbg=NONE cterm=bold
+
+" hi SyntasticErrorSign ctermfg=red ctermbg=red
+" hi SyntasticErrorLine guibg=#2f0000
+hi SyntasticError  ctermfg=NONE ctermbg=NONE cterm=underline guifg=NONE guibg=NONE gui=undercurl
+hi SyntasticWarning  ctermfg=NONE ctermbg=NONE cterm=underline guifg=NONE guibg=NONE gui=undercurl
+
