@@ -1,8 +1,8 @@
 " ============================================================================
-" Description: An ack/ag/pt powered code search and view tool.
+" Description: An ack/ag/pt/rg powered code search and view tool.
 " Author: Ye Ding <dygvirus@gmail.com>
 " Licence: Vim licence
-" Version: 1.7.2
+" Version: 1.9.0
 " ============================================================================
 
 " s:TranslateRegex()
@@ -36,9 +36,13 @@ func! s:TranslateRegex(pattern) abort
     let pattern = substitute(pattern, '\v\(\?\>(.{-})\)', '(\1)@>', 'g')
 
     " '\b' word boundary
-    let pattern = substitute(pattern, '\\b', '(<|>)', 'g')
+    let pattern = substitute(pattern, '\C\\b', '(<|>)', 'g')
 
-    " TODO:'\B' support
+    " '\B' non-word boundary (just remove it)
+    let pattern = substitute(pattern, '\C\\B', '', 'g')
+
+    " vim-regex when magic is \v, '=' '&' is no literally, should change to '\=' and '\&'
+    let pattern = escape(pattern, '=&')
 
     return pattern
 endf
@@ -46,7 +50,8 @@ endf
 " Regex()
 "
 func! ctrlsf#pat#Regex() abort
-    let pattern = ctrlsf#opt#GetOpt('pattern')
+    let pattern     = ctrlsf#opt#GetOpt('pattern')
+    let isRegexMode = ctrlsf#opt#GetRegex()
 
     " ignore case
     let case_sensitive = ctrlsf#opt#GetCaseSensitive()
@@ -56,15 +61,14 @@ func! ctrlsf#pat#Regex() abort
     elseif case_sensitive ==# 'matchcase'
         let case = '\C'
     else "smartcase
-        let pat  = ctrlsf#opt#GetOpt('pattern')
-        let case = (pat =~# '\u') ? '\C' : '\c'
+        let case = (pattern =~# '\u') ? '\C' : '\c'
     endif
 
     " magic
-    let magic = ctrlsf#opt#GetRegex() ? '\v' : '\V'
+    let magic = isRegexMode ? '\v' : '\V'
 
     " literal
-    if ctrlsf#opt#GetRegex()
+    if isRegexMode
         let pattern = s:TranslateRegex(pattern)
     else
         let pattern = escape(pattern, '\')
@@ -75,7 +79,7 @@ endf
 
 " HighlightRegex()
 "
-func! ctrlsf#pat#HighlightRegex() abort
+func! ctrlsf#pat#HighlightRegex(vmode) abort
     let base = ctrlsf#pat#Regex()
 
     let magic   = strpart(base, 0, 2)
@@ -84,10 +88,19 @@ func! ctrlsf#pat#HighlightRegex() abort
 
     " sign (to prevent matching out of file body)
     let sign = ''
-    if magic ==# '\v'
-        let sign = '(^\d+:.*)@<='
+
+    if a:vmode ==# 'normal'
+        if magic ==# '\v'
+            let sign = '(^\d+:.*)@<='
+        else
+            let sign = '\(\^\d\+:\.\*\)\@<='
+        endif
     else
-        let sign = '\(\^\d\+:\.\*\)\@<='
+        if magic ==# '\v'
+            let sign = '(\|\d+ col \d+\|.*)@<='
+        else
+            let sign = '\(|\d\+ col \d\+|\.\*\)\@<='
+        endif
     endif
 
     return printf('%s%s%s%s', magic, case, sign, pattern)
@@ -98,7 +111,7 @@ endf
 " Regular expression to match the matched word. Difference from HighlightRegex()
 " is that this pattern only matches the first matched word in each line.
 "
-func! ctrlsf#pat#MatchPerLineRegex() abort
+func! ctrlsf#pat#MatchPerLineRegex(vmode) abort
     let base = ctrlsf#pat#Regex()
 
     let magic   = strpart(base, 0, 2)
@@ -107,10 +120,18 @@ func! ctrlsf#pat#MatchPerLineRegex() abort
 
     " sign (to prevent matching out of file body)
     let sign = ''
-    if magic ==# '\v'
-        let sign = '^\d+:.{-}\zs'
+    if a:vmode ==# 'normal'
+        if magic ==# '\v'
+            let sign = '^\d+:.{-}\zs'
+        else
+            let sign = '\^\d\+:\.\{-}\zs'
+        endif
     else
-        let sign = '\^\d\+:\.\{-}\zs'
+        if magic ==# '\v'
+            let sign = '\|\d+ col \d+\|.{-}\zs'
+        else
+            let sign = '|\d\+ col \d\+|\.\{-}\zs'
+        endif
     endif
 
     return printf('%s%s%s%s', magic, case, sign, pattern)
