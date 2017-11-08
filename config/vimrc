@@ -1582,7 +1582,8 @@ nnoremap <space>ihv :IHV<CR>
 " '-smartcase'          Make this search be smart-cased.
 "--------------------------------------------------------------------
 "
-" let g:ctrlsf_auto_close = 1
+let g:ctrlsf_auto_close = 0
+let g:ctrlsf_ackprg = 'ag'
 " let g:ctrlsf_indent = 2
 let g:ctrlsf_selected_line_hl = 'op'
 " let g:ctrlsf_winsize = '40%'
