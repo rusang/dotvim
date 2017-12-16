@@ -636,7 +636,7 @@ let g:NERDTrimTrailingWhitespace = 1
 " 有目录村结构的文件浏览插件
 
 " 常规模式下输入 F2 调用插件
-nmap <F2> :NERDTreeToggle<CR>
+nmap <F2> :NERDTreeToggle .<CR>
 let NERDTreeShowBookmarks = 1
 "显示隐藏文件，shift+i可切换
 " let NERDTreeShowHidden=1
@@ -1600,7 +1600,7 @@ let g:ctrlsf_mapping = {
 " The unit prefix key.
 nnoremap    [ctrlsf]   <Nop>
 nmap 8  [ctrlsf]
-nnoremap [ctrlsf]f :CtrlSF
+nnoremap [ctrlsf]f :CtrlSF 
 nnoremap [ctrlsf]o : CtrlSFOpen <CR>
 nnoremap [ctrlsf]p : CtrlSFUpdate <CR>
 
