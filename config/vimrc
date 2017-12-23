@@ -1438,7 +1438,7 @@ let g:ackhighlight = 1
 let g:ack_autoclose = 1
 " nnoremap <Leader>a :Ack!<Space>
 nnoremap <Leader>a :Ag<Space>
-nnoremap <Leader><space> :<C-P><CR>
+" nnoremap <Leader><space> :<C-P><CR>
 let g:ack_default_options = " -s -H --nocolor --nogroup --column --smart-case --follow"
 let g:ack_mappings = { "o": "<CR>zz"  }
 "g:ack_mappings
@@ -1958,6 +1958,11 @@ let g:rooter_resolve_links = 1
 " Change to home directory.
 " let g:rooter_change_directory_for_non_project_files = 'home'
 
+"---------------------------------------------------------------
+"fzf.vim settings
+"---------------------------------------------------------------
+" - down / up / left / right
+let g:fzf_layout = { 'up': '~40%' }
 
 "--------------------------------------------------------------------
 "other settings
