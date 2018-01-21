@@ -1,4 +1,3 @@
-//¶¨Òådebug ¿ª¹Ø
 #define __DEBUG__
 #define __ERROR__
 
@@ -36,9 +35,6 @@
 #define ERROR(fmt, args...)  do {} while(0)
 #endif
 
-/*
- * ½ø³öº¯ÊýÐÅÏ¢
- */
 #ifdef __DEBUG__
 #define enter(x)   printf("Enter: %s, %s line %i\n",x,__FILE__,__LINE__)
 #define leave(x)   printf("Leave: %s, %s line %i\n",x,__FILE__,__LINE__)
