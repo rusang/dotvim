@@ -56,7 +56,7 @@ snippet ifeldef
 	#ifdef ${1:FOO}
 		${2}
 	#else /* !$1 */
-		
+		${3}
 	#endif /* $1 */
 
 # ifdef...endif
@@ -73,7 +73,6 @@ snippet #if
 # header include guard
 snippet once
 	#ifndef ${1:`toupper(vim_snippets#Filename('$1_H', 'UNTITLED_H'))`}
-
 	#define $1
 
 	${0}
