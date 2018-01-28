@@ -1180,7 +1180,6 @@ nmap 9  [unite]
 
 "disable pagedown and pageup
 nnoremap <leader>f :Unite file_rec/async<cr>
-nnoremap <leader>b :Unite buffer bookmark<cr>
 
 let g:unite_source_history_yank_enable = 1
 nnoremap <space>y :Unite history/unite<cr>
@@ -1197,7 +1196,8 @@ nnoremap <silent>[unite]j :Unite -silent -start-insert jump<CR>
 nnoremap <silent>[unite]a :Unite -silent  -vertical history/yank<CR>
 nnoremap <silent>[unite]o :Unite file:../
 nnoremap <silent>[unite]d :Unite -silent -start-insert directory_mru<CR>
-nnoremap <silent>[unite]B :UniteBookmarkAdd<CR>
+nnoremap <leader>B :UniteBookmarkAdd<CR>
+nnoremap <leader>b :Unite buffer bookmark<CR>
 nnoremap <silent>[unite]b :Unite bookmark:*<CR>
 " nnoremap <silent>[unite]bf :UniteTodoAddBuffer<CR>
 
