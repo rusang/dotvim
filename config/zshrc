@@ -192,11 +192,13 @@ alias wifiup='sudo ip link set wlp3s0 up'
 alias wifilink='sudo systemctl start  netctl@wlp3s0__429.service'
 
 #{{{
-alias sslos='sudo systemctl start  shadowsocks@los.service'
-alias sssw_jp3='sudo systemctl start  shadowsocks@sw_jp3.service'
-alias sssw_us1='sudo systemctl start  shadowsocks@sw_us1.service'
-alias sssw_jp3_down='sudo systemctl stop  shadowsocks@sw_jp3.service'
-alias sssw_us1_down='sudo systemctl stop  shadowsocks@sw_us1.service'
+# alias sslos='sudo systemctl start  shadowsocks@los.service'
+# alias sssw_jp3='sudo systemctl start  shadowsocks@sw_jp3.service'
+# alias sssw_jp3='python /home/ssliao/Tools/shadowsocksr/shadowsocks/local.py -c /etc/shadowsocks/sw_jp3.json'
+# alias sssw_us1='python /home/ssliao/Tools/shadowsocksr/shadowsocks/local.py -c /etc/shadowsocks/sw_us1.json'
+# alias sssw_us1='sudo systemctl start  shadowsocks@sw_us1.service'
+# alias sssw_jp3_down='sudo systemctl stop  shadowsocks@sw_jp3.service'
+# alias sssw_us1_down='sudo systemctl stop  shadowsocks@sw_us1.service'
 #}}}
 
 alias wirerestart='sudo systemctl restart network.service'
