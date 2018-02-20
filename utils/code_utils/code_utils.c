@@ -238,14 +238,14 @@ nbytes = (((nbytes + sizeof(union align) - 1) / (sizeof(union align))) * (sizeof
          /* Define ALIASNAME as a weak alias for NAME.
             If weak aliases are not available, this defines a strong alias.  */
 # define weak_alias(name, aliasname) _weak_alias (name, aliasname)
-         # define _weak_alias(name, aliasname) \
-         extern __typeof (name) aliasname __attribute__ ((weak, alias (#name)));
+# define _weak_alias(name, aliasname) \
+		extern __typeof (name) aliasname __attribute__ ((weak, alias (#name)));
 
-         /* Change the owner and group of FILE; if it's a link, do the link and
-          * not the target.
-          */
-         int
-         __lchown(const char *file, uid_t owner, gid_t group)
+/* Change the owner and group of FILE; if it's a link, do the link and
+ * not the target.
+ */
+int
+__lchown(const char *file, uid_t owner, gid_t group)
 {
 	error_t err;
 	file_t port = __file_name_lookup(file, O_NOLINK, 0);
@@ -263,6 +263,37 @@ nbytes = (((nbytes + sizeof(union align) - 1) / (sizeof(union align))) * (sizeof
 }
 
 weak_alias(__lchown, lchown)
+
+
+/* GCC understands weak symbols and aliases; use its interface where
+   possible, instead of embedded assembly language.  */
+
+/* Define ALIASNAME as a strong alias for NAME.  */
+# define strong_alias(name, aliasname) _strong_alias(name, aliasname)
+# define _strong_alias(name, aliasname) \
+  extern __typeof (name) aliasname __attribute__ ((alias (#name)));
+
+/* This comes between the return type and function name in
+   a function definition to make that definition weak.  */
+# define weak_function __attribute__ ((weak))
+# define weak_const_function __attribute__ ((weak, __const__))
+
+/* Define ALIASNAME as a weak alias for NAME.
+   If weak aliases are not available, this defines a strong alias.  */
+# define weak_alias(name, aliasname) _weak_alias (name, aliasname)
+# define _weak_alias(name, aliasname) \
+  extern __typeof (name) aliasname __attribute__ ((weak, alias (#name)));
+
+/* Same as WEAK_ALIAS, but mark symbol as hidden.  */
+# define weak_hidden_alias(name, aliasname) \
+  _weak_hidden_alias (name, aliasname)
+# define _weak_hidden_alias(name, aliasname) \
+  extern __typeof (name) aliasname \
+    __attribute__ ((weak, alias (#name), __visibility__ ("hidden")));
+
+/* Declare SYMBOL as weak undefined symbol (resolved to 0 if not defined).  */
+# define weak_extern(symbol) _weak_extern (weak symbol)
+# define _weak_extern(expr) _Pragma (#expr)
 
 /*
  * signal defination
