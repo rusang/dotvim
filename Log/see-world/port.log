@@ -1,0 +1,9 @@
+site					mode
+c3.see-world.club		rc4-md5
+c1.see-world.club		rc4-md5
+v2.see-world.club 		rc4-md5 
+v1.see-world.club 		aes-256-cfb 
+
+personal info:
+端口 : 14884 	密码 : 5ag7rSoz
+

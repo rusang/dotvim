@@ -1,0 +1,3 @@
+当提示某个包签名校验不过时：需要运行以下命令：
+gpg --keyserver pgp.mit.edu --recv-keys  target-key
+eg: gpg --keyserver pgp.mit.edu --recv-keys 702353E0F7E48EDB0pg: /home/ssliao/.gnupg/trustdb.gpg：建立了信任度数据库0pg: 密钥 702353E0F7E48EDB：公钥“Thomas Dickey <dickey@invisible-island.net>”已导入0pg: 没有找到任何绝对信任的密钥0pg: 合计被处理的数量：10pg:           已导入：1

@@ -1,0 +1,17 @@
+There is no need to install pylint, rope or any other Python Libraries on your system.
+
+    Support Python version 2.6+ and 3.2+
+    Syntax highlighting
+    Virtualenv support
+    Run python code (<leader>r)
+    Add/remove breakpoints (<leader>b)
+    Improved Python indentation
+    Python folding
+    Python motions and operators (]], 3[[, ]]M, vaC, viM, daC, ciM, ...)
+    Code checking (pylint, pyflakes, pylama, ...) that can be run simultaneously (:PymodeLint)
+    Autofix PEP8 errors (:PymodeLintAuto)
+    Search in python documentation (K)
+    Code refactoring <rope refactoring library> (rope)
+    Strong code completion (rope)
+    Go to definition (<C-c>g for :RopeGotoDefinition)
+    And more, more ...
