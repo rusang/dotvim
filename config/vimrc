@@ -1516,6 +1516,7 @@ let g:gitgutter_async = 0
 "--------------------------------------------------------------------
 " colorscheme     molokai     "This is fine
 colorscheme     monokai
+" colorscheme     radicalgoodspeed
 " colorscheme    Revolution 
 " colorscheme     flattr
 " colorscheme     slate
