@@ -1,3 +1,0 @@
-#!/bin/sh
-
-python /home/ssliao/Tools/shadowsocksr/shadowsocks/local.py -c /etc/shadowsocks/sw_us1.json &
