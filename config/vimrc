@@ -1138,6 +1138,7 @@ let g:airline_powerline_fonts = 1
 "
 " let g:airline_detect_whitespace=0
 let g:airline#extensions#whitespace#enabled = 0
+" let g:airline_section_z='%3p%% %#__accent_italic#%#__accent_yellow#%4l%#__restore__#:%3v'
 " let g:airline_section_y="%{strlen(&fenc)>0?&fenc:''}%{strlen(&ff)>0?'['.&ff.']':''}%{airline#extensions#whitespace#check()} %#warningmsg#%{SyntasticStatuslineFlag()}"
 " let g:airline_section_warning=""
 
