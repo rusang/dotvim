@@ -218,6 +218,7 @@ set noexpandtab                                         "no将Tab键转换为空
 set tabstop=8                                         "设置Tab键的宽度
 set softtabstop=8
 set shiftwidth=8                                      "换行时自动缩进4个空格
+set tw=78
 " set ts=8 sw=8 tw=78 ai noexpandtab 
 set smarttab                                          "指定按一次backspace就删除shiftwidth宽度的空格
 set foldenable                                        "启用折叠
@@ -2074,8 +2075,38 @@ map <leader>df :echo cfi#format("%s", "")<CR>
 "--------------------------------------------------------------------
 "cscope_autoupdate settings
 "--------------------------------------------------------------------
+"
 nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
 nnoremap <leader>l :call ToggleLocationList()<CR>
+
+"--------------------------------------------------------------------
+" splitjoin.vim settings
+"--------------------------------------------------------------------
+" gS to split a one-liner into multiple lines
+" gJ (with the cursor on the first line of a block) to join a block into a single-line statement.
+
+"--------------------------------------------------------------------
+" tabular settings
+"--------------------------------------------------------------------
+let mapleader=','
+if exists(":Tabularize")
+	nmap <Leader>a= :Tabularize /=<CR>
+	vmap <Leader>a= :Tabularize /=<CR>
+	nmap <Leader>a: :Tabularize /:\zs<CR>
+	vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
 
 "--------------------------------------------------------------------
 "other settings
