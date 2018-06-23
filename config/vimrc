@@ -2070,6 +2070,12 @@ map <leader>df :echo cfi#format("%s", "")<CR>
 "--------------------------------------------------------------------
 " nnoremap gbh :Dec2hex<CR>
 " nnoremap gbd :Hex2dec<CR>
+"
+"--------------------------------------------------------------------
+"cscope_autoupdate settings
+"--------------------------------------------------------------------
+nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
+nnoremap <leader>l :call ToggleLocationList()<CR>
 
 "--------------------------------------------------------------------
 "other settings
