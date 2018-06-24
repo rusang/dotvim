@@ -218,7 +218,7 @@ set noexpandtab                                         "no将Tab键转换为空
 set tabstop=8                                         "设置Tab键的宽度
 set softtabstop=8
 set shiftwidth=8                                      "换行时自动缩进4个空格
-set tw=78
+" set tw=78
 " set ts=8 sw=8 tw=78 ai noexpandtab 
 set smarttab                                          "指定按一次backspace就删除shiftwidth宽度的空格
 set foldenable                                        "启用折叠
@@ -2107,6 +2107,14 @@ function! s:align()
     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
   endif
 endfunction
+"--------------------------------------------------------------------
+" vim-easy-align settings
+"--------------------------------------------------------------------
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 "--------------------------------------------------------------------
 "other settings
