@@ -2117,6 +2117,12 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 "--------------------------------------------------------------------
+" Mark--Karkat settings
+"--------------------------------------------------------------------
+
+nnoremap <Leader><space> :MarkClear<CR>
+
+"--------------------------------------------------------------------
 " vim-multiple-cursors settings
 "--------------------------------------------------------------------
 let g:multi_cursor_use_default_mapping=0
