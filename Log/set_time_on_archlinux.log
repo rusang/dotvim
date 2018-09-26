@@ -1,0 +1,2 @@
+1. timedatectl set-time "2018-09-24 21:03:00"
+2. sudo hwclock --systohc

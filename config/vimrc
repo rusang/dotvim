@@ -1706,12 +1706,12 @@ let g:ycm_server_log_level = 'debug'
 let g:ycm_enable_diagnostic_highlighting = 1
 
 "let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
-let g:ycm_collect_identifiers_from_tags_files = 1
 set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口
 inoremap <expr> <space>       pumvisible() ? "\<C-y>" : "\<space>"  "按空格键即选中当前项
-let g:ycm_cache_omnifunc=0 " 禁止缓存匹配项,每次都重新生成匹配项
+let g:ycm_cache_omnifunc=1 " Do not 每次都重新生成缓存匹配项
 let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_collect_identifiers_from_tags_files = 0 " do not include ctags, cause it's too big some times.
 "在注释输入中也能补全
 let g:ycm_complete_in_comments = 1
 "在字符串输入中也能补全
