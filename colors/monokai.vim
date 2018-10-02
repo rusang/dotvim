@@ -116,7 +116,7 @@ hi cssBraces ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
 
 " for TagHighlight
 hi link Type Comment
-hi Class          guifg=#18E28D ctermfg=42
+hi Class          guifg=#18E28D ctermfg=42 cterm=bold gui=bold
 " hi DefinedName    guifg=#838ED7 ctermfg=124 cterm=bold gui=bold
 hi DefinedName    guifg=#af0000 ctermfg=124 cterm=bold gui=bold
 hi Enumerator  ctermfg=247 ctermbg=247 cterm=bold guifg=#64645e guibg=#64645e gui=NONE

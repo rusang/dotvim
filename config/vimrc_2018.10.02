@@ -1790,7 +1790,7 @@ let g:formatterpath = [ '~/.vim/formatter/bin']
 " let g:formatdef_harttle = '"astyle --style=linux --delete-empty-lines --indent=tab -K -d -H -p -N -U -f -C -w"'
 " let g:formatdef_harttle = '"astyle --style=ansi --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --indent=spaces=4 --pad-comma --attach-closing-while -K -H -p -M -N -U -f -C -w -c"'
 " let g:formatdef_harttle = '"astyle --style=linux --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --indent=spaces=4 --pad-comma --attach-closing-while -K -H -p -M -N -U -f -C -w -c"'
-let g:formatdef_harttle = '"astyle --style=linux --indent-classes --indent=tab --indent=force-tab --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -K -H -p -M -N -U -f -C -w -xb --max-code-length=80 --break-after-logical"'
+let g:formatdef_harttle = '"astyle --style=linux --indent=tab --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -K -H -p -M -N -U -f -C -w"'
 " let g:formatdef_harttle = '"astyle --style=attach --pad-oper -U -f -c -C -w"'
 " let g:formatdef_harttle = '"astyle --style=linux --pad-oper -U -f -c -C -w"'
 " let g:formatdef_harttle = '"astyle --style=ansi --pad-oper -U -f -c -C -w"'
@@ -2139,13 +2139,6 @@ let g:multi_cursor_next_key            = '<C-n>'
 let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
-
-"--------------------------------------------------------------------
-" color_coded settings
-"--------------------------------------------------------------------
-let g:color_coded_enabled = 1
-" let g:color_coded_filetypes = ['c', 'cpp', 'objc']
-let g:color_coded_filetypes = ['cpp', 'objc']
 
 
 "--------------------------------------------------------------------
