@@ -126,7 +126,9 @@ hi EnumeratorName  ctermfg=241 ctermbg=NONE cterm=italic,bold guifg=#808080 guib
 " ok
 hi EnumerationValue guifg=#808080   ctermfg=241 cterm=bold gui=bold
 hi Member         guifg=#66C1FF ctermfg=75
-hi Namespace          guifg=#66C1FF ctermfg=green cterm=reverse,italic,bold gui=bold
+" hi Namespace          guifg=#66C1FF ctermfg=green cterm=reverse,italic,bold gui=bold
+" hi Namespace          guifg=#66C1FF ctermfg=green cterm=italic,bold gui=bold
+hi Namespace          guifg=#66C1FF ctermfg=5 cterm=italic,bold gui=bold
 hi Structure      guifg=#90B4B7 ctermfg=63 cterm=bold gui=bold
 hi Union          guifg=#F1C40F ctermfg=220 cterm=bold gui=bold
 " hi GlobalConstant guifg=#16A085 ctermfg=36

@@ -1791,6 +1791,7 @@ let g:formatterpath = [ '~/.vim/formatter/bin']
 " let g:formatdef_harttle = '"astyle --style=ansi --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --indent=spaces=4 --pad-comma --attach-closing-while -K -H -p -M -N -U -f -C -w -c"'
 " let g:formatdef_harttle = '"astyle --style=linux --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --indent=spaces=4 --pad-comma --attach-closing-while -K -H -p -M -N -U -f -C -w -c"'
 let g:formatdef_harttle = '"astyle --mode=c --style=linux --indent-classes --indent=tab=8 --indent=force-tab=8 --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -K -H -p -M -N -U -f -C -w -xb --max-code-length=80 --break-after-logical --break-return-type"'
+" let g:formatdef_harttle = '"astyle --mode=c --style=linux --indent-classes --indent=tab=8 --indent=force-tab=8 --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -K -H -p -M -N -U -f -C -w -xb --max-code-length=80 --break-after-logical --break-return-type --break-return-type-decl"'
 " let g:formatdef_harttle = '"astyle --style=attach --pad-oper -U -f -c -C -w"'
 " let g:formatdef_harttle = '"astyle --style=linux --pad-oper -U -f -c -C -w"'
 " let g:formatdef_harttle = '"astyle --style=ansi --pad-oper -U -f -c -C -w"'
