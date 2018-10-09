@@ -46,6 +46,7 @@ endfunction
 call s:initVariable("g:NERDTreeAutoCenter", 1)
 call s:initVariable("g:NERDTreeAutoCenterThreshold", 3)
 call s:initVariable("g:NERDTreeCaseSensitiveSort", 0)
+call s:initVariable("g:NERDTreeNaturalSort", 0)
 call s:initVariable("g:NERDTreeSortHiddenFirst", 1)
 call s:initVariable("g:NERDTreeChDirMode", 0)
 call s:initVariable("g:NERDTreeCreatePrefix", "silent")
@@ -68,7 +69,7 @@ call s:initVariable("g:NERDTreeShowHidden", 0)
 call s:initVariable("g:NERDTreeShowLineNumbers", 0)
 call s:initVariable("g:NERDTreeSortDirs", 1)
 
-if !nerdtree#runningWindows()
+if !nerdtree#runningWindows() && !nerdtree#runningCygwin()
     call s:initVariable("g:NERDTreeDirArrowExpandable", "▸")
     call s:initVariable("g:NERDTreeDirArrowCollapsible", "▾")
 else
@@ -80,12 +81,8 @@ call s:initVariable("g:NERDTreeCascadeSingleChildDir", 1)
 
 if !exists("g:NERDTreeSortOrder")
     let g:NERDTreeSortOrder = ['\/$', '*', '\.swp$',  '\.bak$', '\~$']
-else
-    "if there isnt a * in the sort sequence then add one
-    if count(g:NERDTreeSortOrder, '*') < 1
-        call add(g:NERDTreeSortOrder, '*')
-    endif
 endif
+let g:NERDTreeOldSortOrder = []
 
 call s:initVariable("g:NERDTreeGlyphReadOnly", "RO")
 
@@ -98,7 +95,7 @@ if !exists('g:NERDTreeStatusline')
 
 endif
 call s:initVariable("g:NERDTreeWinPos", "right")
-call s:initVariable("g:NERDTreeWinSize", 25)
+call s:initVariable("g:NERDTreeWinSize", 30)
 
 "init the shell commands that will be used to copy nodes, and remove dir trees
 "
@@ -205,8 +202,28 @@ function! NERDTreeFocus()
 endfunction
 
 function! NERDTreeCWD()
+
+    if empty(getcwd())
+        call nerdtree#echoWarning('current directory does not exist')
+        return
+    endif
+
+    try
+        let l:cwdPath = g:NERDTreePath.New(getcwd())
+    catch /^NERDTree.InvalidArgumentsError/
+        call nerdtree#echoWarning('current directory does not exist')
+        return
+    endtry
+
     call NERDTreeFocus()
-    call nerdtree#ui_glue#chRootCwd()
+
+    if b:NERDTree.root.path.equals(l:cwdPath)
+        return
+    endif
+
+    let l:newRoot = g:NERDTreeFileNode.New(l:cwdPath, b:NERDTree)
+    call b:NERDTree.changeRoot(l:newRoot)
+    normal! ^
 endfunction
 
 function! NERDTreeAddPathFilter(callback)
