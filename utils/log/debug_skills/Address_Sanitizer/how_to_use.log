@@ -1,0 +1,58 @@
+Refer website
+============
+https://wizardforcel.gitbooks.io/100-gcc-tips/content/address-sanitizer.html
+
+steps:
+
+1.gcc -fsanitize=address -g -o a a.c
+
+2.export LD_PRELOAD=/usr/lib/libasan.so.4
+
+3. ./a
+
+output will be:
+=================================================================
+==539==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7fff3a152c9c at pc 0x4009b6 bp 0x7fff3a152c60 sp 0x7fff3a152c58
+WRITE of size 4 at 0x7fff3a152c9c thread T0
+    #0 0x4009b5 in main /home/nan/a.c:6
+    #1 0x34e421ed1c in __libc_start_main (/lib64/libc.so.6+0x34e421ed1c)
+    #2 0x4007b8 (/home/nan/a+0x4007b8)
+
+Address 0x7fff3a152c9c is located in stack of thread T0 at offset 44 in frame
+    #0 0x400907 in main /home/nan/a.c:3
+
+  This frame has 1 object(s):
+    [32, 44) 'a' <== Memory access at offset 44 overflows this variable
+HINT: this may be a false positive if your program uses some custom stack unwind mechanism or swapcontext
+      (longjmp and C++ exceptions *are* supported)
+SUMMARY: AddressSanitizer: stack-buffer-overflow /home/nan/a.c:6 main
+Shadow bytes around the buggy address:
+  0x100067422540: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x100067422550: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x100067422560: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x100067422570: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x100067422580: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 f1 f1
+=>0x100067422590: f1 f1 00[04]f4 f4 f3 f3 f3 f3 00 00 00 00 00 00
+  0x1000674225a0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x1000674225b0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x1000674225c0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x1000674225d0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x1000674225e0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07
+  Heap left redzone:       fa
+  Heap right redzone:      fb
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack partial redzone:   f4
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Contiguous container OOB:fc
+  ASan internal:           fe
+==539==ABORTING

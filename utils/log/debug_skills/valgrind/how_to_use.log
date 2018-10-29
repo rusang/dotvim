@@ -1,0 +1,5 @@
+Refer website
+=============
+https://www.oschina.net/translate/valgrind-memcheck
+
+valgrind --tool=memcheck --leak-check=full ./test

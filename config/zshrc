@@ -628,6 +628,7 @@ check-cmd-self-insert() { zle .self-insert && recolor-cmd }
 #export PATH="$PATH:/usr/local/arm/4.3.2/bin"
 #2014 support c++11
 export PATH="$PATH:/usr/local/arm/arm-2014.05/bin"
+export PATH="$PATH:/home/ssliao/SourceCode/OpenSource/Hack/JohnTheRipper/run"
 #export PATH=$PATH:/home/ssliao/usr/local/arm/3.4.1/bin
 export TMPDIR=/home/tmp/
 

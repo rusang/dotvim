@@ -41,7 +41,8 @@ hi DiffAdd ctermfg=231 ctermbg=64 cterm=bold guifg=#f8f8f2 guibg=#46830c gui=bol
 hi DiffDelete ctermfg=88 ctermbg=NONE cterm=NONE guifg=#8b0807 guibg=NONE gui=NONE
 hi DiffChange ctermfg=NONE ctermbg=NONE cterm=NONE guifg=#f8f8f2 guibg=#243955 gui=NONE
 hi DiffText ctermfg=231 ctermbg=24 cterm=bold guifg=#f8f8f2 guibg=#204a87 gui=bold
-hi ErrorMsg ctermfg=231 ctermbg=233  cterm=NONE guifg=#f8f8f0 guibg=#f92672 gui=NONE
+" hi ErrorMsg ctermfg=231 ctermbg=233  cterm=NONE guifg=#f8f8f0 guibg=#f92672 gui=NONE
+hi ErrorMsg ctermfg=231 ctermbg=NONE  cterm=NONE guifg=#f8f8f0 guibg=#f92672 gui=NONE
 hi WarningMsg ctermfg=NONE ctermbg=NONE  cterm=NONE guifg=#f8f8f0 guibg=#f92672 gui=NONE
 hi Float ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
 hi Function ctermfg=71  ctermbg=NONE cterm=bold guifg=#5faf5f guibg=NONE gui=bold
@@ -139,7 +140,7 @@ hi GlobalVariable guifg=#af00ff ctermfg=129 cterm=italic,bold gui=italic,bold
 " hi LocalVariable  guifg=#0087af ctermfg=blue cterm=NONE GUI=NONE
 hi LocalVariable guifg=#efae87 guibg=NONE guisp=NONE gui=bold ctermfg=209 ctermbg=NONE cterm=bold
 
-" hi SyntasticErrorSign ctermfg=red ctermbg=red
+hi SyntasticErrorSign ctermfg=red ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
 " hi SyntasticErrorLine guibg=#2f0000
 hi SyntasticError  ctermfg=NONE ctermbg=NONE cterm=underline guifg=NONE guibg=NONE gui=undercurl
 hi SyntasticWarning  ctermfg=NONE ctermbg=NONE cterm=underline guifg=NONE guibg=NONE gui=undercurl
