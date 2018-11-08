@@ -1831,6 +1831,7 @@ let g:formatters_cpp = ['CPPSTYLE']
 let g:formatters_hpp = ['CPPSTYLE']
 let g:formatters_cxx = ['CPPSTYLE']
 let g:formatters_hxx = ['CPPSTYLE']
+let g:formatters_java = ['CPPSTYLE']
 " -----------------------------------------------------------------------------
 
 "--------------------------------------------------------------------
