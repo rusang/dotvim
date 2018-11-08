@@ -78,21 +78,27 @@ main()
 {
     current_dir=$(pwd)
     mkdir -p $project_path
+    rm -Rf $project_path/*
     cd $project_path
 
     build_ecsope_file
     cscope -Rbkq -i cscope.files
+    if [[ $cp_pwd != "" ]]; then
+	mv -f $project_path/cscope.out $current_dir/cscope.out
+	mv -f $project_path/cscope.in.out $current_dir/cscope.in.out
+	mv -f $project_path/cscope.po.out $current_dir/cscope.po.out
+    fi
 
     cd $current_dir
 
 }
 
-if [ $# -ne 2  ]
-then
+if [ $# -le 1  ]; then
     usage
-    return -1
+    exit -1
 fi
 
 src_path=$1
 project_path=~/.cscope/projects/$2
+cp_pwd=$3
 main

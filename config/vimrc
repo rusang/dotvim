@@ -126,6 +126,7 @@ endif
 
 "ssliao
 execute pathogen#infect()
+let g:c_syntax_for_h=1
 filetype plugin  indent on
 set nocompatible                                      "禁用 Vi 兼容模式
 syntax on
@@ -1787,22 +1788,17 @@ let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
 " let g:formatterpath = ['/some/path/to/a/folder', '/home/superman/formatters']
 let g:formatterpath = [ '~/.vim/formatter/bin']
-" let g:formatdef_harttle = '"astyle --style=linux --delete-empty-lines --indent=tab -K -d -H -p -N -U -f -C -w"'
-" let g:formatdef_harttle = '"astyle --style=ansi --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --indent=spaces=4 --pad-comma --attach-closing-while -K -H -p -M -N -U -f -C -w -c"'
-" let g:formatdef_harttle = '"astyle --style=linux --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --indent=spaces=4 --pad-comma --attach-closing-while -K -H -p -M -N -U -f -C -w -c"'
-let g:formatdef_harttle = '"astyle --mode=c --style=linux --indent-classes --indent=tab=8 --indent=force-tab=8 --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -K -H -p -M -N -U -f -C -w -xb --max-code-length=80 --break-after-logical --break-return-type"'
+" old use
+" let g:formatdef_harttle = '"astyle --mode=c --style=linux --indent-classes --indent=tab=8 --indent=force-tab=8 --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -K -H -p -M -N -U -f -C -w -xb --max-code-length=80 --break-after-logical --break-return-type"'
 " let g:formatdef_harttle = '"astyle --mode=c --style=linux --indent-classes --indent=tab=8 --indent=force-tab=8 --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -K -H -p -M -N -U -f -C -w -xb --max-code-length=80 --break-after-logical --break-return-type --break-return-type-decl"'
-" let g:formatdef_harttle = '"astyle --style=attach --pad-oper -U -f -c -C -w"'
-" let g:formatdef_harttle = '"astyle --style=linux --pad-oper -U -f -c -C -w"'
-" let g:formatdef_harttle = '"astyle --style=ansi --pad-oper -U -f -c -C -w"'
-let g:formatters_c = ['harttle']
-let g:formatters_h = ['harttle']
-let g:formatters_cpp = ['harttle']
-let g:formatters_hpp = ['harttle']
-let g:formatters_cxx = ['harttle']
-let g:formatters_java = ['harttle']
-let g:formatters_py = ['harttle']
-let g:formatters_sh = ['harttle']
+" let g:formatters_c = ['harttle']
+" let g:formatters_h = ['harttle']
+" let g:formatters_cpp = ['harttle']
+" let g:formatters_hpp = ['harttle']
+" let g:formatters_cxx = ['harttle']
+" let g:formatters_java = ['harttle']
+" let g:formatters_py = ['harttle']
+" let g:formatters_sh = ['harttle']
 " let g:formatdef_uncrustify = '"uncrustify"'
 " let g:formatters_cpp = ['uncrustify']
 " let g:formatters_java = ['uncrustify']
@@ -1810,6 +1806,32 @@ let g:formatters_sh = ['harttle']
 " autocmd FileType c vnoremap <buffer> <c-f> :call RangeUncrustify('c')<CR>
 " autocmd FileType cpp noremap <buffer> <c-f> :call Uncrustify('cpp')<CR>
 " autocmd FileType cpp vnoremap <buffer> <c-f> :call RangeUncrustify('cpp')<CR>
+
+" -----------------------------------------------------------------------------
+" for Linux C
+" -----------------------------------------------------------------------------
+if has("autocmd")
+	autocmd FileType c set tabstop=8|set softtabstop=8|set shiftwidth=8|set noexpandtab
+endif
+" let g:formatdef_CSTYLE = '"astyle --style=linux --indent=tab --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma  -K -H -p -M -N -U -f -C -w"'
+let g:formatdef_CSTYLE = '"astyle --mode=c --style=linux --indent-classes --indent=tab=8 --indent=force-tab=8 --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -H -p -M -U -f -w -xb --max-code-length=80 --break-after-logical --break-return-type"'
+let g:formatters_c = ['CSTYLE']
+let g:formatters_h = ['CSTYLE']
+
+"-----------------------------------------------------------------------------
+" for C++
+"
+"------------------------------------------------------------------------------
+if has("autocmd")
+	autocmd FileType cpp set tabstop=4|set softtabstop=4|set shiftwidth=4|set expandtab
+endif
+" let g:formatdef_CPPSTYLE = '"astyle --style=java --indent=spaces=4 --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma  -K -H -p -M -U -f -w"'
+let g:formatdef_CPPSTYLE = '"astyle --mode=java --style=java --indent=spaces=4 --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -K -H -p -M  -U -f -w -xb --max-code-length=80 --break-after-logical"'
+let g:formatters_cpp = ['CPPSTYLE']
+let g:formatters_hpp = ['CPPSTYLE']
+let g:formatters_cxx = ['CPPSTYLE']
+let g:formatters_hxx = ['CPPSTYLE']
+" -----------------------------------------------------------------------------
 
 "--------------------------------------------------------------------
 "gist-vim settings
@@ -2176,30 +2198,4 @@ map ;i :norm i
 map ;x :norm x
 map ;' mz'a<Esc>O#if 0<Esc>'zo<Esc>i#endif<Esc>
 " vmap ;' '<O<Esc>i#if 0<Esc>'>o<Esc>i#endif<Esc>
-
-
-" -----------------------------------------------------------------------------
-" for Linux C
-" -----------------------------------------------------------------------------
-if has("autocmd")
-
-    autocmd FileType c set tabstop=8|set softtabstop=8|set shiftwidth=8|set noexpandtab
-endif
-let g:formatdef_CSTYLE = '"astyle --style=linux --indent=tab --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma  -K -H -p -M -N -U -f -C -w"'
-let g:formatters_c = ['CSTYLE']
-let g:formatters_h = ['CSTYLE']
-
- -----------------------------------------------------------------------------
-" for C++
-"
-------------------------------------------------------------------------------
-if has("autocmd")
-	autocmd FileType cpp set tabstop=4|set softtabstop=4|set shiftwidth=4|set expandtab
-endif
-let g:formatdef_CPPSTYLE = '"astyle --style=java --indent=spaces=4 --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma  -K -H -p -M -U -f -w"'
-let g:formatters_cpp = ['CPPSTYLE']
-let g:formatters_hpp = ['CPPSTYLE']
-let g:formatters_cxx = ['CPPSTYLE']
-let g:formatters_hxx = ['CPPSTYLE']
-" -----------------------------------------------------------------------------
 
