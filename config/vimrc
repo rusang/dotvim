@@ -2176,3 +2176,30 @@ map ;i :norm i
 map ;x :norm x
 map ;' mz'a<Esc>O#if 0<Esc>'zo<Esc>i#endif<Esc>
 " vmap ;' '<O<Esc>i#if 0<Esc>'>o<Esc>i#endif<Esc>
+
+
+" -----------------------------------------------------------------------------
+" for Linux C
+" -----------------------------------------------------------------------------
+if has("autocmd")
+
+    autocmd FileType c set tabstop=8|set softtabstop=8|set shiftwidth=8|set noexpandtab
+endif
+let g:formatdef_CSTYLE = '"astyle --style=linux --indent=tab --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma  -K -H -p -M -N -U -f -C -w"'
+let g:formatters_c = ['CSTYLE']
+let g:formatters_h = ['CSTYLE']
+
+ -----------------------------------------------------------------------------
+" for C++
+"
+------------------------------------------------------------------------------
+if has("autocmd")
+	autocmd FileType cpp set tabstop=4|set softtabstop=4|set shiftwidth=4|set expandtab
+endif
+let g:formatdef_CPPSTYLE = '"astyle --style=java --indent=spaces=4 --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma  -K -H -p -M -U -f -w"'
+let g:formatters_cpp = ['CPPSTYLE']
+let g:formatters_hpp = ['CPPSTYLE']
+let g:formatters_cxx = ['CPPSTYLE']
+let g:formatters_hxx = ['CPPSTYLE']
+" -----------------------------------------------------------------------------
+
