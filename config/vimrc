@@ -207,6 +207,8 @@ if (g:iswindows && g:isGUI)
     language messages zh_CN.utf-8
 endif
 
+" disable the Press ENTER or type command to continue prompt that appears after executing an external command 
+
 " -----------------------------------------------------------------------------
 "  < 编写文件时的配置 >
 " -----------------------------------------------------------------------------
