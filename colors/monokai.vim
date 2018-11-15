@@ -48,7 +48,8 @@ hi Float ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
 hi Function ctermfg=71  ctermbg=NONE cterm=bold guifg=#5faf5f guibg=NONE gui=bold
 hi Identifier ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=italic
 hi Keyword ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
-hi Label ctermfg=196 ctermbg=NONE cterm=underline,bold guifg=#ff0000 guibg=NONE gui=underline,bold
+" hi Label ctermfg=196 ctermbg=NONE cterm=underline,bold guifg=#ff0000 guibg=NONE gui=underline,bold
+hi Label ctermfg=33 ctermbg=NONE cterm=bold guifg=#ff0000 guibg=NONE gui=underline,bold
 hi NonText ctermfg=59 ctermbg=236 cterm=NONE guifg=#49483e guibg=#31322c gui=NONE
 hi Number ctermfg=160 ctermbg=NONE cterm=italic guifg=#d70000  guibg=NONE gui=italic
 hi Operator ctermfg=72 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE

@@ -1875,6 +1875,14 @@ let  g:C_UseTool_cmake   = 'yes'
 let  g:C_UseTool_doxygen = 'yes'
 
 "--------------------------------------------------------------------
+"vim-json settings
+"--------------------------------------------------------------------
+" let g:vim_json_syntax_conceal = 0
+
+"formater json
+nnoremap <leader>js :%!python -m json.tool<CR>
+
+"--------------------------------------------------------------------
 "rainbow_parentheses.vim
 "--------------------------------------------------------------------
 let g:rbpt_colorpairs = [
