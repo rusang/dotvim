@@ -1336,7 +1336,41 @@ map! <C-\> <ESC>:q<CR>
 "---------------------------------------------------------------
 " let g:tmux_navigator_save_on_switch = 1
 "
-"
+"---------------------------------------------------------------
+"vim-easymotion v3.0 settings
+"---------------------------------------------------------------
+" <Leader>f{char} to move to {char}
+map  <Leader>F <Plug>(easymotion-bd-f)
+nmap <Leader>F <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>W <Plug>(easymotion-bd-w)
+nmap <Leader>W <Plug>(easymotion-overwin-w)
+
+" You can use other keymappings like <C-l> instead of <CR> if you want to
+" use these mappings as default search and somtimes want to move cursor with
+" EasyMotion.
+function! s:incsearch_config(...) abort
+  return incsearch#util#deepextend(deepcopy({
+  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+  \   'keymap': {
+  \     "\<CR>": '<Over>(easymotion)'
+  \   },
+  \   'is_expr': 0
+  \ }), get(a:, 1, {}))
+endfunction
+
+noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
+noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
+noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
+
 "---------------------------------------------------------------
 "vim-easymotion settings
 "---------------------------------------------------------------
@@ -1382,9 +1416,9 @@ let g:incsearch#auto_nohlsearch = 1
 " map z? <Plug>(incsearch-easymotion-?)
 " map zg/ <Plug>(incsearch-easymotion-stay)
 
-map / <Plug>(incsearch-easymotion-/)
-map ? <Plug>(incsearch-easymotion-?)
-map g/ <Plug>(incsearch-easymotion-stay)
+" map / <Plug>(incsearch-easymotion-/)
+" map ? <Plug>(incsearch-easymotion-?)
+" map g/ <Plug>(incsearch-easymotion-stay)
 
 map f/ <Plug>(incsearch-fuzzy-/)
 map f? <Plug>(incsearch-fuzzy-?)
@@ -1395,27 +1429,7 @@ map fg/ <Plug>(incsearch-fuzzy-stay)
 " map z? <Plug>(incsearch-fuzzyspell-?)
 " map zg/ <Plug>(incsearch-fuzzyspell-stay)
 
-
-
-" You can use other keymappings like <C-l> instead of <CR> if you want to
-" use these mappings as default search and somtimes want to move cursor with
-" EasyMotion.
-" function! s:incsearch_config(...) abort
-  " return incsearch#util#deepextend(deepcopy({
-  " \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
-  " \   'keymap': {
-  " \     "\<CR>": '<Over>(easymotion)'
-  " \   },
-  " \   'is_expr': 0
-  " \ }), get(a:, 1, {}))
-" endfunction
 "
-" noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
-" noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
-" noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
-
-
-
 function! s:config_easyfuzzymotion(...) abort
     return extend(copy({
     \   'converters': [
@@ -1429,8 +1443,6 @@ function! s:config_easyfuzzymotion(...) abort
 endfunction
 
 noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
-
-
 
 function! s:config_fuzzyall(...) abort
   return extend(copy({
