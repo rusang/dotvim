@@ -127,5 +127,5 @@ do
 	SED_STR="$SED_STR\n    '-isystem',\n    '${dir//\//\\\/}',"
 done
 
-cat "$(dirname $0)/ycm_extra_conf.py.template" | sed "s/#ADD FLAGS HERE:/$SED_STR/g" \
+cat "$(dirname $0)/__xxx_ycm_template" | sed "s/#ADD FLAGS HERE:/$SED_STR/g" \
 	> "$TARGET_DIR/.ycm_extra_conf.py"
