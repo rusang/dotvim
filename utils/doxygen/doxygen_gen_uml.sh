@@ -17,3 +17,9 @@ sed -i 's/UML_LIMIT_NUM_FIELDS   = 10/UML_LIMIT_NUM_FIELDS   = 50/g' $file
 sed -i 's/DOT_GRAPH_MAX_NODES    = 50/DOT_GRAPH_MAX_NODES    = 100/g' $file
 sed -i 's/MAX_DOT_GRAPH_DEPTH    = 0/MAX_DOT_GRAPH_DEPTH    = 0/g' $file
 
+# -----------------------------------------------------------------------------
+# if png is not supported, enable the following two lines
+# -----------------------------------------------------------------------------
+# sed -i 's/DOT_IMAGE_FORMAT       = png/DOT_IMAGE_FORMAT       = svg/g' $file
+# sed -i 's/INTERACTIVE_SVG        = NO/INTERACTIVE_SVG        = YES/g' $file
+
