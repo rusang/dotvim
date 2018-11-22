@@ -1772,9 +1772,14 @@ nnoremap <leader>dc :YcmCompleter GetDoc<CR> " 跳转到定义处
 " let g:color_coded_filetypes = ['c', 'cpp', 'h', 'cxx', '.in']
 
 "--------------------------------------------------------------------
-"color_code settings
+"ycm settings
 "--------------------------------------------------------------------
-nmap <F1> :YcmGenerateConfig<CR>                "打开/闭浏览窗口
+" nmap <F1> :YcmGenerateConfig<CR>
+
+"--------------------------------------------------------------------
+" switch between *.h and *.c files settings
+"--------------------------------------------------------------------
+map <leader>S :call CurtineIncSw()<CR>
 
 "--------------------------------------------------------------------
 "DoxygenToolkit settings
