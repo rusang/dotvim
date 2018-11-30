@@ -165,6 +165,7 @@ alias tmux2='tmux -2'
 alias tmux='tmux -2'
 alias la='ls -a'
 alias v='vim'
+alias gcs='google-chrome-stable'
 alias r='ranger'
 alias t='tig'
 alias javac="javac -J-Dfile.encoding=utf8"

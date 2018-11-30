@@ -126,7 +126,6 @@ endif
 
 "ssliao
 execute pathogen#infect()
-let g:c_syntax_for_h=1
 filetype plugin  indent on
 set nocompatible                                      "禁用 Vi 兼容模式
 syntax on
@@ -212,6 +211,7 @@ endif
 " -----------------------------------------------------------------------------
 "  < 编写文件时的配置 >
 " -----------------------------------------------------------------------------
+" let g:c_syntax_for_h=1
 filetype on                                           "启用文件类型侦测
 filetype plugin on                                    "针对不同的文件类型加载对应的插件
 filetype plugin indent on                             "启用缩进
