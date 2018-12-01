@@ -289,8 +289,8 @@ function! s:TxtbrowserOpenUrl (url)
 	elseif (has("win32") || has("win32unix"))
 	    exec ':silent !cmd /q /c start "\""dummy title"\"" ' . "\"" . a:url . "\""
 	elseif (has("unix"))
-	    "exec ':silent !firefox ' . "\"" . a:url . "\" & "
-	    exec ":silent !xdg-open \"" . a:url . "\""
+	    exec ':silent !chromium-browser ' . "\"" . a:url . "\" & "
+	    " exec ":silent !xdg-open \"" . a:url . "\""
 	endif
     endif
     exec ":redraw!"

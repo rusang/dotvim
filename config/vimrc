@@ -2012,7 +2012,9 @@ nnoremap <silent> <space>ul  :<C-u>Unite  -auto-resize location_list<CR>
 "--------------------------------------------------------------------
 "color type settings
 "--------------------------------------------------------------------
-nmap <F12> :UpdateTypesFile<CR>
+" nmap <F12> :UpdateTypesFile<CR>
+
+nnoremap <F12>c :exe ':silent !chromium-browser %'<CR>
 
 "--------------------------------------------------------------------
 "vim-cpp-enhanced-highlight

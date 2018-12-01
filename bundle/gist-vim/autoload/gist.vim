@@ -79,8 +79,8 @@ function! s:get_browser_command() abort
       let gist_browser_command = 'open %URL%'
     elseif executable('xdg-open')
       let gist_browser_command = 'xdg-open %URL%'
-    elseif executable('firefox')
-      let gist_browser_command = 'firefox %URL% &'
+    elseif executable('chromium')
+      let gist_browser_command = 'chromium %URL% &'
     else
       let gist_browser_command = ''
     endif
