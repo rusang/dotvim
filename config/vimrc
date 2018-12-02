@@ -1845,8 +1845,8 @@ if has("autocmd")
 	autocmd FileType cpp set tabstop=4|set softtabstop=4|set shiftwidth=4|set expandtab
 endif
 " let g:formatdef_CPPSTYLE = '"astyle --style=java --indent=spaces=4 --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma  -K -H -p -M -U -f -w"'
-let g:formatdef_CPPSTYLE = '"astyle --mode=c --style=java --indent=spaces=4 --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -S -K -H -p -M  -U -f -w -xb --break-after-logical"'
-let g:formatdef_JAVASTYLE = '"astyle --mode=java --style=java --indent=spaces=4 --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -S -K -H -p -M  -U -f -w -xb --break-after-logical"'
+let g:formatdef_CPPSTYLE = '"astyle --mode=c --style=java --indent=spaces=4 --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -S -K -H -p -M  -U -f -w -xb -j --break-after-logical"'
+let g:formatdef_JAVASTYLE = '"astyle --mode=java --style=java --indent=spaces=4 --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -S -K -H -p -M  -U -f -w -xb -j --break-after-logical"'
 let g:formatters_cpp = ['CPPSTYLE']
 let g:formatters_hpp = ['CPPSTYLE']
 let g:formatters_cxx = ['CPPSTYLE']
