@@ -4,6 +4,7 @@
 ## shared_from_this()
 
 ### 需要注意1.
+[refer link](https://blog.csdn.net/caoshangpa/article/details/79392878)
 
 enable_shared_from_this是一个模板类，定义于头文件<memory>，其原型为：
 
@@ -93,6 +94,7 @@ Good::~Good() called
 >* 因为在异步调用中，存在一个保活机制，异步函数执行的时间点我们是无法确定的，然而异步函数可能会使用到异步调用之前就存在的变量。为了保证该变量在异步函数执期间一直有效，我们可以传递一个指向自身的share_ptr给异步函数，这样在异步函数执行期间share_ptr所管理的对象就不会析构，所使用的变量也会一直有效了（保活）。
 
 ### 需要注意2.
+[refer link](https://blog.csdn.net/google0802/article/details/52175718)
 
 > 在一个类中需要传递类对象本身shared_ptr的地方使用shared_from_this函数来获得指向自身的shared_ptr，它是enable_shared_from_this的成员函数，返回shared_ptr。
 > 这个函数仅在shared_ptr的构造函数被调用之后才能使用。原因是enable_shared_from_this::weak_ptr并不在enable_shared_from_this构造函数中设置，而是在**shared_ptr**的构造函数中设置 
