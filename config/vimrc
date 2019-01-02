@@ -211,7 +211,7 @@ endif
 " -----------------------------------------------------------------------------
 "  < 编写文件时的配置 >
 " -----------------------------------------------------------------------------
-" let g:c_syntax_for_h=1
+let g:c_syntax_for_h=1
 filetype on                                           "启用文件类型侦测
 filetype plugin on                                    "针对不同的文件类型加载对应的插件
 filetype plugin indent on                             "启用缩进
@@ -1792,11 +1792,11 @@ map <leader>S :call CurtineIncSw()<CR>
 "--------------------------------------------------------------------
 "DoxygenToolkit settings
 "--------------------------------------------------------------------
-let g:DoxygenToolkit_briefTag_funcName = "yes"
+let g:DoxygenToolkit_briefTag_funcName = "no"
 " let loaded_DoxygenToolkit = 1
 let g:DoxygenToolkit_briefTag_pre=""
-let g:DoxygenToolkit_paramTag_pre="@"
-let g:DoxygenToolkit_returnTag="@Returns "
+let g:DoxygenToolkit_paramTag_pre="@param[in] "
+let g:DoxygenToolkit_returnTag="@return "
 " let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
 " let g:DoxygenToolkit_blockFooter="--------------------------------------------------------------------------"
 let g:DoxygenToolkit_authorName="Roy.Liao <royliao1026@gmail.com>"
@@ -1841,7 +1841,8 @@ if has("autocmd")
 	autocmd FileType c set tabstop=8|set softtabstop=8|set shiftwidth=8|set noexpandtab
 endif
 " let g:formatdef_CSTYLE = '"astyle --style=linux --indent=tab --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma  -K -H -p -M -N -U -f -C -w"'
-let g:formatdef_CSTYLE = '"astyle --mode=c --style=linux --indent-classes --indent=tab=8 --indent=force-tab=8 --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -H -p -M -U -f -w -xb --max-code-length=80 --break-after-logical --break-return-type"'
+" let g:formatdef_CSTYLE = '"astyle --mode=c --style=linux --indent-classes --indent=tab=8 --indent=force-tab=8 --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -H -p -M -U -f -w -xb --max-code-length=80 --break-after-logical --break-return-type"'
+let g:formatdef_CSTYLE = '"astyle --mode=c --style=linux --indent-classes --indent=tab=8 --indent=force-tab=8 --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -H -p -M -U -f -w -xb --max-code-length=80 --break-after-logical"'
 let g:formatters_c = ['CSTYLE']
 let g:formatters_h = ['CSTYLE']
 
@@ -2186,6 +2187,11 @@ nmap ga <Plug>(EasyAlign)
 "--------------------------------------------------------------------
 
 nnoremap <Leader><space> :MarkClear<CR>
+
+"--------------------------------------------------------------------
+" deoplete.nvim settings
+"--------------------------------------------------------------------
+let g:deoplete#enable_at_startup = 1
 
 "--------------------------------------------------------------------
 " vim-multiple-cursors settings
