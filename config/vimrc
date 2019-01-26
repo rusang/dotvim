@@ -2126,6 +2126,26 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 
 "--------------------------------------------------------------------
+"fzf-filemru settings
+"--------------------------------------------------------------------
+nnoremap <c-p> :FilesMru --tiebreak=end<cr>
+augroup custom_filemru
+  autocmd!
+  autocmd BufWinEnter * UpdateMru
+augroup END
+
+nnoremap    [misc]   <Nop>
+nmap 0  [misc]
+
+nnoremap <silent>[misc]f :FilesMru --tiebreak=end<cr>
+nnoremap <silent>[misc]F :FZFMru<cr>
+
+"--------------------------------------------------------------------
+"unite-fzf
+"--------------------------------------------------------------------
+call unite#filters#matcher_default#use(['matcher_fzf'])
+
+"--------------------------------------------------------------------
 "current-func-info.vim
 "--------------------------------------------------------------------
 map <leader>df :echo cfi#format("%s", "")<CR>
