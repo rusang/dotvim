@@ -2150,7 +2150,7 @@ nnoremap    [misc]   <Nop>
 nmap 0  [misc]
 
 nnoremap <silent>[misc]f :FilesMru --tiebreak=end<cr>
-nnoremap <silent>[misc]F :FZFFreshMru<cr>
+nnoremap <silent>[misc]a :FZFFreshMru<cr>
 
 "--------------------------------------------------------------------
 "unite-fzf
