@@ -55,6 +55,8 @@ plugins=(git autojump fancy-ctrl-z tmux zsh-autosuggestions web-search lighthous
 
 # User configuration
 
+export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_DEFAULT_OPTS='--inline-info --height 90% --border'
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/bin:/usr/share/bcc/tools:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"

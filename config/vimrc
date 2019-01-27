@@ -2077,7 +2077,7 @@ let g:rooter_resolve_links = 1
 " let g:fzf_prefer_tmux = 1
 let g:fzf_layout = { 'down': '~50%' }
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
-let $FZF_DEFAULT_OPTS .= ' --inline-info'
+let $FZF_DEFAULT_OPTS = ' --inline-info'
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
