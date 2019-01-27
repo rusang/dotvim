@@ -2075,7 +2075,9 @@ let g:rooter_resolve_links = 1
 "---------------------------------------------------------------
 " - down / up / left / right
 " let g:fzf_prefer_tmux = 1
-let g:fzf_layout = { 'up': '~40%' }
+let g:fzf_layout = { 'down': '~50%' }
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+let $FZF_DEFAULT_OPTS .= ' --inline-info'
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
@@ -2100,9 +2102,9 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit' }
 
 " In Neovim, you can set up fzf window using a Vim command
-let g:fzf_layout = { 'window': 'enew' }
-let g:fzf_layout = { 'window': '-tabnew' }
-let g:fzf_layout = { 'window': '10split enew' }
+" let g:fzf_layout = { 'window': 'enew' }
+" let g:fzf_layout = { 'window': '-tabnew' }
+" let g:fzf_layout = { 'window': '10split enew' }
 
 " Enable per-command history.
 " CTRL-N and CTRL-P will be automatically bound to next-history and
