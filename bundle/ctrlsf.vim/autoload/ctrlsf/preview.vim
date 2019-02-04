@@ -2,7 +2,7 @@
 " Description: An ack/ag/pt/rg powered code search and view tool.
 " Author: Ye Ding <dygvirus@gmail.com>
 " Licence: Vim licence
-" Version: 1.9.0
+" Version: 2.1.2
 " ============================================================================
 
 " preview buffer's name
@@ -80,7 +80,7 @@ func! s:InitPreviewWindow() abort
 
     augroup ctrlsfp
         au!
-        au BufUnload <buffer> unlet b:ctrlsf_file
+        au BufUnload <buffer> call setbufvar(s:PREVIEW_BUF_NAME, "ctrlsf_file", "")
     augroup END
 endf
 

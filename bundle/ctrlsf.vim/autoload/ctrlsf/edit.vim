@@ -2,7 +2,7 @@
 " Description: An ack/ag/pt/rg powered code search and view tool.
 " Author: Ye Ding <dygvirus@gmail.com>
 " Licence: Vim licence
-" Version: 1.9.0
+" Version: 2.1.2
 " ============================================================================
 
 " s:DiffFile()
@@ -181,7 +181,7 @@ endf
 "
 func! ctrlsf#edit#Save() abort
     let orig = ctrlsf#db#FileResultSet()
-    let rs   = ctrlsf#view#Derender(getline(0, '$'))
+    let rs   = ctrlsf#view#Unrender(getline(0, '$'))
     let modi = ctrlsf#db#FileResultSetBy(rs)
 
     " check difference and validity

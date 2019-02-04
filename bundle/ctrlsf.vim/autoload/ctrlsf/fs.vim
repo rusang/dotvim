@@ -2,33 +2,50 @@
 " Description: An ack/ag/pt/rg powered code search and view tool.
 " Author: Ye Ding <dygvirus@gmail.com>
 " Licence: Vim licence
-" Version: 1.9.0
+" Version: 2.1.2
 " ============================================================================
 
-" Meta folder of several typical version control systems
-let s:vcs_folder = ['.git', '.hg', '.svn', '.bzr', '_darcs']
+" Meta folder or file of several typical version control systems
+let s:vcs_marker = ['.git', '.svn', '.bzr', '_darcs']
 
-" FindVcsRoot()
+" FindProjectRoot()
 "
-func! ctrlsf#fs#FindVcsRoot(...) abort
+func! ctrlsf#fs#FindProjectRoot(...) abort
     if a:0 > 0
         let start_dir = a:1
     else
         let start_dir = expand('%:p:h')
     endif
 
-    let vsc_dir = ''
-    for vcs in s:vcs_folder
-        let vsc_dir = finddir(vcs, start_dir.';')
-        if !empty(vsc_dir)
-            break
-        endif
-    endfo
+    let markers = g:ctrlsf_extra_root_markers + s:vcs_marker
 
-    let root = empty(vsc_dir) ? '' : fnamemodify(vsc_dir, ':h')
+    let marker = s:FindMarker(start_dir, markers)
+    let root = empty(marker) ? '' : fnamemodify(marker, ':h')
     call ctrlsf#log#Debug("ProjectRoot: %s", root)
 
     return root
+endf
+
+" s:FindMarker()
+"
+" Find root marker recursively.
+"
+func! s:FindMarker(dir, markers) abort
+    for m in a:markers
+        let marker = globpath(a:dir, m, 1)
+        if !empty(marker)
+            return marker
+        endif
+    endfor
+
+    let parent = fnamemodify(a:dir, ':h')
+
+    " hit the root
+    if parent ==# a:dir
+        return ''
+    else
+        return s:FindMarker(parent, a:markers)
+    endif
 endf
 
 " DetectFileFormat

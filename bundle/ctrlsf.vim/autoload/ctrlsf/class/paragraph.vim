@@ -2,7 +2,7 @@
 " Description: An ack/ag/pt/rg powered code search and view tool.
 " Author: Ye Ding <dygvirus@gmail.com>
 " Licence: Vim licence
-" Version: 1.9.0
+" Version: 2.1.2
 " ============================================================================
 
 " New()
@@ -24,7 +24,7 @@ func! ctrlsf#class#paragraph#New(buffer) abort
         \ 'trim_tail' : function("ctrlsf#class#paragraph#TrimTail")
         \ }
 
-    for [fname, lnum, content] in a:buffer
+    for [_, lnum, content] in a:buffer
         call add(paragraph.lines, ctrlsf#class#line#New(fname, lnum, content))
     endfo
 
@@ -82,9 +82,14 @@ endf
 " ModifyFileName()
 "
 func! s:ModifyFileName(filename) abort
-    if g:ctrlsf_absolute_file_path || &autochdir
-        return fnamemodify(a:filename, ":p")
+    if has('win32') || has('win64')
+        let filename = substitute(a:filename, '\\\\', '\', 'g')
     else
-        return fnamemodify(a:filename, ":.")
+        let filename = a:filename
+    endif
+    if g:ctrlsf_absolute_file_path || &autochdir
+        return fnamemodify(filename, ":p")
+    else
+        return fnamemodify(filename, ":.")
     endif
 endf

@@ -2,7 +2,7 @@
 " Description: An ack/ag/pt/rg powered code search and view tool.
 " Author: Ye Ding <dygvirus@gmail.com>
 " Licence: Vim licence
-" Version: 1.9.0
+" Version: 2.1.2
 " ============================================================================
 
 " option list of CtrlSF
@@ -39,6 +39,14 @@ let s:default = {
 
 " options
 let s:options = {}
+
+" ctrlsf#opt#Reset()
+"
+" Reset all states of this module.
+"
+func! ctrlsf#opt#Reset() abort
+    let s:options = {}
+endf
 
 " OptionNames()
 "
@@ -141,7 +149,7 @@ func! ctrlsf#opt#GetPath() abort
             let resolved_path = expand(path, 0, 1)
 
             for r_path in resolved_path
-                call add(path_tokens, shellescape(r_path))
+                call add(path_tokens, r_path)
             endfo
         endfo
     else
@@ -162,9 +170,9 @@ func! ctrlsf#opt#GetPath() abort
 
             " try to find project root
             if opt_sroot ==# 'f'
-                let path = ctrlsf#fs#FindVcsRoot()
+                let path = ctrlsf#fs#FindProjectRoot()
             elseif opt_sroot ==# 'w'
-                let path = ctrlsf#fs#FindVcsRoot(getcwd())
+                let path = ctrlsf#fs#FindProjectRoot(getcwd())
             endif
 
             " fallback to specified root
@@ -180,7 +188,7 @@ func! ctrlsf#opt#GetPath() abort
             endif
         endif
 
-        call add(path_tokens, shellescape(path))
+        call add(path_tokens, path)
     endif
 
     return path_tokens
@@ -210,6 +218,12 @@ func! ctrlsf#opt#GetIgnoreDir() abort
         call add(ignore_dir, ctrlsf#opt#GetOpt("ignoredir"))
     endif
     return ignore_dir
+endf
+
+" AutoClose()
+"
+func! ctrlsf#opt#AutoClose() abort
+    return type(g:ctrlsf_auto_close) == type(0) ? g:ctrlsf_auto_close : g:ctrlsf_auto_close[ctrlsf#CurrentMode()]
 endf
 
 """""""""""""""""""""""""""""""""

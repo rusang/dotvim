@@ -2,7 +2,7 @@
 " Description: An ack/ag/pt/rg powered code search and view tool.
 " Author: Ye Ding <dygvirus@gmail.com>
 " Licence: Vim licence
-" Version: 1.9.0
+" Version: 2.1.2
 " ============================================================================
 
 " ctrlsf buffer's name
@@ -11,8 +11,17 @@ let s:MAIN_BUF_NAME = "__CtrlSF__"
 " window which brings up ctrlsf window
 let s:caller_win = {
     \ 'bufnr' : -1,
-    \ 'winnr' : -1,
+    \ 'winid' : 0,
     \ }
+
+" remember how many lines have been drawn
+let s:drawn_lines = 0
+
+" Reset(0
+"
+func! ctrlsf#win#Reset() abort
+    let s:drawn_lines = 0
+endf
 
 """""""""""""""""""""""""""""""""
 " Open & Close
@@ -21,10 +30,10 @@ let s:caller_win = {
 " OpenMainWindow()
 "
 func! ctrlsf#win#OpenMainWindow() abort
-    " backup current bufnr and winnr
+    " backup current bufnr and winid
     let s:caller_win = {
         \ 'bufnr' : bufnr('%'),
-        \ 'winnr' : winnr(),
+        \ 'winid' : win_getid(winnr()),
         \ }
 
     " try to focus an existing ctrlsf window, initialize a new one if failed
@@ -74,11 +83,7 @@ func! ctrlsf#win#OpenMainWindow() abort
     call s:InitMainWindow()
 
     " set 'modifiable' flag depending on current view mode
-    if ctrlsf#CurrentMode() ==# 'normal'
-        setl modifiable
-    else
-        setl nomodifiable
-    endif
+    call ctrlsf#win#SetModifiableByViewMode(1)
 
     " resize other windows
     call s:ResizeNeighborWins()
@@ -87,8 +92,38 @@ endf
 " Draw()
 "
 func! ctrlsf#win#Draw() abort
+    let s:drawn_lines = 0
     let content = ctrlsf#view#Render()
     silent! undojoin | keepjumps call ctrlsf#buf#WriteString(content)
+endf
+
+" DrawIncr()
+"
+func! ctrlsf#win#DrawIncr() abort
+    if ctrlsf#CurrentMode() == 'normal'
+        silent! undojoin | keepjumps
+                    \ call ctrlsf#buf#SetLine(s:MAIN_BUF_NAME, 1, ctrlsf#view#RenderSummary())
+        if s:drawn_lines == 0
+            let s:drawn_lines = 1
+        endif
+    endif
+
+    let new_lines = ctrlsf#view#RenderIncr()
+    if !empty(new_lines)
+        silent! undojoin | keepjumps
+                    \ call ctrlsf#buf#SetLine(s:MAIN_BUF_NAME, s:drawn_lines + 1, new_lines)
+    endif
+    let s:drawn_lines = s:drawn_lines + len(new_lines)
+endf
+
+" SetModifiable()
+"
+func! ctrlsf#win#SetModifiableByViewMode(modifiable) abort
+    if ctrlsf#CurrentMode() ==# 'normal'
+        call setbufvar(s:MAIN_BUF_NAME, '&modifiable', a:modifiable)
+    else
+        call setbufvar(s:MAIN_BUF_NAME, '&modifiable', 0)
+    endif
 endf
 
 " CloseMainWindow()
@@ -120,6 +155,14 @@ func! s:ResizeNeighborWins() abort
     wincmd =
 endf
 
+" UndoAllChanges()
+"
+func! s:UndoAllChanges() abort
+    if ctrlsf#win#InMainWindow()
+        call ctrlsf#buf#UndoAllChanges()
+    endif
+endf
+
 " InitMainWindow()
 func! s:InitMainWindow() abort
     if exists("b:ctrlsf_initialized")
@@ -145,6 +188,7 @@ func! s:InitMainWindow() abort
     setl textwidth=0
     setl nospell
     setl nofoldenable
+    setl cursorline
 
     " map
     call ctrlsf#buf#ToggleMap(1)
@@ -162,7 +206,7 @@ func! s:InitMainWindow() abort
     augroup ctrlsf
         au!
         au BufWriteCmd         <buffer> call ctrlsf#Save()
-        au BufHidden,BufUnload <buffer> call ctrlsf#buf#UndoAllChanges()
+        au BufHidden,BufUnload <buffer> call s:UndoAllChanges()
     augroup END
 
     " hook for user customization
@@ -177,10 +221,22 @@ endf
 " Window Navigation
 """""""""""""""""""""""""""""""""
 
+" InWindow()
+"
+func! ctrlsf#win#InWindow(buf_name) abort
+    return bufname("%") ==# a:buf_name
+endf
+
 " FindWindow()
 "
 func! ctrlsf#win#FindWindow(buf_name) abort
     return bufwinnr(a:buf_name)
+endf
+
+" InMainWindow()
+"
+func! ctrlsf#win#InMainWindow() abort
+    return ctrlsf#win#InWindow(s:MAIN_BUF_NAME)
 endf
 
 " FocusWindow()
@@ -218,12 +274,7 @@ endf
 " FindCallerWindow()
 "
 func! ctrlsf#win#FindCallerWindow() abort
-    let ctrlsf_winnr = ctrlsf#win#FindMainWindow()
-    if ctrlsf_winnr > 0 && ctrlsf_winnr <= s:caller_win.winnr
-        return s:caller_win.winnr + 1
-    else
-        return s:caller_win.winnr
-    endif
+    return s:caller_win.winid > 0 ? win_id2win(s:caller_win.winid) : -1
 endf
 
 " FocusCallerWindow()
@@ -246,7 +297,7 @@ func! ctrlsf#win#FindTargetWindow(file) abort
     endif
 
     " case: previous window where ctrlsf was triggered
-    let target_winnr = s:caller_win.winnr
+    let target_winnr = ctrlsf#win#FindCallerWindow()
 
     let ctrlsf_winnr = ctrlsf#win#FindMainWindow()
     if ctrlsf_winnr > 0 && ctrlsf_winnr <= target_winnr
@@ -274,6 +325,14 @@ func! ctrlsf#win#FindTargetWindow(file) abort
 
     " case: can't find any valid window, tell front to open a new window
     return 0
+endf
+
+" FocusFirstMatch()
+"
+func! ctrlsf#win#FocusFirstMatch() abort
+    " scroll up to top line
+    1normal! ^
+    call ctrlsf#NextMatch(1)
 endf
 
 """""""""""""""""""""""""""""""""

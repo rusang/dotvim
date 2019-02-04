@@ -2,7 +2,7 @@
 " Description: An ack/ag/pt/rg powered code search and view tool.
 " Author: Ye Ding <dygvirus@gmail.com>
 " Licence: Vim licence
-" Version: 1.9.0
+" Version: 2.1.2
 " ============================================================================
 
 " HighlightMatch()
@@ -11,7 +11,7 @@ func! ctrlsf#hl#HighlightMatch(...) abort
     " default: ctrlsfMatch
     let hlgroup = a:0 > 0 ? a:1 : 'ctrlsfMatch'
 
-    if !exists('b:current_syntax') || b:current_syntax !~# 'ctrlsf'
+    if !exists('b:current_syntax') || b:current_syntax !=# 'ctrlsf'
         return -1
     endif
 

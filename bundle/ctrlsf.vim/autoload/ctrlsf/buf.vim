@@ -2,7 +2,7 @@
 " Description: An ack/ag/pt/rg powered code search and view tool.
 " Author: Ye Ding <dygvirus@gmail.com>
 " Licence: Vim licence
-" Version: 1.9.0
+" Version: 2.1.2
 " ============================================================================
 
 " WriteString()
@@ -31,6 +31,57 @@ func! ctrlsf#buf#WriteFile(file) abort
     silent $delete _ " delete trailing empty line
     call setbufvar('%', '&modifiable', modifiable_bak)
     call setbufvar('%', '&modified', 0)
+endf
+
+" SetLine()
+"
+" Change content of a line in specified buffer.
+"
+func! ctrlsf#buf#SetLine(buf_name, lnum, content) abort
+    let modifiable_bak = getbufvar(a:buf_name, '&modifiable')
+    call setbufvar(a:buf_name, '&modifiable', 1)
+
+    call s:setbufline(a:buf_name, a:lnum, a:content)
+
+    call setbufvar(a:buf_name, '&modifiable', modifiable_bak)
+    call setbufvar(a:buf_name, '&modified', 0)
+endf
+
+" s:setbufline
+"
+" Use Vim's setbufline or mimic it with NeoVim's nvim_buf_set_lines.
+"
+func! s:setbufline(buf_name, lnum, content) abort
+    if exists('*setbufline')
+        call setbufline(a:buf_name, a:lnum, a:content)
+        return
+    endif
+
+    " Unlike setbufline, nvim_buf_set_lines can only accept a list
+    if type(a:content) == type('')
+        let l:content = split(a:content, '\v(\r\n)|\n')
+    else
+        let l:content = a:content
+    endif
+
+    let l:buf_num = bufnr(a:buf_name)
+
+    let l:line_count = nvim_buf_line_count(l:buf_num)
+    if a:lnum == 1 + l:line_count
+        " setbufline, in this case, will append the lines.
+        call nvim_buf_set_lines(l:buf_num, a:lnum - 1, a:lnum - 1, v:true, l:content)
+    elseif a:lnum > 1 + l:line_count
+        " setbufline, in this case, will do nothing.
+    elseif a:lnum + len(l:content) - 1 > l:line_count
+        " setbufline, in this case, will replace the lines in can, and
+        " append the rest of the lines.
+        let l:lines_to_replace = l:line_count - a:lnum + 1
+        call nvim_buf_set_lines(l:buf_num, a:lnum - 1, a:lnum + l:lines_to_replace - 1, v:true, l:content[: l:lines_to_replace - 1])
+        call nvim_buf_set_lines(l:buf_num, l:line_count, l:line_count, v:true, l:content[l:lines_to_replace :])
+    else
+        " setbufline, in this case, will append the lines.
+        call nvim_buf_set_lines(l:buf_num, a:lnum - 1, a:lnum - 1 + len(l:content), v:true, l:content)
+    endif
 endf
 
 " WarnIfChanged()
@@ -97,6 +148,7 @@ func! ctrlsf#buf#ToggleMap(...) abort
         \ "popen"   : "ctrlsf#JumpTo('preview')",
         \ "popenf"  : "ctrlsf#JumpTo('preview_foreground')",
         \ "quit"    : "ctrlsf#Quit()",
+        \ "stop"    : "ctrlsf#StopSearch()",
         \ "next"    : "ctrlsf#NextMatch(1)",
         \ "prev"    : "ctrlsf#NextMatch(0)",
         \ "chgmode" : "ctrlsf#SwitchViewMode()",

@@ -2,7 +2,7 @@
 " Description: An ack/ag/pt/rg powered code search and view tool.
 " Author: Ye Ding <dygvirus@gmail.com>
 " Licence: Vim licence
-" Version: 1.9.0
+" Version: 2.1.2
 " ============================================================================
 
 " Loading Guard {{{1
@@ -93,7 +93,24 @@ endif
 
 " g:ctrlsf_auto_close {{{2
 if !exists('g:ctrlsf_auto_close')
-    let g:ctrlsf_auto_close = 1
+    let g:ctrlsf_auto_close = {
+        \ "normal" : 1,
+        \ "compact": 0
+        \ }
+endif
+" }}}
+
+" g:ctrlsf_auto_focus {{{2
+if !exists('g:ctrlsf_auto_focus')
+    let g:ctrlsf_auto_focus = {
+        \ "at" : "none",
+        \ }
+else
+    " set default 'duration_less_than': 1000 milliseconds
+    if g:ctrlsf_auto_focus['at'] ==# 'done'
+        \ && !has_key(g:ctrlsf_auto_focus, 'duration_less_than')
+        let g:ctrlsf_auto_focus['duration_less_than'] = 1000
+    endif
 endif
 " }}}
 
@@ -108,7 +125,7 @@ if !exists('g:ctrlsf_confirm_save')
     let g:ctrlsf_confirm_save = 1
 endif
 " }}}
-"
+
 " g:ctrlsf_confirm_unsaving_quit {{{2
 if !exists('g:ctrlsf_confirm_unsaving_quit')
     let g:ctrlsf_confirm_unsaving_quit = 1
@@ -145,6 +162,18 @@ if !exists('g:ctrlsf_extra_backend_args')
 endif
 " }}}
 
+" g:ctrlsf_extra_root_markers {{{2
+if !exists('g:ctrlsf_extra_root_markers')
+    let g:ctrlsf_extra_root_markers = []
+endif
+" }}}
+
+" g:ctrlsf_follow_symlinks {{{2
+if !exists('g:ctrlsf_follow_symlinks')
+    let g:ctrlsf_follow_symlinks = 1
+endif
+" }}}
+
 " g:ctrlsf_ignore_dir {{{2
 if !exists('g:ctrlsf_ignore_dir')
     let g:ctrlsf_ignore_dir = []
@@ -168,6 +197,7 @@ let s:default_mapping = {
     \ "popen"   : "p",
     \ "popenf"  : "P",
     \ "quit"    : "q",
+    \ "stop"    : "<C-C>",
     \ "next"    : "<C-J>",
     \ "prev"    : "<C-K>",
     \ "chgmode" : "M",
@@ -182,6 +212,12 @@ else
         let g:ctrlsf_mapping[key] = get(g:ctrlsf_mapping, key,
             \ s:default_mapping[key])
     endfo
+endif
+" }}}
+
+" g:ctrlsf_parse_speed {{{
+if !exists('g:ctrlsf_parse_speed')
+    let g:ctrlsf_parse_speed = 300
 endif
 " }}}
 
@@ -218,6 +254,16 @@ if !exists('g:ctrlsf_selected_line_hl')
 endif
 " }}}
 
+" g:ctrlsf_search_mode {{{2
+if !exists('g:ctrlsf_search_mode')
+    if !has('nvim') && (v:version < 800 || (v:version == 800 && !has('patch1039')))
+        let g:ctrlsf_search_mode = 'sync'
+    else
+        let g:ctrlsf_search_mode = 'async'
+    endif
+endif
+" }}}
+
 " g:ctrlsf_toggle_map_key {{{2
 if !exists('g:ctrlsf_toggle_map_key')
     let g:ctrlsf_toggle_map_key = ''
@@ -242,6 +288,8 @@ com! -n=0                                         CtrlSFUpdate   call ctrlsf#Upd
 com! -n=0                                         CtrlSFClose    call ctrlsf#Quit()
 com! -n=0                                         CtrlSFClearHL  call ctrlsf#ClearSelectedLine()
 com! -n=0                                         CtrlSFToggle   call ctrlsf#Toggle()
+com! -n=0                                         CtrlSFStop     call ctrlsf#StopSearch()
+com! -n=0                                         CtrlSFFocus    call ctrlsf#Focus()
 " }}}
 
 " Maps {{{1

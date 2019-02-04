@@ -2,7 +2,7 @@
 " Description: An ack/ag/pt/rg powered code search and view tool.
 " Author: Ye Ding <dygvirus@gmail.com>
 " Licence: Vim licence
-" Version: 1.9.0
+" Version: 2.1.2
 " ============================================================================
 
 " Log file that collects error messages from backend
@@ -20,6 +20,10 @@ let s:backend_args_map = {
             \ '1': '',
             \ '0': '--literal'
             \ },
+        \ 'follow': {
+            \ '1': '-f',
+            \ '0': '--nofollow'
+            \ },
         \ 'default': '--noheading --nogroup --nocolor --nobreak'
         \ },
     \ 'ack': {
@@ -32,6 +36,10 @@ let s:backend_args_map = {
         \ 'regex': {
             \ '1': '',
             \ '0': '--literal'
+            \ },
+        \ 'follow': {
+            \ '1': '--follow',
+            \ '0': '--nofollow'
             \ },
         \ 'default': '--noheading --nogroup --nocolor --nobreak --nocolumn
             \ --with-filename'
@@ -47,6 +55,10 @@ let s:backend_args_map = {
             \ '1': '-e',
             \ '0': ''
             \ },
+        \ 'follow': {
+            \ '1': '',
+            \ '0': ''
+            \ },
         \ 'default': '--nogroup --nocolor'
         \ },
     \ 'rg': {
@@ -55,18 +67,22 @@ let s:backend_args_map = {
             \ 'ignorecase': '--ignore-case',
             \ 'matchcase': ''
             \ },
-        \ 'ignoredir': '',
+        \ 'ignoredir': '-g',
         \ 'regex': {
             \ '1': '',
             \ '0': '--fixed-strings'
             \ },
-        \ 'default': '--no-heading --color never --line-number'
+        \ 'follow': {
+            \ '1': '--follow',
+            \ '0': '--no-follow'
+            \ },
+        \ 'default': '--no-heading --color never --line-number -H'
         \ }
     \ }
 
 " BuildCommand()
 "
-func! s:BuildCommand(args) abort
+func! s:BuildCommand(args, for_shell) abort
     let tokens = []
     let runner = ctrlsf#backend#Runner()
 
@@ -92,9 +108,15 @@ func! s:BuildCommand(args) abort
     let ignore_dir = ctrlsf#opt#GetIgnoreDir()
     let arg_name = s:backend_args_map[runner]['ignoredir']
     if !empty(arg_name)
-        for dir in ignore_dir
-            call add(tokens, arg_name . ' ' . shellescape(dir))
-        endfor
+        if runner ==# 'rg'
+            for dir in ignore_dir
+                call add(tokens, arg_name . ' !' . s:Escape(a:for_shell, dir))
+            endfor
+        else
+            for dir in ignore_dir
+                call add(tokens, arg_name . ' ' . s:Escape(a:for_shell, dir))
+            endfor
+        endif
     endif
 
     " regex
@@ -121,20 +143,20 @@ func! s:BuildCommand(args) abort
         if runner ==# 'ag'
             call extend(tokens, [
                 \ '--file-search-regex',
-                \ shellescape(ctrlsf#opt#GetOpt('filematch'))
+                \ s:Escape(a:for_shell, ctrlsf#opt#GetOpt('filematch'))
                 \ ])
         elseif runner ==# 'pt'
             call add(tokens, printf("--file-search-regex=%s",
-                \ shellescape(ctrlsf#opt#GetOpt('filematch'))))
+                        \ s:Escape(a:for_shell, ctrlsf#opt#GetOpt('filematch'))))
         elseif runner ==# 'rg'
             call add(tokens, printf("-g %s",
-                \ shellescape(ctrlsf#opt#GetOpt('filematch'))))
+                        \ s:Escape(a:for_shell, ctrlsf#opt#GetOpt('filematch'))))
         elseif runner ==# 'ack'
             " pipe: 'ack -g ${filematch} ${path} |'
             let pipe_tokens = [
                 \ g:ctrlsf_ackprg,
                 \ '-g',
-                \ shellescape(ctrlsf#opt#GetOpt('filematch'))
+                \ s:Escape(a:for_shell, ctrlsf#opt#GetOpt('filematch'))
                 \ ]
             call extend(pipe_tokens, ctrlsf#opt#GetPath())
             call add(pipe_tokens, '|')
@@ -143,6 +165,10 @@ func! s:BuildCommand(args) abort
             call add(tokens, '--files-from=-')
         endif
     endif
+
+    " follow symlink
+    call add(tokens,
+        \ s:backend_args_map[runner]['follow'][g:ctrlsf_follow_symlinks])
 
     " default
     call add(tokens,
@@ -158,49 +184,40 @@ func! s:BuildCommand(args) abort
     call add(tokens, "--")
 
     " pattern (including escape)
-    call add(tokens, shellescape(ctrlsf#opt#GetOpt('pattern')))
+    call add(tokens, s:Escape(a:for_shell, ctrlsf#opt#GetOpt('pattern')))
 
     " path
-    call extend(tokens, ctrlsf#opt#GetPath())
+    let path = ctrlsf#opt#GetPath()
+    for p in path
+        call add(tokens, s:Escape(a:for_shell, p))
+    endfo
 
     return join(tokens, ' ')
 endf
 
-" SelfCheck()
+" s:Escape()
 "
-func! ctrlsf#backend#SelfCheck() abort
-    if !exists('g:ctrlsf_ackprg') || empty(g:ctrlsf_ackprg)
-        call ctrlsf#log#Error("Option 'g:ctrlsf_ackprg' is not defined or empty
-            \ .")
-        return -99
-    endif
-
-    let prg = g:ctrlsf_ackprg
-
-    if !executable(prg)
-        call ctrlsf#log#Error('Can not locate %s in PATH, make sure you have it
-            \ installed.', prg)
-        return -2
-    endif
+func! s:Escape(for_shell, str)
+    return a:for_shell ? shellescape(a:str) : ctrlsf#utils#Quote(a:str)
 endf
 
 " Detect()
 "
 func! ctrlsf#backend#Detect()
-    if executable('ag')
-        return 'ag'
-    endif
-
-    if executable('ack')
-        return 'ack'
-    endif
-
     if executable('rg')
         return 'rg'
     endif
 
+    if executable('ag')
+        return 'ag'
+    endif
+
     if executable('pt')
         return 'pt'
+    endif
+
+    if executable('ack')
+        return 'ack'
     endif
 
     if executable('ack-grep')
@@ -253,7 +270,7 @@ endf
 " [success/fail, output]
 "
 func! ctrlsf#backend#Run(args) abort
-    let command = s:BuildCommand(a:args)
+    let command = s:BuildCommand(a:args, 1)
     call ctrlsf#log#Debug("ExecCommand: %s", command)
 
     " A windows user reports CtrlSF doesn't work well when 'shelltemp' is
@@ -280,4 +297,12 @@ func! ctrlsf#backend#Run(args) abort
     else
         return [1, output]
     endif
+endf
+
+func! ctrlsf#backend#RunAsync(args) abort
+    let command = s:BuildCommand(a:args, 0)
+    call ctrlsf#log#Debug("ExecCommand: %s", command)
+
+    call ctrlsf#async#StartSearch(command)
+    call ctrlsf#log#Notice("Searching...")
 endf
