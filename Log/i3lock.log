@@ -1,0 +1,318 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+	
+#include "meta_data.h"
+	
+#define DBG	printf
+#define LOG	printf
+#define INFO	printf
+	
+static double Y[M][N];
+static double Z[M][N];
+static double P[M][N];
+static double H[N];
+static double W[N];
+
+#define max(a, b) (((a) > (b)) ? (a) : (b))
+#define min(a, b) (((a) < (b)) ? (a) : (b))
+
+#define __unused __attribute__((unused))
+
+static const char *provinces[M] = {
+	"北京  ",
+	"天津  ",
+	"河北  ",
+	"山西  ",
+	"内蒙古",
+	"辽宁  ",
+	"吉林  ",
+	"黑龙江",
+	"上海  ",
+	"江苏  ",
+	"浙江  ",
+	"安徽  ",
+	"福建  ",
+	"江西  ",
+	"山东  ",
+	"河南  ",
+	"湖北  ",
+	"湖南  ",
+	"广东  ",
+	"广西  ",
+	"海南  ",
+	"重庆  ",
+	"四川  ",
+	"贵州  ",
+	"云南  ",
+	"西藏  ",
+	"陕西  ",
+	"甘肃  ",
+	"青海  ",
+	"宁夏  ",
+	"新疆  ",
+};
+
+#if 0
+__unused static const char *criterions[N] = {
+	"结余率",
+	"总资产周转次数",
+	"净资产增长率",
+	"资产负债率",
+	"病床使用率",
+};
+#endif
+
+static void __dump_matrix_mn(const char *prefix, double matrix[M][N])
+{
+	int i, j;
+
+	DBG("-------------------------------------------------\n");
+
+	DBG("%s:\n", prefix);
+
+	for (i = 0; i < M; i++) {
+		DBG("%2d %-3s", i + 1, provinces[i]);
+		for (j = 0; j < N; j++) {
+			DBG("  %.6lf", matrix[i][j]);
+		}
+		DBG("\n");
+	}
+	
+	DBG("-------------------------------------------------\n");
+}
+
+static void __dump_matrix_n(const char *prefix, double matrix[N])
+{
+	int j;
+
+	INFO("-------------------------------------------------\n");
+
+	INFO("%s:\n", prefix);
+
+	for (j = 0; j < N; j++) {
+		INFO("%.32lf  ", matrix[j]);
+	}
+	INFO("\n");
+	
+	INFO("-------------------------------------------------\n");
+}
+
+/*
+ * Yij = (Xij - minXij)/ (maxXij - minXij)
+ *             i        i       i
+ */
+static void __calc_Y(void)
+{
+	int i, j;
+	double maxij, minij;
+
+	for (j = 0; j < N; j++) {
+		/* get maxXij and minXij */
+		maxij = X[0][j];
+		minij = X[0][j];
+		for (i = 0; i < M; i++) {
+			maxij = max(maxij, X[i][j]);
+			minij = min(minij, X[i][j]);
+		}
+
+		DBG("[%2d] max:%20.10lf	min:%20.10lf\n", j + 1, maxij, minij);
+
+		for (i = 0; i < M; i++) {
+			Y[i][j] = (X[i][j] - minij) / (maxij - minij);
+			//Y[i][j] = (maxij - X[i][j]) / (maxij - minij);
+		}
+	}
+}
+
+static void __translation_transformation(void)
+{
+	int i, j;
+	double yij_ = 0;
+	double c, d;
+	double sum_yij_yij_ = 0;
+	double yij_yij_;
+	double sum_yij = 0;
+
+	for (j = 0; j < N; j++) {
+		for (i = 0; i < M; i++)
+			yij_ += Y[i][j];
+
+		yij_ = yij_ / M;
+
+		sum_yij_yij_ = 0;
+		sum_yij = 0;
+
+		/* calc c and d */
+		for (i = 0; i < M; i++) {
+			yij_yij_ += (Y[i][j] - yij_);
+			sum_yij_yij_ += (yij_yij_ * yij_yij_);
+			sum_yij += Y[i][j];
+		}
+		c = sum_yij / (sqrt(sum_yij_yij_));
+		d = 1 / (sqrt(sum_yij_yij_));
+		DBG("[%2d]: c:%10.6lf	d:%10.6lf\n", j + 1, c, d);
+		for (i = 0; i < M; i++) {
+			Z[i][j] = c + Y[i][j] * d;
+		}
+	}
+
+}
+
+static void __calc_P(void)
+{
+	int i, j;
+	double sum_zij = 0;
+
+	for (j = 0; j < N; j++) {
+		sum_zij = 0;
+		for (i = 0; i < M; i++) {
+			sum_zij += Z[i][j];
+		}
+
+		for (i = 0; i < M; i++) {
+			P[i][j] = Z[i][j] / sum_zij;
+		}
+	}
+}
+
+static void __calc_H(void)
+{
+	int i, j;
+	double sum_pij_lnpij = 0;
+
+	for (j = 0; j < N; j++) {
+		sum_pij_lnpij = 0;
+		for (i = 0; i < M; i++) {
+			sum_pij_lnpij += (P[i][j] * log(P[i][j]));
+		}
+		H[j] = - sum_pij_lnpij / log(M);
+	}
+
+}
+
+static void __calc_W(void)
+{
+	int j;
+	double sum = 0;
+
+	for (j = 0; j < N; j++)
+		sum += (1 - H[j]);
+
+	for (j = 0; j < N; j++)
+		W[j] = (1 - H[j]) / sum;
+}
+
+__unused static void __shanxi_method(void)
+{
+	__dump_matrix_mn("X", X);
+
+	__calc_Y();
+
+	__dump_matrix_mn("Y", Y);
+
+	__translation_transformation();
+
+	__dump_matrix_mn("Z", Z);
+
+	__calc_P();
+
+	__dump_matrix_mn("P", P);
+
+	__calc_H();
+	
+	__dump_matrix_n("H", H);
+
+	__calc_W();
+	
+	__dump_matrix_n("W", W);
+}
+
+static double Z_[M][N];
+static double S_[N];
+static double D_[N];
+static double W_[N];
+
+static void __calc_Z_(void)
+{
+	int i, j;
+	double sum_xij = 0;
+
+	for (j = 0; j < N; j++) {
+		sum_xij = 0;
+		for (i = 0; i < M; i++) {
+			sum_xij += (X[i][j] * X[i][j]);
+		}
+
+		for (i = 0; i < M; i++) {
+			Z_[i][j] = X[i][j] / (sqrt(sum_xij));
+		}
+	}
+}
+
+static void __calc_S_(void)
+{
+	int i, j;
+	double sum_zij = 0;
+	
+	for (j = 0; j < N; j++) {
+		sum_zij = 0;
+		for (i = 0; i < M; i++) {
+			sum_zij += (Z_[i][j] * log(Z_[i][j]));
+		}
+
+		S_[j] = - sum_zij / log(M);
+	}
+	
+}
+
+static void __calc_D_(void)
+{
+	int j;
+	
+	for (j = 0; j < N; j++)
+		D_[j] = 1 - S_[j];
+}
+
+static void __calc_W_(void)
+{
+	int j;
+	double sum = 0;
+
+	for (j = 0; j < N; j++)
+		sum += D_[j];
+
+	LOG("sum is %lf\n", sum);
+
+	W_[j] = D_[j] / sum;
+}
+
+__unused static void __method2(void)
+{
+	__dump_matrix_mn("X", X);
+
+	__calc_Z_();
+	__dump_matrix_mn("Z_", Z_);
+
+	__calc_S_();
+	__dump_matrix_n("S_", S_);
+
+	__calc_D_();
+	__dump_matrix_n("D_", D_);
+
+	__calc_W_();
+	__dump_matrix_n("W_", W_);
+}
+
+int main(void)
+{
+	__shanxi_method();
+	//__method2();
+
+	//LOG("%lf\n", sqrt(9.0));
+	//LOG("%lf\n", log(2.718));
+	return 0;
+}
+
+/* vim: set ts=8 sts=8 sw=8 noexpandtab: */
