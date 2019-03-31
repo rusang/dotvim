@@ -52,6 +52,7 @@ DISABLE_AUTO_UPDATE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git autojump fancy-ctrl-z tmux zsh-autosuggestions web-search lighthouse python man)
+# plugins=(autojump fancy-ctrl-z tmux web-search lighthouse python man)
 
 # User configuration
 
