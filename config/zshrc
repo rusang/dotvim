@@ -8,6 +8,7 @@ export ZSH=$HOME/.oh-my-zsh
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="agnoster"
 ZSH_THEME="powerline"
+# ZSH_THEME="seeker"
 # ZSH_THEME="bullet-train"
 # ZSH_THEME="ys"
 # ZSH_THEME="avit"
@@ -51,7 +52,8 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump fancy-ctrl-z tmux zsh-autosuggestions web-search lighthouse python man)
+plugins=(git autojump fancy-ctrl-z tmux zsh-autosuggestions web-search lighthouse python man history-search-multi-word)
+# plugins=(autojump fancy-ctrl-z tmux zsh-autosuggestions web-search lighthouse python man history-search-multi-word)
 # plugins=(autojump fancy-ctrl-z tmux web-search lighthouse python man)
 
 # User configuration
