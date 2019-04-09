@@ -138,8 +138,10 @@ filetype on
 "filetype off                                          "禁用文件类型侦测
 
 if g:islinux
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
+    "set rtp+=~/.vim/bundle/vundle/
+    "call vundle#rc()
 else
     set rtp+=$VIM/vimfiles/bundle/vundle/
     call vundle#rc('$VIM/vimfiles/bundle/')
@@ -189,6 +191,14 @@ endif
 " Bundle 'tomtom/tlib_vim'
 " Bundle 'garbas/vim-snipmate'
 " Bundle 'honza/vim-snippets'
+"
+" let Vundle manage Vundle, required
+"Plugin 'VundleVim/Vundle.vim'
+
+
+" All of your Plugins must be added before the following line
+"call vundle#end()            " required
+"filetype plugin indent on    " required
 
 " -----------------------------------------------------------------------------
 "  < 编码配置 >
@@ -211,7 +221,7 @@ if (g:iswindows && g:isGUI)
     language messages zh_CN.utf-8
 endif
 
-" disable the Press ENTER or type command to continue prompt that appears after executing an external command 
+" disable the Press ENTER or type command to continue prompt that appears after executing an external command
 
 " -----------------------------------------------------------------------------
 "  < 编写文件时的配置 >
@@ -227,7 +237,7 @@ set tabstop=8                                         "设置Tab键的宽度
 set softtabstop=8
 set shiftwidth=8                                      "换行时自动缩进4个空格
 " set tw=78
-" set ts=8 sw=8 tw=78 ai noexpandtab 
+" set ts=8 sw=8 tw=78 ai noexpandtab
 set smarttab                                          "指定按一次backspace就删除shiftwidth宽度的空格
 set foldenable                                        "启用折叠
 set foldmethod=indent                                 "indent 折叠方式
@@ -928,14 +938,14 @@ endif
 " The cscope prefix key.
 nnoremap    [cscope]   <Nop>
 nmap 1  [cscope]
-noremap [cscope]f : cs f f 
-noremap [cscope]e : cs f e 
-noremap [cscope]g : cs f g 
-noremap [cscope]t : cs f t 
-noremap [cscope]i : cs f i 
-noremap [cscope]d : cs f d 
-noremap [cscope]s : cs f s 
-noremap [cscope]c : cs f c 
+noremap [cscope]f : cs f f
+noremap [cscope]e : cs f e
+noremap [cscope]g : cs f g
+noremap [cscope]t : cs f t
+noremap [cscope]i : cs f i
+noremap [cscope]d : cs f d
+noremap [cscope]s : cs f s
+noremap [cscope]c : cs f c
 
 
 " -----------------------------------------------------------------------------
@@ -1588,7 +1598,7 @@ colorscheme     monokai
 " colorscheme     dracula
 " colorscheme     yaflandia
 " colorscheme     radicalgoodspeed
-" colorscheme    Revolution 
+" colorscheme    Revolution
 " colorscheme     flattr
 " colorscheme     slate
 " colorscheme     solarized
@@ -1674,7 +1684,7 @@ let g:ctrlsf_mapping = {
 " The unit prefix key.
 nnoremap    [ctrlsf]   <Nop>
 nmap 8  [ctrlsf]
-nnoremap [ctrlsf]f :CtrlSF 
+nnoremap [ctrlsf]f :CtrlSF
 nnoremap [ctrlsf]o : CtrlSFOpen <CR>
 nnoremap [ctrlsf]p : CtrlSFUpdate <CR>
 
@@ -2159,7 +2169,7 @@ nnoremap <silent>[misc]a :FZFFreshMru<cr>
 "--------------------------------------------------------------------
 "unite-fzf
 "--------------------------------------------------------------------
-call unite#filters#matcher_default#use(['matcher_fzf'])
+"call unite#filters#matcher_default#use(['matcher_fzf'])
 
 "--------------------------------------------------------------------
 "current-func-info.vim
@@ -2499,5 +2509,3 @@ nnoremap <c-F8> :e!<CR>
 map ;i :norm i
 map ;x :norm x
 map ;' mz'a<Esc>O#if 0<Esc>'zo<Esc>i#endif<Esc>
-" vmap ;' '<O<Esc>i#if 0<Esc>'>o<Esc>i#endif<Esc>
-

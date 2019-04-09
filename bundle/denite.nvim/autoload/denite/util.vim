@@ -35,7 +35,7 @@ function! denite#util#execute_path(command, path) abort
   endif
 
   try
-    execute a:command escape(s:expand(a:path), '$')
+    execute a:command escape(s:expand(a:path), '[]$')
   catch /^Vim\%((\a\+)\)\=:E325/
     " Ignore swap file error
   catch
@@ -61,6 +61,16 @@ function! denite#util#echo(color, string) abort
   execute 'echohl' a:color
   echon a:string
   echohl NONE
+endfunction
+
+function! denite#util#getchar(...) abort
+  try
+    return call('getchar', a:000)
+  catch /^Vim:Interrupt/
+    return 3
+  catch
+    return 0
+  endtry
 endfunction
 
 function! denite#util#open(filename) abort
@@ -111,6 +121,14 @@ function! denite#util#open(filename) abort
   else
     " Give up.
     throw 'Not supported.'
+  endif
+endfunction
+
+function! denite#util#cd(path) abort
+  if exists('*nvim_set_current_dir')
+    call nvim_set_current_dir(a:path)
+  else
+    silent execute 'lcd' fnameescape(a:path)
   endif
 endfunction
 
@@ -199,4 +217,22 @@ function! denite#util#input_yesno(message) abort
   redraw
 
   return yesno =~? 'y\%[es]'
+endfunction
+
+function! denite#util#has_yarp() abort
+  return !has('nvim')
+endfunction
+function! denite#util#rpcrequest(method, args) abort
+  if !denite#init#_check_channel()
+    return -1
+  endif
+
+  if denite#util#has_yarp()
+    if g:denite#_yarp.job_is_dead
+      return -1
+    endif
+    return g:denite#_yarp.request(a:method, a:args)
+  else
+    return rpcrequest(g:denite#_channel_id, a:method, a:args)
+  endif
 endfunction

@@ -5,7 +5,7 @@
 # ============================================================================
 
 from itertools import filterfalse
-from .openable import Kind as Openable
+from denite.kind.openable import Kind as Openable
 
 
 class Kind(Openable):
@@ -21,7 +21,7 @@ class Kind(Openable):
 
     def action_open(self, context):
         for target in context['targets']:
-            self.vim.command('buffer {0}'.format(target['action__bufnr']))
+            self.vim.command(f'buffer {target["action__bufnr"]}')
 
     def action_delete(self, context):
         for target in context['targets']:
@@ -31,7 +31,7 @@ class Kind(Openable):
     def action_preview(self, context):
         target = context['targets'][0]
 
-        if (not context['auto_preview'] and
+        if (context['auto_action'] != 'preview' and
                 self._get_preview_window() and
                 self._previewed_target == target):
             self.vim.command('pclose!')

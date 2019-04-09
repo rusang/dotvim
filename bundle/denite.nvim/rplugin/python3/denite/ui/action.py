@@ -18,6 +18,10 @@ def _do_action(prompt, params):
     return prompt.denite.do_action(params)
 
 
+def _do_previous_action(prompt, params):
+    return prompt.denite.do_action(prompt.denite._prev_action)
+
+
 def _choose_action(prompt, params):
     return prompt.denite.choose_action()
 
@@ -171,6 +175,10 @@ def _restart(prompt, params):
     return prompt.denite.restart()
 
 
+def _restore_sources(prompt, params):
+    return prompt.denite.restore_sources(prompt.denite._context)
+
+
 def _toggle_select(prompt, params):
     index = prompt.denite._cursor + prompt.denite._win_cursor - 1
     _toggle_select_candidate(prompt, index)
@@ -225,7 +233,7 @@ def _change_sorters(prompt, params):
 def _print_messages(prompt, params):
     for mes in prompt.denite._context['messages']:
         debug(prompt.nvim, mes)
-    prompt.nvim.call('getchar')
+    prompt.nvim.call('denite#util#getchar')
 
 
 def _change_path(prompt, params):
@@ -304,53 +312,7 @@ def _insert_to_head(prompt, params):
 
 
 def _quick_move(prompt, params):
-    def get_quick_move_table():
-        table = {}
-        context = prompt.denite._context
-        base = prompt.denite._win_cursor
-        for [key, number] in context['quick_move_table'].items():
-            number = int(number)
-            pos = (base - number) if context['reversed'] else (number + base)
-            if pos > 0:
-                table[key] = pos
-        return table
-
-    def quick_move_redraw(table, is_define):
-        bufnr = _vim.current.buffer.number
-        for [key, number] in table.items():
-            signid = 2000 + number
-            name = 'denite_quick_move_' + str(number)
-            if is_define:
-                _vim.command(
-                    'sign define {0} text={1} texthl=Special'.format(
-                        name, key))
-                _vim.command(
-                    'sign place {0} name={1} line={2} buffer={3}'.format(
-                        signid, name, number, bufnr))
-            else:
-                _vim.command('silent! sign unplace {0} buffer={1}'.format(
-                    signid, bufnr))
-                _vim.command('silent! sign undefine ' + name)
-
-    _vim = prompt.denite._vim
-
-    quick_move_table = get_quick_move_table()
-    _vim.command('redraw')
-    _vim.command('echo "Input quick match key: "')
-    quick_move_redraw(quick_move_table, True)
-
-    char = ''
-    while char == '':
-        char = _vim.call('nr2char', _vim.call('getchar'))
-
-    quick_move_redraw(quick_move_table, False)
-
-    if (char not in quick_move_table or
-            quick_move_table[char] > prompt.denite._winheight):
-        return
-
-    prompt.denite._win_cursor = quick_move_table[char]
-    prompt.denite.update_cursor()
+    prompt.denite.quick_move()
 
 
 def _multiple_mappings(prompt, params):
@@ -385,6 +347,7 @@ DEFAULT_ACTION_RULES = [
     ('denite:change_word', _change_word),
     ('denite:choose_action', _choose_action),
     ('denite:do_action', _do_action),
+    ('denite:do_previous_action', _do_previous_action),
     ('denite:enter_mode', _enter_mode),
     ('denite:input_command_line', _input_command_line),
     ('denite:insert_to_head', _insert_to_head),
@@ -411,6 +374,7 @@ DEFAULT_ACTION_RULES = [
     ('denite:quit', _quit),
     ('denite:redraw', _redraw),
     ('denite:restart', _restart),
+    ('denite:restore_sources', _restore_sources),
     ('denite:scroll_cursor_to_bottom', _scroll_cursor_to_bottom),
     ('denite:scroll_cursor_to_middle', _scroll_cursor_to_middle),
     ('denite:scroll_cursor_to_top', _scroll_cursor_to_top),
@@ -499,6 +463,7 @@ DEFAULT_ACTION_KEYMAP = {
         ('<C-L>', '<denite:redraw>', 'noremap'),
         ('<C-R>', '<denite:restart>', 'noremap'),
         ('<Space>', '<denite:toggle_select_down>', 'noremap'),
+        ('.', '<denite:do_previous_action>', 'noremap'),
         ('*', '<denite:toggle_select_all>', 'noremap'),
         ('M', '<denite:print_messages>', 'noremap'),
         ('P', '<denite:change_path>', 'noremap'),
@@ -506,6 +471,7 @@ DEFAULT_ACTION_KEYMAP = {
         ('b', '<denite:move_caret_to_one_word_left>', 'noremap'),
         ('w', '<denite:move_caret_to_next_word>', 'noremap'),
         ('0', '<denite:move_caret_to_head>', 'noremap'),
+        ('u', '<denite:restore_sources>', 'noremap'),
         ('$', '<denite:move_caret_to_tail>', 'noremap'),
         ('cc', '<denite:change_line>', 'noremap'),
         ('S', '<denite:change_line>', 'noremap'),

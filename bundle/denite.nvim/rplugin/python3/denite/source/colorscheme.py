@@ -6,7 +6,7 @@
 
 from os import path
 
-from denite.source.base import Base
+from denite.base.source import Base
 from denite.kind.command import Kind as Command
 
 from denite.util import globruntime
@@ -21,11 +21,12 @@ class Source(Base):
         self.kind = Kind(vim)
 
     def on_init(self, context):
-        context['__current_color'] = self.vim.vars['colors_name']
+        context['__current_color'] = self.vim.vars.get(
+            'colors_name', 'default')
 
     def on_close(self, context):
-        self.vim.command('silent colorscheme {}'.format(
-            context['__current_color']))
+        self.vim.command(
+            f'silent colorscheme {context["__current_color"]}')
 
     def gather_candidates(self, context):
         colorschemes = {}
@@ -48,4 +49,4 @@ class Kind(Command):
 
     def action_preview(self, context):
         target = context['targets'][0]
-        self.vim.command('silent colorscheme {}'.format(target['word']))
+        self.vim.command(f'silent colorscheme {target["word"]}')

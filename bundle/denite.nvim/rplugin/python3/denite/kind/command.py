@@ -4,7 +4,7 @@
 # License: MIT license
 # ============================================================================
 
-from denite.kind.base import Base
+from denite.base.kind import Base
 from denite import util
 
 
@@ -43,4 +43,4 @@ class Kind(Base):
             return
         self.vim.command('redraw')
         self.debug(output)
-        self.vim.call('getchar')
+        self.vim.call('denite#util#getchar')

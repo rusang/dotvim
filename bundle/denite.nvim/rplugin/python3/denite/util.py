@@ -5,6 +5,7 @@
 # ============================================================================
 
 import importlib.util
+import inspect
 import re
 import os
 import sys
@@ -61,12 +62,9 @@ def regex_convert_py_vim(expr):
     return r'\v' + re.sub(r'(?!\\)([/~])', r'\\\1', expr)
 
 
-def escape_fuzzy(string, camelcase):
+def escape_fuzzy(string):
     # Escape string for python regexp.
     p = re.sub(r'([a-zA-Z0-9_-])(?!$)', r'\1[^\1]*', string)
-    if camelcase and re.search(r'[A-Z](?!$)', string):
-        p = re.sub(r'([a-z])(?!$)',
-                   (lambda pat: '['+pat.group(1)+pat.group(1).upper()+']'), p)
     p = re.sub(r'/(?!$)', r'/[^/]*', p)
     return p
 
@@ -139,10 +137,6 @@ def convert2fuzzy_pattern(text):
     def esc(string):
         # Escape string for convert2fuzzy_pattern.
         p = re.sub(r'([a-zA-Z0-9_-])(?!$)', r'\1[^\1]{-}', string)
-        if re.search(r'[A-Z](?!$)', string):
-            p = re.sub(r'([a-z])(?!$)',
-                       (lambda pat:
-                        '['+pat.group(1)+pat.group(1).upper()+']'), p)
         p = re.sub(r'/(?!$)', r'/[^/]*', p)
         return p
     return '|'.join([esc(x) for x in split_input(text)])
@@ -223,11 +217,6 @@ def find_rplugins(context, source, loaded_paths):
                     # __init__.py in {root} does not have implementation
                     # so skip
                     continue
-                elif module_path == 'base' and source != 'kind':
-                    # base.py in {root} does not have implementation so skip
-                    # NOTE: kind/base.py DOES have implementation so do
-                    # NOT skip
-                    continue
                 if os.path.basename(module_path) == '__init__':
                     # 'foo/__init__.py' should be loaded as a module 'foo'
                     module_path = os.path.dirname(module_path)
@@ -251,7 +240,8 @@ def import_rplugins(name, context, source, loaded_paths):
         spec = importlib.util.spec_from_file_location(module_name, path)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
-        if not hasattr(module, name):
+        if (not hasattr(module, name) or
+                inspect.isabstract(getattr(module, name))):
             continue
         yield (getattr(module, name), path, module_path)
 
@@ -273,8 +263,14 @@ def parse_tagline(line, tagpath):
     rest = '\t'.join(elem[2:])
     m = re.search(r'.*;"', rest)
     if not m:
+        # Old format
         if len(elem) >= 3:
-            info['line'] = elem[2]
+            if re.match(r'\d+$', elem[2]):
+                info['line'] = elem[2]
+            else:
+                info['pattern'] = re.sub(
+                    r'([~.*\[\]\\])', r'\\\1',
+                    re.sub(r'^/|/;"$', '', elem[2]))
         return info
 
     pattern = m.group(0)

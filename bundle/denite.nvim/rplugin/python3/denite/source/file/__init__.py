@@ -7,7 +7,7 @@
 import glob
 import os
 
-from denite.source.base import Base
+from denite.base.source import Base
 from denite.util import abspath, expand
 
 
@@ -39,10 +39,13 @@ class Source(Base):
             glb += '/.*' if os.path.basename(
                 filename).startswith('.') else '/*'
             for f in glob.glob(glb):
+                fullpath = abspath(self.vim, f)
                 candidates.append({
                     'word': f,
-                    'abbr': f + ('/' if os.path.isdir(f) else ''),
+                    'abbr': (os.path.relpath(f, path) if fullpath != path
+                             else os.path.normpath(f)) + (
+                                 '/' if os.path.isdir(f) else ''),
                     'kind': ('directory' if os.path.isdir(f) else 'file'),
-                    'action__path': abspath(self.vim, f),
+                    'action__path': fullpath,
                 })
         return candidates

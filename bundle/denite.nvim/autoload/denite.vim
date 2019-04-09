@@ -45,13 +45,11 @@ function! s:start(sources, user_context) abort
   execute line('.')
   call setpos('.', pos)
 
-  let context = denite#init#_context(a:user_context)
-  return has('nvim') ? _denite_start(a:sources, context)
-        \            : denite#vim#_start(a:sources, context)
+  let args = [a:sources, a:user_context]
+  return denite#util#rpcrequest('_denite_start', args)
 endfunction
 
 function! denite#do_action(context, action_name, targets) abort
-  return has('nvim') ?
-        \ _denite_do_action(a:context, a:action_name, a:targets) :
-        \ denite#vim#_do_action(a:context, a:action_name, a:targets)
+  let args = [a:context, a:action_name, a:targets]
+  return denite#util#rpcrequest('_denite_do_action', args)
 endfunction

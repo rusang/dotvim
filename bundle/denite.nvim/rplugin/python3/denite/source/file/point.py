@@ -7,7 +7,7 @@
 from re import sub, match
 import os
 
-from denite.source.base import Base
+from denite.base.source import Base
 from denite.util import parse_jump_line, expand, abspath
 
 
@@ -20,7 +20,7 @@ class Source(Base):
         self.kind = 'file'
 
     def on_init(self, context):
-        context['__line'] = self.vim.current.line
+        context['__line'] = self.vim.call('getline', '.')
         context['__cfile'] = expand(self.vim.call('expand', '<cfile>'))
 
     def gather_candidates(self, context):
@@ -28,7 +28,7 @@ class Source(Base):
             self.vim.call('getcwd'), context['__line'])
         if result and os.path.isfile(result[0]):
             return [{
-                'word': '{0}: {1}{2}: {3}'.format(
+                'word': '{}: {}{}: {}'.format(
                     result[0], result[1],
                     (':' + result[2] if result[2] != '0' else ''),
                     result[3]),
