@@ -2509,3 +2509,18 @@ nnoremap <c-F8> :e!<CR>
 map ;i :norm i
 map ;x :norm x
 map ;' mz'a<Esc>O#if 0<Esc>'zo<Esc>i#endif<Esc>
+
+
+"--------------------------------------------------------------------
+"unite-location settings
+"--------------------------------------------------------------------
+nnoremap <silent> <space>p  :<C-u>Denite -resume<CR>
+nnoremap <silent> <space>j  :call execute('Denite -resume -select=+'.v:count1.' -immediately')<CR>
+nnoremap <silent> <space>k  :call execute('Denite -resume -select=-'.v:count1.' -immediately')<CR>
+nnoremap <silent> <space>q  :<C-u>Denite -mode=normal -auto-resize quickfix<CR>
+nnoremap <silent> <space>l  :<C-u>Denite -mode=normal -auto-resize location_list<CR>
+
+"--------------------------------------------------------------------
+" deoplete.nvim settings
+"--------------------------------------------------------------------
+let g:deoplete#enable_at_startup = 1
