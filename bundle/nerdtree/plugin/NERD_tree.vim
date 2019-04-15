@@ -103,8 +103,8 @@ if !exists('g:NERDTreeStatusline')
     let g:NERDTreeStatusline = "%{exists('b:NERDTree')?b:NERDTree.root.path.str():''}"
 
 endif
-call s:initVariable("g:NERDTreeWinPos", "left")
-call s:initVariable("g:NERDTreeWinSize", 31)
+call s:initVariable("g:NERDTreeWinPos", "right")
+call s:initVariable("g:NERDTreeWinSize", 30)
 
 "init the shell commands that will be used to copy nodes, and remove dir trees
 "

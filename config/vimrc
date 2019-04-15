@@ -13,6 +13,12 @@ else
     let g:islinux = 1
 endif
 
+if has('python3')
+   set pyx=3
+else
+   set pyx=2
+endif
+
 " -----------------------------------------------------------------------------
 "  < 判断是终端还是 Gvim >
 " -----------------------------------------------------------------------------
@@ -599,6 +605,8 @@ let g:indentLine_color_term = 239
 " let g:miniBufExplMapCTabSwitchBufs = 1      "功能增强（不过好像只有在Windows中才有用）
 " "                                            <C-Tab> 向前循环切换到每个buffer上,并在但前窗口打开
 " "                                            <C-S-Tab> 向后循环切换到每个buffer上,并在当前窗口打开
+let g:python_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python3'
 
 " 在不使用 MiniBufExplorer 插件时也可用<C-k,j,h,l>切换到上下左右的窗口中去
 noremap <c-k> <c-w>k
@@ -617,8 +625,6 @@ imap <c-h> <Left>
 
 " Ctrl + L 插入模式下光标向右移动
 imap <c-l> <Right>
-
-
 
 " -----------------------------------------------------------------------------
 "  < nerdcommenter 插件配置 >
@@ -872,6 +878,11 @@ nmap tt :TlistClose<CR>:TagbarToggle<CR>
 let g:tagbar_width=20                       "设置窗口宽度
 let g:tagbar_left=1                         "在右侧窗口中显示
 "let g:tagbar_right=1                         "在右侧窗口中显示
+let g:tagbar_autopreview=1
+let g:tagbar_autoshowtag=1
+let g:tagbar_previewwin_pos="rightbelow""
+highlight TagbarScope guifg=Green ctermfg=Green
+autocmd FileType c,cpp,h,hpp,cc nested :TagbarOpen
 
 " -----------------------------------------------------------------------------
 "  < TagList 插件配置 >
@@ -938,15 +949,14 @@ endif
 " The cscope prefix key.
 nnoremap    [cscope]   <Nop>
 nmap 1  [cscope]
-noremap [cscope]f : cs f f
-noremap [cscope]e : cs f e
-noremap [cscope]g : cs f g
-noremap [cscope]t : cs f t
-noremap [cscope]i : cs f i
-noremap [cscope]d : cs f d
-noremap [cscope]s : cs f s
-noremap [cscope]c : cs f c
-
+noremap [cscope]f : cs f f 
+noremap [cscope]e : cs f e 
+noremap [cscope]g : cs f g 
+noremap [cscope]t : cs f t 
+noremap [cscope]i : cs f i 
+noremap [cscope]d : cs f d 
+noremap [cscope]s : cs f s 
+noremap [cscope]c : cs f c 
 
 " -----------------------------------------------------------------------------
 "  < ctags 工具配置 >
@@ -1313,15 +1323,6 @@ nnoremap <silent>[unite]m :Unite -silent -start-insert menu:git<CR>
 nnoremap <silent>[unite]g :Unite -silent  -vertical gitlog:all<CR>
 nnoremap <silent>[unite]l :Unite -silent  -vertical gitlog<CR>
 let g:unite_source_gitlog_default_opts = '--graph --color=auto --pretty=format:''%h -%d %s (%cr) <%an>'' --abbrev-commit --date=relative'
-"---------------------------------------------------------------
-"unite-giti-vim settings
-"---------------------------------------------------------------
-nnoremap <space>b :Unite giti/branch_all<cr>
-nnoremap <space>s :Unite giti/status<cr>
-nnoremap <space>ci :Git ci<cr>
-nnoremap <space>di :Git diff<cr>
-nnoremap <space>pp :Git push origin
-nnoremap <space>r :Git remote -v<cr>
 
 "---------------------------------------------------------------
 "vim-bbye settings
@@ -1684,7 +1685,7 @@ let g:ctrlsf_mapping = {
 " The unit prefix key.
 nnoremap    [ctrlsf]   <Nop>
 nmap 8  [ctrlsf]
-nnoremap [ctrlsf]f :CtrlSF
+nnoremap [ctrlsf]f :CtrlSF 
 nnoremap [ctrlsf]o : CtrlSFOpen <CR>
 nnoremap [ctrlsf]p : CtrlSFUpdate <CR>
 
@@ -2163,8 +2164,6 @@ augroup END
 nnoremap    [misc]   <Nop>
 nmap 0  [misc]
 
-nnoremap <silent>[misc]f :FilesMru --tiebreak=end<cr>
-nnoremap <silent>[misc]a :FZFFreshMru<cr>
 
 "--------------------------------------------------------------------
 "unite-fzf
@@ -2285,32 +2284,6 @@ let g:filebeagle_statusline = get(g:, 'filebeagle_statusline', '%( %{FileBeagleS
 
 " 1}}}
 
-"--------------------------------------------------------------------
-" limelight.vim
-"--------------------------------------------------------------------
-" Color name (:help cterm-colors) or ANSI code
-let g:limelight_conceal_ctermfg = 'gray'
-let g:limelight_conceal_ctermfg = 240
-
-" Color name (:help gui-colors) or RGB color
-let g:limelight_conceal_guifg = 'DarkGray'
-let g:limelight_conceal_guifg = '#777777'
-
-" Default: 0.5
-let g:limelight_default_coefficient = 0.7
-
-" Number of preceding/following paragraphs to include (default: 0)
-let g:limelight_paragraph_span = 10
-
-" Beginning/end of paragraph
-"   When there's no empty line between the paragraphs
-"   and each paragraph starts with indentation
-let g:limelight_bop = '^\s'
-let g:limelight_eop = '\ze\n^\s'
-
-" Highlighting priority (default: 10)
-"   Set it to -1 not to overrule hlsearch
-let g:limelight_priority = -1
 
 "--------------------------------------------------------------------
 " ranger.vim settings
@@ -2512,15 +2485,32 @@ map ;' mz'a<Esc>O#if 0<Esc>'zo<Esc>i#endif<Esc>
 
 
 "--------------------------------------------------------------------
-"unite-location settings
+" Denite.vim settings
 "--------------------------------------------------------------------
-nnoremap <silent> <space>p  :<C-u>Denite -resume<CR>
+" nnoremap <silent> <space>p  :<C-u>Denite -resume<CR>
+nnoremap <silent> <space>p  :<C-u>Denite -mode=normal -auto-resize neoyank<CR>
 nnoremap <silent> <space>j  :call execute('Denite -resume -select=+'.v:count1.' -immediately')<CR>
 nnoremap <silent> <space>k  :call execute('Denite -resume -select=-'.v:count1.' -immediately')<CR>
 nnoremap <silent> <space>q  :<C-u>Denite -mode=normal -auto-resize quickfix<CR>
 nnoremap <silent> <space>l  :<C-u>Denite -mode=normal -auto-resize location_list<CR>
+nnoremap <silent> <space>b  :<C-u>Denite -mode=normal -auto-resize buffer<CR>
+
+nnoremap <silent> <space>f  :FilesMru --tiebreak=end<cr>
+nnoremap <silent> <space>a  :FZFFreshMru<cr>
 
 "--------------------------------------------------------------------
 " deoplete.nvim settings
 "--------------------------------------------------------------------
 let g:deoplete#enable_at_startup = 1
+
+"--------------------------------------------------------------------
+" quickfix-reflector.vim  settings
+"--------------------------------------------------------------------
+let g:qf_modifiable = 1
+" If 1, automatically sets quickfix buffers 'modifiable'. If you prefer to do this manually, set the value to 0. Default: 1.
+
+let g:qf_join_changes = 1
+" If 1, changes within a single buffer will be joined using |:undojoin|, allowing them to be undone as a unit. Default: 0.
+
+let g:qf_write_changes = 1
+" If 1, writing the quickfix buffer will also write corresponding files. If 0, buffers of corresponding files will be changed but not written, allowing you to preview the changes before writing the individual buffers yourself. Default: 1

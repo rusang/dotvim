@@ -102,7 +102,7 @@ alias r=trash
 alias rl='ls ~/.Trash'
 alias ur=undelfile
 alias realrm='/bin/rm'
-# alias vf='vim \$\(fzf\)'
+# alias vf='vim $(fzf)'
 
 undelfile()
 {
