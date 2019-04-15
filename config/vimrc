@@ -543,8 +543,12 @@ set vb t_vb=                                "关闭提示音
 " -----------------------------------------------------------------------------
 " 用于括号与引号自动补全，不过会与函数原型提示插件echofunc冲突
 " 所以我就没有加入echofunc插件
+let g:AutoPairsMapCR = 0
+imap <expr><CR> "\<CR>\<Plug>AutoPairsReturn"
+" imap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>\<Plug>AutoPairsReturn"
+" inoremap <CR> <C-R>=neocomplcache#smart_close_popup()<CR><CR>
 
-" -----------------------------------------------------------------------------
+"-----------------------------------------------------------------------------
 "  < BufExplorer 插件配置 >
 " -----------------------------------------------------------------------------
 " 快速轻松的在缓存中切换（相当于另一种多个文件间的切换方式）
@@ -880,7 +884,8 @@ let g:tagbar_left=1                         "在右侧窗口中显示
 "let g:tagbar_right=1                         "在右侧窗口中显示
 let g:tagbar_autopreview=1
 let g:tagbar_autoshowtag=1
-let g:tagbar_previewwin_pos="rightbelow""
+" let g:tagbar_previewwin_pos="rightbelow""
+let g:tagbar_previewwin_pos="aboveleft"
 highlight TagbarScope guifg=Green ctermfg=Green
 autocmd FileType c,cpp,h,hpp,cc nested :TagbarOpen
 
@@ -1183,7 +1188,7 @@ if !exists('g:airline_symbols')
 " let g:airline_right_sep = '◀'
 " let g:airline_symbols.linenr = '␊'
 " let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
+" let g:airline_symbols.linenr = '¶'
 " let g:airline_symbols.branch = '⎇'
 " let g:airline_symbols.paste = 'ρ'
 " let g:airline_symbols.paste = 'Þ'
@@ -1701,9 +1706,9 @@ nnoremap <space>hn :GitGutterLineHighlightsDisable<CR>
 "neosnippet.vim  settings
 "--------------------------------------------------------------------
 " Plugin key-mappings.
-imap <C-j>     <Plug>(neosnippet_expand_or_jump)
-smap <C-j>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-j>     <Plug>(neosnippet_expand_target)
+" imap <C-j>     <Plug>(neosnippet_expand_or_jump)
+" smap <C-j>     <Plug>(neosnippet_expand_or_jump)
+" xmap <C-j>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
 "imap <expr><TAB>
@@ -1740,7 +1745,7 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/config/.ycm_extra_conf.py'
 
 " let g:ycm_key_list_select_completion=[]
 " let g:ycm_key_list_previous_completion=[]
-let g:UltiSnipsExpandTrigger = "<c-j>"
+" let g:UltiSnipsExpandTrigger = "<c-j>"
 let g:ycm_server_use_vim_stdout = 1
 let g:ycm_server_log_level = 'debug'
 let g:ycm_enable_diagnostic_highlighting = 1
