@@ -543,10 +543,14 @@ set vb t_vb=                                "关闭提示音
 " -----------------------------------------------------------------------------
 " 用于括号与引号自动补全，不过会与函数原型提示插件echofunc冲突
 " 所以我就没有加入echofunc插件
-let g:AutoPairsMapCR = 0
-imap <expr><CR> "\<CR>\<Plug>AutoPairsReturn"
-" imap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>\<Plug>AutoPairsReturn"
+" let g:AutoPairsMapCR = 1
+" imap <expr><CR> "\<CR>\<Plug>AutoPairsReturn"
 " inoremap <CR> <C-R>=neocomplcache#smart_close_popup()<CR><CR>
+" set runtimepath+=~/.vim/bundle/auto-pairs
+" 把BACKSPACE键映射为删除括号对和引号，默认为1。
+let g:AutoPairsMapBS = 0
+" 把ctrl+h键映射为删除括号对和引号，默认为1。
+let g:AutoPairsMapCh = 0
 
 "-----------------------------------------------------------------------------
 "  < BufExplorer 插件配置 >
@@ -1753,7 +1757,7 @@ let g:ycm_enable_diagnostic_highlighting = 1
 "let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif "离开插入模式后自动关闭预览窗口
-inoremap <expr> <space>       pumvisible() ? "\<C-y>" : "\<space>"  "按空格键即选中当前项
+" inoremap <expr> <space>       pumvisible() ? "\<C-y>" : "\<space>"  "按空格键即选中当前项
 let g:ycm_cache_omnifunc=1 " Do not 每次都重新生成缓存匹配项
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_collect_identifiers_from_tags_files = 0 " do not include ctags, cause it's too big some times.
@@ -2519,3 +2523,28 @@ let g:qf_join_changes = 1
 
 let g:qf_write_changes = 1
 " If 1, writing the quickfix buffer will also write corresponding files. If 0, buffers of corresponding files will be changed but not written, allowing you to preview the changes before writing the individual buffers yourself. Default: 1
+"
+"--------------------------------------------------------------------
+" pear-tree  settings
+"--------------------------------------------------------------------
+" Default rules for matching:
+let g:pear_tree_pairs = {
+            \ '(': {'closer': ')'},
+            \ '[': {'closer': ']'},
+            \ '{': {'closer': '}'},
+            \ '<': {'closer': '>'},
+            \ '/\*': {'closer': '\*/'},
+            \ "'": {'closer': "'"},
+            \ '"': {'closer': '"'}
+            \ }
+" See pear-tree/after/ftplugin/ for filetype-specific matching rules
+
+" Pear Tree is enabled for all filetypes by default:
+let g:pear_tree_ft_disabled = []
+
+let g:pear_tree_repeatable_expand = 0
+let g:pear_tree_smart_openers = 1
+let g:pear_tree_smart_closers = 1
+let g:pear_tree_smart_backspace = 1
+
+imap <CR> <Plug>(PearTreeFinishExpansion)
