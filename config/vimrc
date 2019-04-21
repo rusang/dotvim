@@ -2545,12 +2545,21 @@ let g:qf_write_changes = 1
 " pear-tree  settings
 "--------------------------------------------------------------------
 " Default rules for matching:
+" let g:pear_tree_pairs = {
+"             \ '(': {'closer': ')'},
+"             \ '[': {'closer': ']'},
+"             \ '{': {'closer': '}'},
+"             \ '<': {'closer': '>'},
+"             \ '/\*': {'closer': '\*/'},
+"             \ "'": {'closer': "'"},
+"             \ '"': {'closer': '"'}
+"             \ }
+
 let g:pear_tree_pairs = {
             \ '(': {'closer': ')'},
             \ '[': {'closer': ']'},
             \ '{': {'closer': '}'},
             \ '<': {'closer': '>'},
-            \ '/\*': {'closer': '\*/'},
             \ "'": {'closer': "'"},
             \ '"': {'closer': '"'}
             \ }
