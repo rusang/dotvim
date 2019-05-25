@@ -1192,6 +1192,11 @@ OPTIONS							*denite-options*
 		Previewed line highlight.
 		Default: "Search"
 
+	                            *denite-option-highlight-window-background*
+-highlight-window-background
+		Change backgroud color group in floating window.
+		Default: "NormalFloat"
+
 						*denite-option-ignorecase*
 -ignorecase
 		If it is true, denite ignores the case.
@@ -1439,6 +1444,9 @@ command_history	Gather command histories and run it.
 		Source custom variables:
 		ignore_command_regexp	 the regexp to exclude from histories.
 					Note: python3's regexp
+
+		Source actions:
+		delete		Remove the files from |:history|
 
 						*denite-source-directory_rec*
 directory_rec	Gather directories recursive and nominates all directory names

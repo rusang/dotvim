@@ -174,7 +174,7 @@ function! denite#helper#_set_oldfiles(oldfiles) abort
 endfunction
 function! denite#helper#_get_oldfiles() abort
   return filter(copy(v:oldfiles),
-        \ 'filereadable(expand(v:val)) || buflisted(expand(v:val))')
+        \ 'filereadable(v:val) || buflisted(v:val)')
 endfunction
 
 
@@ -214,4 +214,8 @@ function! denite#helper#_get_wininfo() abort
         \ 'winid': wininfo['winid'],
         \ 'tabnr': wininfo['tabnr'],
         \}
+endfunction
+function! denite#helper#_get_preview_window() abort
+  return len(filter(range(1, winnr('$')),
+        \ "getwinvar(v:val, '&previewwindow') == 1"))
 endfunction

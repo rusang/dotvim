@@ -6,7 +6,6 @@
 
 import re
 import os
-from itertools import filterfalse
 
 from denite.kind.openable import Kind as Openable
 from denite import util
@@ -99,7 +98,7 @@ class Kind(Openable):
                 'col': target['action__col'],
                 'text': target['action__text'],
             }
-            if 'action__bufnr 'in target:
+            if 'action__bufnr' in target:
                 qfloc['bufnr'] = target['action__bufnr']
             else:
                 qfloc['filename'] = target['action__path']
@@ -145,10 +144,9 @@ class Kind(Openable):
             'matchaddpos', context['highlight_preview_line'], [line])
 
     def _get_preview_window(self):
-        return next(filterfalse(lambda x:
-                                not x.options['previewwindow'],
-                                self.vim.windows), None)
+        return self._vim.call('denite#helper#_get_preview_window')
 
+    # Needed for openable actions
     def _jump(self, context, target):
         if 'action__pattern' in target:
             self.vim.call('search', target['action__pattern'], 'w')
