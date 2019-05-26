@@ -881,6 +881,7 @@ let g:syntastic_check_on_wq = 0
 " 相对 TagList 能更好的支持面向对象
 
 " 常规模式下输入 tt 调用插件，如果有打开 TagList 窗口则先将其关闭 //ssliao
+let g:tagbar_sort=0
 nmap tt :TlistClose<CR>:TagbarToggle<CR>
 
 let g:tagbar_width=20                       "设置窗口宽度
@@ -1258,97 +1259,6 @@ let g:vim_run_command_map = {
   \'c': 'c',
   \'cpp': 'cpp',
   \}
-
-
-"---------------------------------------------------------------
-"Denite.vim settings
-"---------------------------------------------------------------
-nnoremap    [Denite]   <Nop>
-nmap 7  [Denite]
-nnoremap <silent>[Denite]f :Denite file/rec<CR>
-
-"---------------------------------------------------------------
-"unite.vim settings
-"---------------------------------------------------------------
-" 打开颜色会出错
-" let g:unite_source_output_shellcmd_colors = 1
-
-" inoremap <silent><buffer><expr> <C-s> unite#do_action('split')
-" inoremap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
-
-" The unit prefix key.
-nnoremap    [unite]   <Nop>
-nmap 9  [unite]
-
-"disable pagedown and pageup
-nnoremap <leader>f :Unite file_rec/async<cr>
-
-let g:unite_source_history_yank_enable = 1
-nnoremap <space>y :Unite history/unite<cr>
-nnoremap <leader>s :Unite -quick-match buffer<cr>
-
-" nnoremap <silent>[menu]g :Unite -silent -start-insert menu:git<CR>
-" nnoremap <silent>[unite]g :Unite -silent -start-insert menu:git<CR>
-nnoremap <silent>[unite]s :Unite output/shellcmd<CR>
-nnoremap <silent>[unite]f :Unite -silent file_mru<CR>
-nnoremap <silent><Leader>f :Unite -silent -start-insert file_rec/async<CR>
-nnoremap <silent><space>f :Unite -silent file<CR>
-nnoremap <silent><space>d :Unite -silent directory<CR>
-nnoremap <silent>[unite]j :Unite -silent -start-insert jump<CR>
-nnoremap <silent>[unite]a :Unite -silent  -vertical history/yank<CR>
-nnoremap <silent>[unite]o :Unite file:../
-nnoremap <silent>[unite]d :Unite -silent -start-insert directory_mru<CR>
-nnoremap <leader>B :UniteBookmarkAdd<CR>
-nnoremap <leader>b :Unite buffer bookmark<CR>
-nnoremap <silent>[unite]b :Unite bookmark:*<CR>
-" nnoremap <silent>[unite]bf :UniteTodoAddBuffer<CR>
-
-let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
-let g:unite_source_menu_menus.git = {
-    \ 'description' : '            gestionar repositorios git
-        \                            ⌘ [espacio]g',
-    \}
-let g:unite_source_menu_menus.git.command_candidates = [
-    \['▷ tig                                                        ⌘ ,gt',
-        \'normal ,gt'],
-    \['▷ git status       (Fugitive)                                ⌘ ,gs',
-        \'Gstatus'],
-    \['▷ git diff         (Fugitive)                                ⌘ ,gd',
-        \'Gdiff'],
-    \['▷ git commit       (Fugitive)                                ⌘ ,gc',
-        \'Gcommit'],
-    \['▷ git log          (Fugitive)                                ⌘ ,gl',
-        \'exe "silent Glog | Unite quickfix"'],
-    \['▷ git blame        (Fugitive)                                ⌘ ,gb',
-        \'Gblame'],
-    \['▷ git stage        (Fugitive)                                ⌘ ,gw',
-        \'Gwrite'],
-    \['▷ git checkout     (Fugitive)                                ⌘ ,go',
-        \'Gread'],
-    \['▷ git rm           (Fugitive)                                ⌘ ,gr',
-        \'Gremove'],
-    \['▷ git mv           (Fugitive)                                ⌘ ,gm',
-        \'exe "Gmove " input("destino: ")'],
-    \['▷ git push         (Fugitive, salida por buffer)             ⌘ ,gp',
-        \'Git! push'],
-    \['▷ git pull         (Fugitive, salida por buffer)             ⌘ ,gP',
-        \'Git! pull'],
-    \['▷ git prompt       (Fugitive, salida por buffer)             ⌘ ,gi',
-        \'exe "Git! " input("comando git: ")'],
-    \['▷ git cd           (Fugitive)',
-        \'Gcd'],
-    \]
-nnoremap <silent>[unite]m :Unite -silent -start-insert menu:git<CR>
-"---------------------------------------------------------------
-"end of unite.vim settings
-"---------------------------------------------------------------
-
-"---------------------------------------------------------------
-"unite-git-log settings
-"---------------------------------------------------------------
-nnoremap <silent>[unite]g :Unite -silent  -vertical gitlog:all<CR>
-nnoremap <silent>[unite]l :Unite -silent  -vertical gitlog<CR>
-let g:unite_source_gitlog_default_opts = '--graph --color=auto --pretty=format:''%h -%d %s (%cr) <%an>'' --abbrev-commit --date=relative'
 
 "---------------------------------------------------------------
 "vim-bbye settings
