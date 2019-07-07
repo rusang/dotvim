@@ -2406,6 +2406,7 @@ nnoremap <space>J <Esc>i<CR><Esc>
 imap <C-o> <esc>o
 
 nnoremap <c-F8> :e!<CR>
+nnoremap <F8> :colorscheme desert<CR>
 
 " Commenting with #:
 " 1. visually select the text rows (using V as usual)
