@@ -161,6 +161,61 @@ ffkill()
     ps -ef | sed 1d | fzf -m | awk '{print $2}' | xargs kill -${1:-9}
 }
 
+cscopelc()
+{
+	if [ "$1" = "update" ] && [ -f cscope.files ]; then
+		echo "Update cscope.out"
+		mkdir -p .cscope
+		/bin/rm -rf .cscope/cscope.out .cscope/cscope.po.out .cscope/cscope.in.out
+		cscope -bkq -i .cscope/cscope.files
+		mv cscope.out cscope.po.out cscope.in.out .cscope/
+		#cd .cscope
+		ctags -R
+	elif [ "$#" != "0" ]; then
+		echo "Build cscope.out"
+		/bin/rm -rf .cscope
+		mkdir -p .cscope
+		find $* -name "*.h" \
+		    -o -name "*.c" \
+		    -o -name "*.cc" \
+		    -o -name "*.cpp" \
+		    -o -name "*.def" \
+		    -o -name "*.s" \
+		    -o -name "*.S" \
+		    -o -name "*.l" \
+		    -o -name "*.y" \
+		    -o -name "Makefile" \
+		    -o -name "makefile" \
+		    -o -name "*.mk" \
+		    > .cscope/cscope.files
+		cscope -bkq -i .cscope/cscope.files
+		mv cscope.out cscope.po.out cscope.in.out .cscope/
+		# cd .cscope
+		ctags -R
+	else
+		echo "Build cscope.out"
+		/bin/rm -rf .cscope
+		mkdir -p .cscope
+		find . -name "*.h" \
+		    -o -name "*.c" \
+		    -o -name "*.cc" \
+		    -o -name "*.cpp" \
+		    -o -name "*.def" \
+		    -o -name "*.s" \
+		    -o -name "*.S" \
+		    -o -name "*.l" \
+		    -o -name "*.y" \
+		    -o -name "Makefile" \
+		    -o -name "makefile" \
+		    -o -name "*.mk" \
+		    > .cscope/cscope.files
+		cscope -bkq -i .cscope/cscope.files
+		mv cscope.out cscope.po.out cscope.in.out .cscope/
+		# cd .cscope
+		ctags -R
+	fi
+}
+
 #}}}
 eval $(thefuck --alias)
 alias cls='clear'
