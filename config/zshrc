@@ -65,6 +65,7 @@ export PATH=$HOME/bin:/usr/share/bcc/tools:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 # export LD_LIBRARY_PATH=$HOME/.vim/bundle/gdbmgr/gdbmgr/src:$PATH
 export LD_PRELOAD=$LD_PRELOAD:/usr/lib/libutil.so
+export PATH="$PATH:$HOME/.local/bin/"
 
 source $ZSH/oh-my-zsh.sh
 # source ~/.oh-my-zsh/plugins/incr/incr*.zsh
@@ -103,6 +104,7 @@ alias rl='ls ~/.Trash'
 alias ur=undelfile
 alias realrm='/bin/rm'
 # alias vf='vim $(fzf)'
+alias f='vf'
 
 undelfile()
 {
@@ -187,6 +189,7 @@ cscopelc()
 		    -o -name "Makefile" \
 		    -o -name "makefile" \
 		    -o -name "*.mk" \
+		    -o -name "*.py" \
 		    > .cscope/cscope.files
 		cscope -bkq -i .cscope/cscope.files
 		mv cscope.out cscope.po.out cscope.in.out .cscope/
@@ -208,6 +211,7 @@ cscopelc()
 		    -o -name "Makefile" \
 		    -o -name "makefile" \
 		    -o -name "*.mk" \
+		    -o -name "*.py" \
 		    > .cscope/cscope.files
 		cscope -bkq -i .cscope/cscope.files
 		mv cscope.out cscope.po.out cscope.in.out .cscope/
@@ -234,7 +238,7 @@ alias javac="javac -J-Dfile.encoding=utf8"
 alias grep="grep --color=auto"
 alias -s html=mate   # 在命令行直接输入后缀为 html 的文件名，会在 TextMate 中打开
 alias -s rb=mate     # 在命令行直接输入 ruby 文件，会在 TextMate 中打开
-alias -s py=v       # 在命令行直接输入 python 文件，会用 vim 中打开，以下类似
+# alias -s py=v       # 在命令行直接输入 python 文件，会用 vim 中打开，以下类似
 alias -s js=v
 alias -s c=v
 alias -s h=v
