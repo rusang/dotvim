@@ -185,6 +185,7 @@ endif
 " Bundle 'TxtBrowser'
 " Bundle 'ctrlp.vim'
 " Bundle 'ZoomWin'
+Bundle 'neoclide/coc.nvim', {'branch': 'release'}
 
 "snipmate 插件
 "Plugin 'MarcWeber/vim-addon-mw-utils'
