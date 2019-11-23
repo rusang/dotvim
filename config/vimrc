@@ -754,6 +754,7 @@ let NERDTreeAutoCenter=1
 "set tags+=~/.vim/tags/tags_self
 " nmap <F4> :cs add ./cscope.out .<CR><CR><CR> :cs reset<CR>
 nmap <F4> :Autoformat<CR>
+nmap <leader>js :%!python -m json.tool<CR>>
 " nmap <F5> :PymodeLintAuto<CR>
 nnoremap <F5> :%!xxd<CR>
 nnoremap <c-F5> :%!xxd -r<CR>
@@ -2485,6 +2486,11 @@ nnoremap <silent> <space>k  :call execute('Denite -resume -select=-'.v:count1.' 
 nnoremap <silent> <space>q  :<C-u>Denite -mode=normal -auto-resize quickfix<CR>
 nnoremap <silent> <space>l  :<C-u>Denite -mode=normal -auto-resize location_list<CR>
 nnoremap <silent> <space>b  :<C-u>Denite -mode=normal -auto-resize buffer<CR>
+
+"--------------------------------------------------------------------
+" vim-syntastic settings
+"--------------------------------------------------------------------
+let g:syntastic_python_checkers = ['flake8']
 
 "--------------------------------------------------------------------
 " fzf.vim settings
