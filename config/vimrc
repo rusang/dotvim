@@ -170,7 +170,6 @@ endif
 " Bundle 'fholgado/minibufexpl.vim'         "好像与 Vundle 插件有一些冲突
 " Bundle 'Shougo/neocomplcache.vim'
 " Bundle 'scrooloose/nerdcommenter'
-" Bundle 'scrooloose/nerdtree'
 " Bundle 'OmniCppComplete'
 " Bundle 'Lokaltog/vim-powerline'
 " Bundle 'repeat.vim'
@@ -553,14 +552,6 @@ let g:AutoPairsMapBS = 0
 " 把ctrl+h键映射为删除括号对和引号，默认为1。
 let g:AutoPairsMapCh = 0
 
-"-----------------------------------------------------------------------------
-"  < BufExplorer 插件配置 >
-" -----------------------------------------------------------------------------
-" 快速轻松的在缓存中切换（相当于另一种多个文件间的切换方式）
-" <Leader>be 在当前窗口显示缓存列表并打开选定文件
-" <Leader>bs 水平分割窗口显示缓存列表，并在缓存列表窗口中打开选定文件
-" <Leader>bv 垂直分割窗口显示缓存列表，并在缓存列表窗口中打开选定文件
-
 " -----------------------------------------------------------------------------
 "  < ccvext.vim 插件配置 >
 " -----------------------------------------------------------------------------
@@ -598,22 +589,6 @@ let g:indentLine_color_term = 239
 " 设置 GUI 对齐线颜色，如果不喜欢可以将其注释掉采用默认颜色
 " let g:indentLine_color_gui = '#A4E57E'
 
-" -----------------------------------------------------------------------------
-"  < Mark--Karkat（也就是 Mark） 插件配置 >
-" -----------------------------------------------------------------------------
-" 给不同的单词高亮，表明不同的变量时很有用，详细帮助见 :h mark.txt
-
-" " -----------------------------------------------------------------------------
-" "  < MiniBufExplorer 插件配置 >
-" " -----------------------------------------------------------------------------
-" " 快速浏览和操作Buffer
-" " 主要用于同时打开多个文件并相与切换
-
-" let g:miniBufExplMapWindowNavArrows = 1     "用Ctrl加方向键切换到上下左右的窗口中去
-" let g:miniBufExplMapWindowNavVim = 1        "用<C-k,j,h,l>切换到上下左右的窗口中去
-" let g:miniBufExplMapCTabSwitchBufs = 1      "功能增强（不过好像只有在Windows中才有用）
-" "                                            <C-Tab> 向前循环切换到每个buffer上,并在但前窗口打开
-" "                                            <C-S-Tab> 向后循环切换到每个buffer上,并在当前窗口打开
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
 
@@ -670,28 +645,6 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 " -----------------------------------------------------------------------------
-"  < nerdtree 插件配置 >
-" -----------------------------------------------------------------------------
-" 有目录村结构的文件浏览插件
-
-" 常规模式下输入 F2 调用插件
-nmap <F2> :NERDTreeToggle .<CR>
-let NERDTreeShowBookmarks = 1
-"显示隐藏文件，shift+i可切换
-" let NERDTreeShowHidden=1
-" 设置文件过滤器
-" let NERDTreeIgnore = ['\.o$']
-" let NERDTreeIgnore=['\.vim$', '\~$']
-" This will cause all dirs ending in ".d" to be ignored and all files ending  in ".o" to be ignored
-" let NERDTreeIgnore=['.d$[[dir]]', '.o$[[file]]']
-" 忽略一些文件的显示
-" let NERDTreeIgnore=['\.pyc','\~$','\.swp']
-" let NERDTreeIgnore=['.swp$[[file]]', '.o$[[file]]','\.pyc','\~$','\.swp']
-let NERDTreeIgnore=['\.swp', '\.o','\.pyc','\~$','\.swp']
-let NERDTreeShowLineNumbers = 1
-autocmd FileType nerdtree nmap <buffer> <CR> go
-
-" -----------------------------------------------------------------------------
 "  Show function name
 " -----------------------------------------------------------------------------
 fun! ShowFuncName()
@@ -739,43 +692,12 @@ let NERDTreeAutoCenter=1
 " 显示书签列表
 " let NERDTreeShowBookmarks=1
 
-" -----------------------------------------------------------------------------
-"  < omnicppcomplete 插件配置 >
-" -----------------------------------------------------------------------------
-" 用于C/C++代码补全，这种补全主要针对命名空间、类、结构、共同体等进行补全，详细
-" 说明可以参考帮助或网络教程等
-" 使用前先执行如下 ctags 命令（本配置中可以直接使用 ccvext 插件来执行以下命令）
-" ctags -R --c++-kinds=+p --fields=+iaS --extra=+q
-" 我使用上面的参数生成标签后，对函数使用跳转时会出现多个选择
-" 所以我就将--c++-kinds=+p参数给去掉了，如果大侠有什么其它解决方法希望不要保留呀
-" 下面由ssliao修改
-"map <C-F4> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-"nmap <F4> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q -f ~/.vim/tags/tags_self<CR>
-"set tags+=~/.vim/tags/tags_self
-" nmap <F4> :cs add ./cscope.out .<CR><CR><CR> :cs reset<CR>
 nmap <F4> :Autoformat<CR>
 nmap <leader>js :%!python -m json.tool<CR>>
 " nmap <F5> :PymodeLintAuto<CR>
 nnoremap <F5> :%!xxd<CR>
 nnoremap <c-F5> :%!xxd -r<CR>
 set completeopt=menu                        "关闭预览窗口
-
-" -----------------------------------------------------------------------------
-"  < powerline 插件配置 >
-" -----------------------------------------------------------------------------
-" 状态栏插件，更好的状态栏效果
-
-" -----------------------------------------------------------------------------
-"  < repeat 插件配置 >
-" -----------------------------------------------------------------------------
-" 主要用"."命令来重复上次插件使用的命令
-
-" -----------------------------------------------------------------------------
-"  < snipMate 插件配置 >
-" -----------------------------------------------------------------------------
-" 用于各种代码补全，这种补全是一种对代码中的词与代码块的缩写补全，详细用法可以参
-" 考使用说明或网络教程等。不过有时候也会与 supertab 插件在补全时产生冲突，如果大
-" 侠有什么其它解决方法希望不要保留呀
 
 " -----------------------------------------------------------------------------
 "  < SrcExpl 插件配置 >
@@ -1191,20 +1113,6 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
     endif
 
-" unicode symbols
-" let g:airline_left_sep = '»'
-" let g:airline_left_sep = '▶'
-" let g:airline_right_sep = '«'
-" let g:airline_right_sep = '◀'
-" let g:airline_symbols.linenr = '␊'
-" let g:airline_symbols.linenr = '␤'
-" let g:airline_symbols.linenr = '¶'
-" let g:airline_symbols.branch = '⎇'
-" let g:airline_symbols.paste = 'ρ'
-" let g:airline_symbols.paste = 'Þ'
-" let g:airline_symbols.paste = '∥'
-" let g:airline_symbols.whitespace = 'Ξ'
-
 "" airline symbols
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
@@ -1534,26 +1442,6 @@ let g:gitgutter_async = 0
 colorscheme     monokai
 " colorscheme     lucario
 " colorscheme     dracula
-" colorscheme     yaflandia
-" colorscheme     radicalgoodspeed
-" colorscheme    Revolution
-" colorscheme     flattr
-" colorscheme     slate
-" colorscheme     solarized
-" colorscheme     zenburn
-" colorscheme     wombat 　"透明的
-" colorscheme     candycode
-" colorscheme       256-jungle
-" colorscheme       woju
-" colorscheme     hybrid_material "Also fine
-" colorscheme     vj   "Also fine
-" colorscheme     alduin  "Also fine
-" colorscheme     jellyx
-" colorscheme     landscape   "透明的
-" colorscheme      lizard256
-" colorscheme         mophiaSmoke "透明的
-" colorscheme        vimbrant  "注释有点看不清楚
-" colorscheme       Benokai   "全黑的
 " colorscheme         meta5       "This is fine
 
 "--------------------------------------------------------------------
@@ -1778,24 +1666,6 @@ let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
 " let g:formatterpath = ['/some/path/to/a/folder', '/home/superman/formatters']
 let g:formatterpath = [ '~/.vim/formatter/bin']
-" old use
-" let g:formatdef_harttle = '"astyle --mode=c --style=linux --indent-classes --indent=tab=8 --indent=force-tab=8 --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -K -H -p -M -N -U -f -C -w -xb --max-code-length=80 --break-after-logical --break-return-type"'
-" let g:formatdef_harttle = '"astyle --mode=c --style=linux --indent-classes --indent=tab=8 --indent=force-tab=8 --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -K -H -p -M -N -U -f -C -w -xb --max-code-length=80 --break-after-logical --break-return-type --break-return-type-decl"'
-" let g:formatters_c = ['harttle']
-" let g:formatters_h = ['harttle']
-" let g:formatters_cpp = ['harttle']
-" let g:formatters_hpp = ['harttle']
-" let g:formatters_cxx = ['harttle']
-" let g:formatters_java = ['harttle']
-" let g:formatters_py = ['harttle']
-" let g:formatters_sh = ['harttle']
-" let g:formatdef_uncrustify = '"uncrustify"'
-" let g:formatters_cpp = ['uncrustify']
-" let g:formatters_java = ['uncrustify']
-" autocmd FileType c noremap <buffer> <c-f> :call Uncrustify('c')<CR>
-" autocmd FileType c vnoremap <buffer> <c-f> :call RangeUncrustify('c')<CR>
-" autocmd FileType cpp noremap <buffer> <c-f> :call Uncrustify('cpp')<CR>
-" autocmd FileType cpp vnoremap <buffer> <c-f> :call RangeUncrustify('cpp')<CR>
 
 " -----------------------------------------------------------------------------
 " for Linux C
@@ -1949,11 +1819,6 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 "<>
 au Syntax * RainbowParenthesesLoadChevrons
-
-"--------------------------------------------------------------------
-"python-mode settings
-"--------------------------------------------------------------------
-
 
 
 "--------------------------------------------------------------------
@@ -2359,94 +2224,6 @@ let g:ags_agargs = {
 
 " =============================================================
 
-" :Ags [{file-type}] [{options}] {pattern} [{directory}]
-"
-    " Runs a recursive search in {directory} for
-    " {pattern}. If {pattern} is not specified it
-    " will be set to the word under cursor. The
-    " {directory} will default to the current directory.
-    " {options} and {file-type} are passed directly to
-    " the ag executable. In addition a few other options,
-    " as set in |ags_agargs|, will be specified for display purposes.
-"
-    " For example
-    " :Ags --js Reducer
-                                                      " *:AgsAdd*
-" :AgsAdd [{file-type}] [{options}] {pattern} [{directory}]
-"
-    " Like |:Ags| but the matches are appended to the
-    " current search results.
-"
-                                                     " *:AgsLast*
-" :AgsLast
-    " Runs the last search. This could be used after entering
-    " edit mode to return to view mode.
-"
-                                                     " *:AgsQuit*
-" :AgsQuit
-"
-    " Closes the search results window whether in edit or
-    " view mode.
-"
-                                        " *:AgsEditSearchResults*
-" :AgsEditSearchResults
-"
-    " Enters edit mode if the search results is open in
-    " view mode.
-"
-                                          " *:AgsShowLastCommand*
-" :AgsShowLastCommand
-"
-    " Displays the command for the last search.
-"
-" =============================================================
-" MAPPINGS                                         *ags-mappings*
-"
-" Once inside the search results window:~
-"
-    " p    - navigate file paths forward
-    " P    - navigate files paths backwards
-    " r    - navigate results forward
-    " R    - navigate results backwards
-    " a    - display the file path for current results
-    " c    - copy to clipboard the file path for current results
-    " E    - enter edit mode
-"
-    " oa   - open file above the results window
-    " ob   - open file below the results window
-    " ol   - open file to the left of the results window
-    " or   - open file to the right of the results window
-    " os   - open file in the results window
-    " ou   - open file in a previously opened window
-    " xu   - open file in a previously opened window and close the search results
-    " <CR> - open file in a previously opened window
-"
-    " q    - close the search results window
-    " u    - displays these key mappings
-"
-" =============================================================
-" STATUSLINE                                     *ags-statusline*
-"
-" To display search results info in the status line use ags#get_status_string()
-" See also |ags_no_stats| and |ags_stats_max_ln|
-"
-" =============================================================
-" LIMITATIONS                                   *ags-limitations*
-"
-" Performing a search could be slow if the search returns too many
-" lines. To improve performance in such cases set the context argument to 0 or 1.
-"
-" For example
-" :Ags -C 0 search-pattern
-"
-" The default is 3 and can be overwritten via |g:ags_agcontext| setting.
-"
-" In edit mode lines can be changed but no lines can be added or removed.
-" Also entering edit mode may lag if there are too many lines in the
-" search results window. The context argument mentioned above will help here as well.
-
-" =============================================================
-
 "--------------------------------------------------------------------
 "other settings
 "--------------------------------------------------------------------
@@ -2490,7 +2267,7 @@ nnoremap <silent> <space>b  :<C-u>Denite -mode=normal -auto-resize buffer<CR>
 "--------------------------------------------------------------------
 " vim-syntastic settings
 "--------------------------------------------------------------------
-let g:syntastic_python_checkers = ['flake8']
+" let g:syntastic_python_checkers = ['flake8']
 
 "--------------------------------------------------------------------
 " fzf.vim settings
