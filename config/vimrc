@@ -1827,7 +1827,7 @@ au Syntax * RainbowParenthesesLoadChevrons
 " path to directory where library can be found
 " let g:clang_library_path='/usr/lib/llvm-3.8/lib'
 " or path directly to the library file
-let g:clang_library_path='/usr/lib/libclang.so.3.8'
+let g:clang_library_path='/usr/lib/libclang.so'
 
 "--------------------------------------------------------------------
 "undotree settings

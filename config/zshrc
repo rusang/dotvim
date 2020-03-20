@@ -67,6 +67,7 @@ export PATH=$HOME/bin:/usr/share/bcc/tools:$PATH
 export LD_PRELOAD=$LD_PRELOAD:/usr/lib/libutil.so
 export PATH="$PATH:$HOME/.local/bin"
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
+export CPATH="$CPATH:/usr/local/include/libxml2/"
 
 source $ZSH/oh-my-zsh.sh
 # source ~/.oh-my-zsh/plugins/incr/incr*.zsh
