@@ -156,55 +156,8 @@ endif
 " 使用Vundle来管理Vundle，这个必须要有。
 " Bundle 'gmarik/vundle'
 
-" 以下为要安装或更新的插件，不同仓库都有（具体书写规范请参考帮助）
-" Bundle 'a.vim'
-" Bundle 'Align'
-" Bundle 'jiangmiao/auto-pairs'
-" Bundle 'bufexplorer.zip'
-" Bundle 'ccvext.vim'
-" Bundle 'cSyntaxAfter'
-" Bundle 'Yggdroot/indentLine'
-" Bundle 'javacomplete'
-" Bundle 'vim-javacompleteex'               "更好的 Java 补全插件
-" Bundle 'Mark--Karkat'
-" Bundle 'fholgado/minibufexpl.vim'         "好像与 Vundle 插件有一些冲突
-" Bundle 'Shougo/neocomplcache.vim'
-" Bundle 'scrooloose/nerdcommenter'
-" Bundle 'OmniCppComplete'
-" Bundle 'Lokaltog/vim-powerline'
-" Bundle 'repeat.vim'
-" Bundle 'msanders/snipmate.vim'
-" Bundle 'wesleyche/SrcExpl'
-" Bundle 'ervandew/supertab'                "有时与 snipmate 插件冲突
-" Bundle 'std_c.zip'
-" Bundle 'tpope/vim-surround'
-" Bundle 'scrooloose/syntastic'
-" Bundle 'majutsushi/tagbar'
-" Bundle 'taglist.vim'
-" Bundle 'TxtBrowser'
-" Bundle 'ctrlp.vim'
-" Bundle 'ZoomWin'
-Bundle 'neoclide/coc.nvim', {'branch': 'release'}
+" Bundle 'neoclide/coc.nvim', {'branch': 'release'}
 
-"snipmate 插件
-"Plugin 'MarcWeber/vim-addon-mw-utils'
-"Plugin 'tomtom/tlib_vim'
-"Plugin 'garbas/vim-snipmate'
-"Plugin 'honza/vim-snippets'
-"snipmate 插件
-" Plugin 'christoomey/vim-tmux-navigator'
-" Bundle 'MarcWeber/vim-addon-mw-utils'
-" Bundle 'tomtom/tlib_vim'
-" Bundle 'garbas/vim-snipmate'
-" Bundle 'honza/vim-snippets'
-"
-" let Vundle manage Vundle, required
-"Plugin 'VundleVim/Vundle.vim'
-
-
-" All of your Plugins must be added before the following line
-"call vundle#end()            " required
-"filetype plugin indent on    " required
 
 " -----------------------------------------------------------------------------
 "  < 编码配置 >
@@ -280,15 +233,6 @@ set relativenumber                                     "显示行号
 set laststatus=2                                      "启用状态栏信息
 set cmdheight=2                                       "设置命令行的高度为2，默认为1
 set cursorline                                        "突出显示当前行
-" set guifont=YaHei_Consolas_Hybrid:h12                 "设置字体:字号（字体名称空格用下划线代替）
-" set guifont=Mono\ derivative\ Powerline:12
-" set guifont= Consolas\ 13
-" set guifont=Monospace\ 13
-" set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:12
-" set guifont=Source_Code_Pro:13
-" set guifont=PowerlineSymbols\ for\ Powerline:14
-" let Powerline_symbols='compatible'
-" set guifont=Monospace\ for\ Powerline:24
 set wrap                                               "设置自动换行
 set shortmess=atI                                     "去掉欢迎界面
 
@@ -521,22 +465,6 @@ set nobackup                                "设置无备份文件
 set vb t_vb=                                "关闭提示音
 
 
-" =============================================================================
-"                          << 以下为常用插件配置 >>
-" =============================================================================
-
-" -----------------------------------------------------------------------------
-"  < a.vim 插件配置 >
-" -----------------------------------------------------------------------------
-" 用于切换C/C++头文件
-" :A     ---切换头文件并独占整个窗口
-" :AV    ---切换头文件并垂直分割窗口
-" :AS    ---切换头文件并水平分割窗口
-
-" -----------------------------------------------------------------------------
-"  < Align 插件配置 >
-" -----------------------------------------------------------------------------
-" 一个对齐的插件，用来——排版与对齐代码，功能强大，不过用到的机会不多
 
 " -----------------------------------------------------------------------------
 "  < auto-pairs 插件配置 >
@@ -797,45 +725,6 @@ let g:syntastic_always_populate_loc_list = 1
 " let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_wq = 0
 
-" 用于保存文件时查检语法
-
-" -----------------------------------------------------------------------------
-"  < Tagbar 插件配置 >
-" -----------------------------------------------------------------------------
-" 相对 TagList 能更好的支持面向对象
-
-" 常规模式下输入 tt 调用插件，如果有打开 TagList 窗口则先将其关闭 //ssliao
-let g:tagbar_sort=0
-nmap tt :TagbarToggle<CR>
-
-let g:tagbar_width=20                       "设置窗口宽度
-let g:tagbar_left=1                         "在右侧窗口中显示
-"let g:tagbar_right=1                         "在右侧窗口中显示
-let g:tagbar_autopreview=1
-" let g:tagbar_autoshowtag=1
-" let g:tagbar_previewwin_pos="rightbelow""
-let g:tagbar_previewwin_pos="aboveleft"
-highlight TagbarScope guifg=Green ctermfg=Green
-" auto open
-" autocmd FileType c,cpp,h,hpp,cc nested :TagbarOpen
-
-" -----------------------------------------------------------------------------
-"  < TagList 插件配置 >
-" -----------------------------------------------------------------------------
-" 高效地浏览源码, 其功能就像vc中的workpace
-" 那里面列出了当前文件中的所有宏,全局变量, 函数名等
-
-" 常规模式下输入 tl 调用插件，如果有打开 Tagbar 窗口则先将其关闭
-nmap tl :TagbarClose<CR>:Tlist<CR>
-
-let Tlist_Show_One_File=1                   "只显示当前文件的tags
-let Tlist_Enable_Fold_Column=0              "使taglist插件不显示左边的折叠行
-let Tlist_Exit_OnlyWindow=1                 "如果Taglist窗口是最后一个窗口则退出Vim
-let Tlist_File_Fold_Auto_Close=1            "自动折叠
-let Tlist_WinWidth=25                       "设置窗口宽度
-"let Tlist_Use_Right_Window=1                "在右侧窗口中显示
-let Tlist_Use_Left_Window=1                "在左侧窗口中显示
-
 " -----------------------------------------------------------------------------
 "  < txtbrowser 插件配置 >
 " -----------------------------------------------------------------------------
@@ -998,84 +887,8 @@ let g:persistentBehaviour=0 " 如果所有编辑文件都关闭了，退出vim
 nmap wm :WMToggle<cr>
 
 
-
-"/* 当新建 .h .c .hpp .cpp 等文件时自动调用SetTitle 函数*/
-"autocmd BufNewFile *.[ch],*.hpp,*.cpp exec ":call SetTitle()"
-
-"/* 加入注释 */
-" func SetComment()
-"     call setline(1,"/*==================================")
-"    call append(line("."),   "*   Copyright (C) ".strftime("%Y")." All rights reserved.")
-"    call append(line(".")+1, "*   ")
-"    call append(line(".")+2, "*   文件名称：".expand("%:t"))
-"    call append(line(".")+3, "*   创 建 者：herb")
-"    call append(line(".")+4, "*   创建日期：".strftime("%Y年%m月%d日"))
-"    call append(line(".")+5, "*   描    述：")
-"    call append(line(".")+6, "*")
-"    call append(line(".")+7, "================================================================*/")
-" endfunc
-
-"/* 定义函数SetTitle，自动插入文件头 */
-"func SetTitle()
-"     call SetComment()
-"     if expand("%:e") == 'hpp'
-"  call append(line(".")+8, "#ifndef _".toupper(expand("%:t:r"))."_H")
-"  call append(line(".")+9, "#define _".toupper(expand("%:t:r"))."_H")
-"  call append(line(".")+10, "#ifdef __cplusplus")
-"  call append(line(".")+11, "extern \"C\"")
-"  call append(line(".")+12, "{")
-"  call append(line(".")+13, "#endif")
-"  call append(line(".")+14, "")
-" call append(line(".")+15, "#ifdef __cplusplus")
-" call append(line(".")+16, "}")
-" call append(line(".")+17, "#endif")
-" call append(line(".")+18, "#endif //".toupper(expand("%:t:r"))."_H")
-"    elseif expand("%:e") == 'h'
-" call append(line(".")+8, "#pragma once")
-"    elseif &filetype == 'c'
-" call append(line(".")+8,"#include \"".expand("%:t:r").".h\"")
-"    elseif &filetype == 'cpp'
-" call append(line(".")+8, "#include \"".expand("%:t:r").".h\"")
-"    endif
-"endfunc
-
 set novb ""消除闪烁
-"------------------------------------------------------------------------------------
-"		ctrlp
-"------------------------------------------------------------------------------------
-let g:ctrlp_map = '<leader><leader>'
-let g:ctrlp_open_multiple_files = 'f'
-" let g:ctrlp_cmd = 'CtrlP'
-" map <leader>f :CtrlPMRU<CR>
-let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
-            \ 'file': '\v\.(log|jpg|png|zip|tar|tar.gz|pyc)$',
-            \ }
-" let g:ctrlp_working_path_mode=0
-" let g:ctrlp_match_window_bottom=1
-" let g:ctrlp_max_height=15
-" let g:ctrlp_match_window_reversed=0
-" let g:ctrlp_mruf_max=500
-" let g:ctrlp_follow_symlinks=1
-set  rtp+=/usr/lib/python3.5/site-packages/powerline/bindings/vim/
-let g:Powerline_symbols= "fancy"
-" setfillchars+=stl:\ ,stlnc:\
-" let g:minBufExplForceSyntaxEnable = 1
-" python from powerline.vim import setup as powerline_setup
-" python powerline_setup()
-" python del powerline_setup
 
-if ! has('gui_running')
-    set ttimeoutlen=10
-    augroup FastEscape
-        autocmd!
-        au InsertEnter * set timeoutlen=0
-        au InsertLeave * set timeoutlen=1000
-    augroup END
-endif
-
-" set laststatus=2 " Always display the statusline in all windows
-" set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 " Bundle 'powerline/powerline'
 set guifont=Liberation\ Mono\ for\ Powerline\ 12
 " set guifont=DejaVu\ Sans:s12
@@ -1549,8 +1362,6 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 " Tell Neosnippet about the other snippets
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
-
-
 "--------------------------------------------------------------------
 "ycm  settings
 "--------------------------------------------------------------------
@@ -1597,11 +1408,9 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:ycm_always_populate_location_list = 1
 
-
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR> " 跳转到定义处
+nnoremap <leader>jd :YcmCompleter GoToDefinition<CR> " 跳转到定义处
 nnoremap <space>t :YcmCompleter GetType<CR> " 跳转到定义处
 nnoremap <leader>dc :YcmCompleter GetDoc<CR> " 跳转到定义处
-
 
 "--------------------------------------------------------------------
 "jedi-vim settings
@@ -1622,7 +1431,6 @@ let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
 " let g:jedi#use_tabs_not_buffers = 1
-
 
 "--------------------------------------------------------------------
 "color_code settings delete it cause it not work
@@ -1656,7 +1464,6 @@ let g:DoxygenToolkit_licenseTag="MIT License"
 map <leader>do :Dox<CR>
 map <leader>da :DoxAuthor<Cr>
 map <leader>dl :DoxLic<cr>
-
 
 "--------------------------------------------------------------------
 "auto-format settings
@@ -1926,15 +1733,6 @@ nnoremap <space>ct :Rooter<CR>
 "By default vim-rooter doesn't resolve symbolic links. To resolve links:
 let g:rooter_resolve_links = 1
 
-" Don't change directory (default).
-" let g:rooter_change_directory_for_non_project_files = ''
-
-" Change to file's directory (similar to autochdir).
-" let g:rooter_change_directory_for_non_project_files = 'current'
-
-" Change to home directory.
-" let g:rooter_change_directory_for_non_project_files = 'home'
-
 "---------------------------------------------------------------
 "fzf.vim settings
 "---------------------------------------------------------------
@@ -1968,15 +1766,6 @@ let g:fzf_action = {
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
 
-" In Neovim, you can set up fzf window using a Vim command
-" let g:fzf_layout = { 'window': 'enew' }
-" let g:fzf_layout = { 'window': '-tabnew' }
-" let g:fzf_layout = { 'window': '10split enew' }
-
-" Enable per-command history.
-" CTRL-N and CTRL-P will be automatically bound to next-history and
-" previous-history instead of down and up. If you don't like the change,
-" explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 " [Buffers] Jump to the existing window if possible
@@ -2019,12 +1808,6 @@ augroup END
 
 nnoremap    [misc]   <Nop>
 nmap 0  [misc]
-
-
-"--------------------------------------------------------------------
-"unite-fzf
-"--------------------------------------------------------------------
-"call unite#filters#matcher_default#use(['matcher_fzf'])
 
 "--------------------------------------------------------------------
 "current-func-info.vim
@@ -2138,91 +1921,6 @@ let g:filebeagle_buffer_map_movement_keys = get(g:, 'filebeagle_buffer_map_movem
 let g:filebeagle_check_gitignore = 1
 let g:filebeagle_statusline = get(g:, 'filebeagle_statusline', '%( %{FileBeagleStatusLineCurrentDirInfo()} %)%=%( %{FileBeagleStatusLineFilterAndHiddenInfo()} %)')
 
-" 1}}}
-
-
-"--------------------------------------------------------------------
-" ranger.vim settings
-"--------------------------------------------------------------------
-let g:ranger_map_keys = 0
-
-"--------------------------------------------------------------------
-" vim-ags settings
-"--------------------------------------------------------------------
-
-" This is the ag executable path
-let g:ags_agexe = 'ag'
-
-" This is the max-count parameter to be passed to ag
-let g:ags_agmaxcount = 2000
-
-" This is the context parameter to be passed to ag
-let g:ags_agcontext = 3
-
-" This is a flag that determines whether to run the ag search
-" asynchronously when supported (currently only in neovim)
-" let g:ags_enable_async = 1
-
-" This determines whether to work with a single results window or
-" with one per tab.
-
-let g:ags_results_per_tab = 0
-
-" Flag to disable showing statistics in the command bar. This
-" could be used when displaying statistics in a status line plugin
-" such as lightline. In that case use ags#get_status_string to get
-" status line information.
-let g:ags_no_stats = 0
-
-" This is the maximum number of lines before disabling the
-" statistics info that shows when navigating results in the
-" search results window. When the number of lines returned by
-" ag is larger than the value of this variable the statistics
-" are disabled to improve performance.
-let g:ags_stats_max_ln = 5000
-
-" This enables showing file line numbers in edit mode as visual
-" cues. The file numbers as well as file paths in edit mode are
-" not meant to be edited and could result in unwanted changes if
-" removed.
-let g:ags_edit_show_line_numbers = 0
-
-" When writing files from edit mode this allows to skip writing
-" lines that have changed from outside vim. This could have
-" mixed results as some lines will be changed and others not.
-" However, the search results window will be updated with the
-" file lines exactly as they appear in the file.
-let g:ags_edit_skip_if_file_changed = 0
-
-" This determines the search results window height. It defaults
-" to half the screen.
-    let g:ags_winheight = ''
-
-" This determines the placement of the search results window. It
-" defaults to |bottom|. Possible values are: |top|, |bottom|, |above|,
-" |below|, |far-left|, |far-right|, |left|, |right|.
-let g:ags_winplace = 'bottom'
-
-" This variable contains the predefined search arguments
-" used to ensure that the search results are highlighted
-" properly in Vim. Any of these arguments can be overwritten
-" when entering the search command.
-let g:ags_agargs = {
-	\ '--break'             : [ '', '' ],
-	\ '--color'             : [ '', '' ],
-	\ '--color-line-number' : [ '"1;30"', '' ],
-	\ '--color-match'       : [ '"32;40"', '' ],
-	\ '--color-path'        : [ '"1;31"', '' ],
-	\ '--column'            : [ '', '' ],
-	\ '--context'           : [ 'g:ags_agcontext', '-C' ],
-	\ '--filename'          : [ '', '' ],
-	\ '--group'             : [ '', '' ],
-	\ '--heading'           : [ '', '-H' ],
-	\ '--max-count'         : [ 'g:ags_agmaxcount', '-m' ],
-	\ '--numbers'           : [ '', '' ]
-	\ }
-
-" =============================================================
 
 "--------------------------------------------------------------------
 "other settings
@@ -2276,7 +1974,11 @@ nnoremap <silent> <space>f  :FilesMru --tiebreak=end<cr>
 nnoremap <silent> <space>a  :FZFFreshMru<cr>
 nnoremap <silent> <space>t  :BTags<cr>
 nnoremap <silent> <space>tt :Tags<cr>
-nnoremap <silent> <space>b  :BLines<cr>
+" nnoremap <silent> <space>b  :BLines<cr>
+nnoremap <silent> <space>b  :Buffers<cr>
+nnoremap <silent> <C-M> :Rg! <C-R>=expand("<cword>")<CR><CR>
+nnoremap <silent> <space>ff :FZF -q <C-R>=expand("<cfile>")<CR><CR>
+nnoremap <silent> <space>g  :Ag! <C-R>=expand("<cword>")<CR><CR>
 
 "--------------------------------------------------------------------
 " deoplete.nvim settings
@@ -2298,16 +2000,6 @@ let g:qf_write_changes = 1
 "--------------------------------------------------------------------
 " pear-tree  settings
 "--------------------------------------------------------------------
-" Default rules for matching:
-" let g:pear_tree_pairs = {
-"             \ '(': {'closer': ')'},
-"             \ '[': {'closer': ']'},
-"             \ '{': {'closer': '}'},
-"             \ '<': {'closer': '>'},
-"             \ '/\*': {'closer': '\*/'},
-"             \ "'": {'closer': "'"},
-"             \ '"': {'closer': '"'}
-"             \ }
 
 let g:pear_tree_pairs = {
             \ '(': {'closer': ')'},
