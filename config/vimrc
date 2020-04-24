@@ -1313,6 +1313,7 @@ let g:formatterpath = [ '~/.vim/formatter/bin']
 " -----------------------------------------------------------------------------
 if has("autocmd")
 	autocmd FileType c set tabstop=8|set softtabstop=8|set shiftwidth=8|set noexpandtab
+	autocmd FileType json set tabstop=8|set softtabstop=8|set shiftwidth=8|set expandtab
 endif
 " let g:formatdef_CSTYLE = '"astyle --style=linux --indent=tab --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma  -K -H -p -M -N -U -f -C -w"'
 " let g:formatdef_CSTYLE = '"astyle --mode=c --style=linux --indent-classes --indent=tab=8 --indent=force-tab=8 --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -H -p -M -U -f -w -xb --max-code-length=80 --break-after-logical --break-return-type"'
@@ -1796,7 +1797,7 @@ nnoremap <silent> <space>c  :BCommits<cr>
 nnoremap <silent> <space>C  :Commits<cr>
 nnoremap <silent> <space>l  :BLines<cr>
 nnoremap <silent> <space>b  :Buffers<cr>
-nnoremap <silent> <C-M> :Rg! <C-R>=expand("<cword>")<CR><CR>
+nnoremap <silent> <space>r :Rg! <C-R>=expand("<cword>")<CR><CR>
 nnoremap <silent> <space>ff :FZF -q <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <silent> <space>g  :Ag! <C-R>=expand("<cword>")<CR><CR>
 
