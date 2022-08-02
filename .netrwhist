@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/ssliao/kernel/linux-3.12.63'
-let g:netrw_dirhist_2='/home/ssliao/.vim/bundle/gdbmgr/gdbmgr/src'
-let g:netrw_dirhist_3='/home/ssliao/My_Test'
