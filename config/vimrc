@@ -1,0 +1,695 @@
+if has('python3')
+   set pyx=3
+else
+   set pyx=2
+endif
+
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
+set backspace=indent,eol,start
+set list
+set listchars=tab:•\ ,trail:•,extends:»,precedes:« " Unprintable chars mapping"
+
+" Preserve last editing position in VIM
+if has("autocmd")
+	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+" -----------------------------------------------------------------------------
+"  < 界面配置 >
+" -----------------------------------------------------------------------------
+set number                                            "显示行号
+syntax on
+set hlsearch        "高亮搜索
+set incsearch       "在输入要搜索的文字时，实时匹配
+" set relativenumber                                     "显示行号
+set laststatus=2                                      "启用状态栏信息
+set cmdheight=2                                       "设置命令行的高度为2，默认为1
+set cursorline                                        "突出显示当前行
+set wrap                                               "设置自动换行
+set shortmess=atI                                     "去掉欢迎界面
+
+
+" -----------------------------------------------------------------------------
+"  < 编写文件时的配置 >
+" -----------------------------------------------------------------------------
+let g:c_syntax_for_h=1
+filetype plugin on                                    "针对不同的文件类型加载对应的插件
+set smartindent                                       "启用智能对齐方式
+" set expandtab                                         "将Tab键转换为空格
+set noexpandtab                                         "no将Tab键转换为空格
+set tabstop=8                                         "设置Tab键的宽度
+set softtabstop=8
+set shiftwidth=8                                      "换行时自动缩进4个空格
+" set tw=78
+" set ts=8 sw=8 tw=78 ai noexpandtab
+set smarttab                                          "指定按一次backspace就删除shiftwidth宽度的空格
+set nofoldenable                                        "启用折叠
+set foldmethod=indent                                 "indent 折叠方式
+set modifiable
+set colorcolumn=80
+" set foldmethod=marker                                "marker 折叠方式
+
+" 用空格键来开关折叠
+" nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+
+" 当文件在外部被修改，自动更新该文件
+set autoread
+
+" 常规模式下输入 cS 清除行尾空格
+nmap cS :%s/\s\+$//g<CR>:noh<CR>
+
+" 常规模式下输入 cM 清除行尾 ^M 符号
+nmap cM :%s/\r$//g<CR>:noh<CR>
+
+set ignorecase                                        "搜索模式里忽略大小写
+set smartcase                                         "如果搜索模式包含大写字符，不使用 'ignorecase' 选项，只有在输入搜索模式并且打开 'ignorecase' 选项时才会使用
+" set noincsearch                                       "在输入要搜索的文字时，取消实时匹配
+
+
+
+" 启用每行超过150列的字符提示（字体变蓝并加下划线），不启用就注释掉
+au BufWinEnter * let w:m2=matchadd('Underlined', '\%>' . 120 . 'v.\+', -1)
+
+"--------------------------------------------------------------------
+"   bundle
+"--------------------------------------------------------------------
+set nocompatible              " be iMproved, required
+filetype on
+" filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+Plugin 'git://git.wincent.com/command-t.git'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+Plugin 'vim-scripts/a.vim'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'preservim/nerdcommenter'
+Plugin 'Yggdroot/indentLine'
+Plugin 'vim-autoformat/vim-autoformat'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'haya14busa/incsearch.vim'
+Plugin 'haya14busa/incsearch-easymotion.vim'
+Plugin 'haya14busa/incsearch-fuzzy.vim'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'tweekmonster/fzf-filemru'
+Plugin 'pbogut/fzf-mru.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'preservim/vim-wheel'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'tpope/vim-surround'
+" Plugin 'SirVer/ultisnips'
+Plugin 'preservim/nerdtree'
+Plugin 'francoiscabrol/ranger.vim'
+Plugin 'rdnetto/YCM-Generator'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+"--------------------------------------------------------------------
+"vim-colorscheme
+"--------------------------------------------------------------------
+" colorscheme     molokai     "This is fine
+colorscheme     monokai
+" colorscheme     lucario
+" colorscheme     dracula
+" colorscheme         meta5       "This is fine
+
+"--------------------------------------------------------------------
+"   pathogen
+"--------------------------------------------------------------------
+execute pathogen#infect()
+
+" -----------------------------------------------------------------------------
+"  < Syntastic 插件配置 >
+" -----------------------------------------------------------------------------
+let g:syntastic_check_on_open = 1
+" let g:syntastic_cpp_include_dirs = ['/usr/include/']
+" let g:syntastic_cpp_remove_include_errors = 1
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
+"set error or warning signs
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+""whether to show balloons
+let g:syntastic_enable_balloons = 1
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+" let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" -----------------------------------------------------------------------------
+"  < nerdcommenter 插件配置 >
+" -----------------------------------------------------------------------------
+" 我主要用于C/C++代码注释(其它的也行)         ssliao
+" 以下为插件默认快捷键，其中的说明是以C/C++为例的，其它语言类似
+" <Leader>ci 以每行一个 /* */ 注释选中行(选中区域所在行)，再输入则取消注释
+" <Leader>cm 以一个 /* */ 注释选中行(选中区域所在行)，再输入则称重复注释
+" <Leader>cc 以每行一个 /* */ 注释选中行或区域，再输入则称重复注释
+" <Leader>cu 取消选中区域(行)的注释，选中区域(行)内至少有一个 /* */
+" <Leader>ca 在/*...*/与//这两种注释方式中切换（其它语言可能不一样了）
+" <Leader>cA 行尾注释
+let mapleader=","                           "<Leader>更改为，按键
+let NERDSpaceDelims = 1                     "在左注释符之后，右注释符之前留有空格
+
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+
+" Add your own custom formats or override the defaults
+" let g:NERDCustomDelimiters = { 'c': { 'left': '/*','right': '*/' } }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" Enable NERDCommenterToggle to check all selected lines is commented or not
+let g:NERDToggleCheckAllLines = 1
+
+" -----------------------------------------------------------------------------
+"  < indentLine 插件配置 >
+" -----------------------------------------------------------------------------
+" 用于显示对齐线，与 indent_guides 在显示方式上不同，根据自己喜好选择了
+" 在终端上会有屏幕刷新的问题，这个问题能解决有更好了
+" 开启/关闭对齐线
+let g:indentLine_color_term = 239
+nmap <leader>il :IndentLinesToggle<CR>
+
+" 设置Gvim的对齐线样式
+" if g:isGUI
+	" let g:indentLine_char = "┊"
+	" let g:indentLine_first_char = "┊"
+" endif
+let g:indentLine_char = '¦'
+
+" 设置终端对齐线颜色，如果不喜欢可以将其注释掉采用默认颜色
+let g:indentLine_color_term = 239
+
+" 设置 GUI 对齐线颜色，如果不喜欢可以将其注释掉采用默认颜色
+" let g:indentLine_color_gui = '#A4E57E'
+
+let g:python3_host_prog = '/opt/homebrew/bin/python3'
+
+"--------------------------------------------------------------------
+" auto-format
+"--------------------------------------------------------------------
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+" let g:formatterpath = ['/some/path/to/a/folder', '/home/superman/formatters']
+" let g:formatterpath = [ '~/.vim/formatter/bin']
+
+" -----------------------------------------------------------------------------
+" for Linux C
+" -----------------------------------------------------------------------------
+if has("autocmd")
+	autocmd FileType c set tabstop=8|set softtabstop=8|set shiftwidth=8|set noexpandtab
+	autocmd FileType json set tabstop=8|set softtabstop=8|set shiftwidth=8|set expandtab
+	autocmd FileType cmake set tabstop=4|set softtabstop=4|set shiftwidth=4|set expandtab
+endif
+" let g:formatdef_CSTYLE = '"astyle --style=linux --indent=tab --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma  -K -H -p -M -N -U -f -C -w"'
+" let g:formatdef_CSTYLE = '"astyle --mode=c --style=linux --indent-classes --indent=tab=8 --indent=force-tab=8 --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -H -p -M -U -f -w -xb --max-code-length=80 --break-after-logical --break-return-type"'
+let g:formatdef_CSTYLE = '"astyle --mode=c --style=linux --indent-classes --indent=tab=8 -j --indent=force-tab=8 --remove-braces --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -H -p -M -U -f -w -xb --max-code-length=80 --break-after-logical"'
+let g:formatters_c = ['CSTYLE']
+let g:formatters_h = ['CSTYLE']
+
+"-----------------------------------------------------------------------------
+" for C++
+"------------------------------------------------------------------------------
+if has("autocmd")
+	autocmd FileType cpp set tabstop=4|set softtabstop=4|set shiftwidth=4|set expandtab
+endif
+" let g:formatdef_CPPSTYLE = '"astyle --style=java --indent=spaces=4 --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma  -K -H -p -M -U -f -w"'
+let g:formatdef_CPPSTYLE = '"astyle --mode=c --style=java --indent=spaces=4 --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -S -K -H -p -M  -U -f -w -xb -j --break-after-logical -xn -xc"'
+let g:formatdef_JAVASTYLE = '"astyle --mode=java --style=java --indent=spaces=4 --align-reference=name --align-pointer=name --delete-empty-lines --pad-comma --attach-closing-while -S -K -H -p -M  -U -f -w -xb -j --break-after-logical"'
+let g:formatters_cpp = ['CPPSTYLE']
+let g:formatters_hpp = ['CPPSTYLE']
+let g:formatters_cxx = ['CPPSTYLE']
+let g:formatters_hxx = ['CPPSTYLE']
+let g:formatters_java = ['JAVASTYLE']
+
+" python
+" Python
+if !exists('g:formatdef_autopep8')
+    " Autopep8 will not do indentation fixes when a range is specified, so we
+    " only pass a range when there is a visual selection that is not the
+    " entire file. See #125.
+    let g:formatdef_autopep8 = '"autopep8 -".(g:DoesRangeEqualBuffer(a:firstline, a:lastline) ? " --range ".a:firstline." ".a:lastline : "")." ".(&textwidth ? "--max-line-length=".&textwidth : "")'
+endif
+
+" There doesn't seem to be a reliable way to detect if are in some kind of visual mode,
+" so we use this as a workaround. We compare the length of the file against
+" the range arguments. If there is no range given, the range arguments default
+" to the entire file, so we return false if the range comprises the entire file.
+function! g:DoesRangeEqualBuffer(first, last)
+    return line('$') != a:last - a:first + 1
+endfunction
+
+" Yapf supports multiple formatter styles: pep8, google, chromium, or facebook
+if !exists('g:formatter_yapf_style')
+    let g:formatter_yapf_style = 'pep8'
+endif
+if !exists('g:formatdef_yapf')
+    let s:configfile_def   = "'yapf -l '.a:firstline.'-'.a:lastline"
+    let s:noconfigfile_def = "'yapf --style=\"{based_on_style:'.g:formatter_yapf_style.',indent_width:'.shiftwidth().(&textwidth ? ',column_limit:'.&textwidth : '').'}\" -l '.a:firstline.'-'.a:lastline"
+    let g:formatdef_yapf   = "g:YAPFFormatConfigFileExists() ? (" . s:configfile_def . ") : (" . s:noconfigfile_def . ")"
+endif
+
+function! g:YAPFFormatConfigFileExists()
+    return len(findfile(".style.yapf", expand("%:p:h").";")) || len(findfile("setup.cfg", expand("%:p:h").";")) || filereadable(exists('$XDG_CONFIG_HOME') ? expand('$XDG_CONFIG_HOME/yapf/style') : expand('~/.config/yapf/style'))
+endfunction
+
+if !exists('g:formatdef_black')
+    let g:formatdef_black = '"black -q ".(&textwidth ? "-l".&textwidth : "")." -"'
+endif
+
+if !exists('g:formatters_python')
+    let g:formatters_python = ['yapf', 'autopep8', 'black']
+endif
+
+" let g:formatter_yapf_style = 'pep8'
+" let g:formatters_python = ['autopep8', 'yapf', 'black']
+" -----------------------------------------------------------------------------
+nmap <F4> :Autoformat<CR>
+nmap <F2> :NERDTreeToggle<CR>
+nnoremap <silent> <space>r  :Ranger<cr>
+
+"---------------------------------------------------------------
+"vim-easymotion v3.0 settings
+"---------------------------------------------------------------
+" <Leader>f{char} to move to {char}
+map  <Leader>F <Plug>(easymotion-bd-f)
+nmap <Leader>F <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>W <Plug>(easymotion-bd-w)
+nmap <Leader>W <Plug>(easymotion-overwin-w)
+
+" You can use other keymappings like <C-l> instead of <CR> if you want to
+" use these mappings as default search and somtimes want to move cursor with
+" EasyMotion.
+function! s:incsearch_config(...) abort
+  return incsearch#util#deepextend(deepcopy({
+  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+  \   'keymap': {
+  \     "\<CR>": '<Over>(easymotion)'
+  \   },
+  \   'is_expr': 0
+  \ }), get(a:, 1, {}))
+endfunction
+
+noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
+noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
+noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
+
+" 更改快捷键
+" let g:EasyMotion_leader_key = 'f'
+
+" ff 全屏搜索
+" fs 往下搜索
+" fF 往上搜索
+" fl 行内向右搜索
+" fj 行间向下搜索
+" fk 行间向上搜索
+" fh 行内向左搜索
+" fb 往上搜索一个单词开始处
+" fge 往上搜索一个单词结尾处
+" fe 往下搜索一个单词结尾处
+" fw 往下搜索一个单词开始处
+map f <Plug>(easymotion-prefix)
+map ff <Plug>(easymotion-s)
+map fs <Plug>(easymotion-f)
+map fl <Plug>(easymotion-lineforward)
+map fj <Plug>(easymotion-j)
+map fk <Plug>(easymotion-k)
+map fh <Plug>(easymotion-linebackward)
+" 忽略大小写
+let g:EasyMotion_smartcase = 1
+"---------------------------------------------------------------
+"vim-easymotion settings
+"---------------------------------------------------------------
+" map /  <Plug>(incsearch-forward)
+" map ?  <Plug>(incsearch-backward)
+" map g/ <Plug>(incsearch-stay)
+
+let g:incsearch#auto_nohlsearch = 1
+" map n  <Plug>(incsearch-nohl-n)
+" map N  <Plug>(incsearch-nohl-N)
+" map *  <Plug>(incsearch-nohl-*)
+" map #  <Plug>(incsearch-nohl-#)
+" map g* <Plug>(incsearch-nohl-g*)
+" map g# <Plug>(incsearch-nohl-g#)
+
+" map z/ <Plug>(incsearch-easymotion-/)
+" map z? <Plug>(incsearch-easymotion-?)
+" map zg/ <Plug>(incsearch-easymotion-stay)
+
+" map / <Plug>(incsearch-easymotion-/)
+" map ? <Plug>(incsearch-easymotion-?)
+" map g/ <Plug>(incsearch-easymotion-stay)
+
+map f/ <Plug>(incsearch-fuzzy-/)
+map f? <Plug>(incsearch-fuzzy-?)
+map fg/ <Plug>(incsearch-fuzzy-stay)
+
+
+" map z/ <Plug>(incsearch-fuzzyspell-/)
+" map z? <Plug>(incsearch-fuzzyspell-?)
+" map zg/ <Plug>(incsearch-fuzzyspell-stay)
+
+"
+function! s:config_easyfuzzymotion(...) abort
+    return extend(copy({
+    \   'converters': [
+    \     incsearch#config#fuzzy#converter(),
+    \   ],
+    \   'modules': [incsearch#config#easymotion#module()],
+    \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+    \   'is_expr': 0,
+    \   'is_stay': 1
+    \ }), get(a:, 1, {}))
+endfunction
+
+noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
+
+function! s:config_fuzzyall(...) abort
+  return extend(copy({
+  \   'converters': [
+  \     incsearch#config#fuzzy#converter(),
+  \     incsearch#config#fuzzyspell#converter()
+  \   ],
+  \ }), get(a:, 1, {}))
+endfunction
+
+noremap <silent><expr> e/ incsearch#go(<SID>config_fuzzyall())
+noremap <silent><expr> e? incsearch#go(<SID>config_fuzzyall({'command': '?'}))
+noremap <silent><expr> eg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1}))
+
+"---------------------------------------------------------------
+"fzf.vim settings
+"---------------------------------------------------------------
+" - down / up / left / right
+" let g:fzf_prefer_tmux = 1
+let g:fzf_layout = { 'down': '~50%' }
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+let $FZF_DEFAULT_OPTS = ' --inline-info'
+
+" let g:fzf_prefer_vim_terminal = 1
+
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+" This is the default extra key bindings
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+
+" [[B]Commits] Customize the options used by 'git log':
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+" [Tags] Command to generate tags file
+let g:fzf_tags_command = 'ctags -R'
+
+" [Commands] --expect expression for directly executing the command
+let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+
+" let g:fzf_files_options = '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+
+"Usage
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+" Advanced customization using autoload functions
+inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+
+"--------------------------------------------------------------------
+"fzf-filemru settings
+"--------------------------------------------------------------------
+nnoremap <c-p> :FilesMru --tiebreak=end<cr>
+augroup custom_filemru
+  autocmd!
+  autocmd BufWinEnter * UpdateMru
+augroup END
+
+nnoremap <silent> <space>ff   :FZF<CR>
+nnoremap <silent> <space>a  :FilesMru --tiebreak=end<cr>
+" nnoremap <silent> <space>ff :FZF -q <C-R>=expand("<cfile>")<CR><CR>
+nnoremap <silent> <space>f  :FZFFreshMru<cr>
+nnoremap <silent> <space>t  :BTags<cr>
+nnoremap <silent> <space>tt :Tags<cr>
+nnoremap <silent> <space>c  :BCommits<cr>
+nnoremap <silent> <space>C  :Commits<cr>
+nnoremap <silent> <space>l  :BLines<cr>
+nnoremap <silent> <space>b  :Buffers<cr>
+" nnoremap <silent> <space>r :Rg! <C-R>=expand("<cword>")<CR><CR>
+nnoremap <silent> <space>g  :Ag! <C-R>=expand("<cword>")<CR><CR>
+
+" nnoremap    [misc]   <Nop>
+" nmap 0  [misc]
+
+"----------------------------------------------------------
+" air-line setings
+"----------------------------------------------------------
+let g:airline_powerline_fonts = 1
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#hunks#enabled = 0
+
+" function! AccentDemo()
+  " let keys = ['a','b','c','d','e','f','g','h']
+  " for k in keys
+    " call airline#parts#define_text(k, k)
+  " endfor
+  " call airline#parts#define_accent('a', 'red')
+  " call airline#parts#define_accent('b', 'green')
+  " call airline#parts#define_accent('c', 'blue')
+  " call airline#parts#define_accent('d', 'yellow')
+  " call airline#parts#define_accent('e', 'orange')
+  " call airline#parts#define_accent('f', 'purple')
+  " call airline#parts#define_accent('g', 'bold')
+  " call airline#parts#define_accent('h', 'italic')
+  " let g:airline_section_a = airline#section#create(keys)
+" endfunction
+" autocmd VimEnter * call AccentDemo()
+"
+" let g:airline_detect_whitespace=0
+let g:airline#extensions#whitespace#enabled = 0
+" let g:airline_section_z='%3p%% %#__accent_italic#%#__accent_yellow#%4l%#__restore__#:%3v'
+" let g:airline_section_y="%{strlen(&fenc)>0?&fenc:''}%{strlen(&ff)>0?'['.&ff.']':''}%{airline#extensions#whitespace#check()} %#warningmsg#%{SyntasticStatuslineFlag()}"
+" let g:airline_section_warning=""
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+    endif
+
+"" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+" let g:airline_theme='powerlineish'
+
+" let g:airline_theme='badwolf'
+set fenc=
+" let g:airline_section_b = '%{strftime("%T")}'
+" let g:airline_section_b = 'branch'
+" let g:airline_section_b = '%{getcwd()}'
+" let g:airline_section_y = 'BN: %{bufnr("%")}'
+
+"这个是安装字体后 必须设置此项"
+let g:airline_powerline_fonts = 1
+
+"打开tabline功能,方便查看Buffer和切换，这个功能比较不错"
+"我还省去了minibufexpl插件，因为我习惯在1个Tab下用多个buffer"
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#buffer_nr_show = 1
+
+"设置切换Buffer快捷键"
+" nnoremap <C-N> :bn<CR>
+" nnoremap <C-P> :bp<CR>
+
+" 关闭状态显示空白符号计数,这个对我用处不大"
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#whitespace#symbol = '!'
+
+"--------------------------------------------------------------------
+"vim-wheel settings
+"--------------------------------------------------------------------
+let g:wheel#map#up   = '<c-k>'
+let g:wheel#map#down = '<c-j>'
+let g:wheel#line#threshold = 10  " lines from start or end
+let g:wheel#map#mouse = 1       " 1=natural, 0=disable, -1=reverse
+let g:wheel#scroll_on_wrap = 1      " 0=disable, 1=enable (default)
+
+"---------------------------------------------------------------
+"vim-bbye settings
+"---------------------------------------------------------------
+nnoremap <Leader>q :Bdelete<CR>
+nnoremap <Leader>qa :qa<CR>
+nnoremap <Leader>qi :q!<CR>
+nnoremap <Leader>qq :q<CR>
+nnoremap <Leader>ww :w<CR>
+nnoremap <Leader>wq :wq<CR>
+nnoremap <Leader>ti <Esc>:r! date "+\%Y-\%m-\%d \%H:\%M:\%S"<CR>
+
+"--------------------------------------------------------------------
+" GitGutter settings
+"--------------------------------------------------------------------
+nnoremap <space>hi :GitGutterLineHighlightsEnable<CR>
+nnoremap <space>hn :GitGutterLineHighlightsDisable<CR>
+
+"--------------------------------------------------------------------
+"jedi-vim settings
+"--------------------------------------------------------------------
+" Completion <C-Space>
+" Goto assignments <leader>g (typical goto function)
+" Goto definitions <leader>d (follow identifier as far as possible, includes imports and statements)
+" Show Documentation/Pydoc K (shows a popup with assignments)
+" Renaming <leader>r
+" Usages <leader>n (shows all the usages of a name)
+" Open module, e.g. :Pyimport os (opens the os module)
+" let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_command = "<c-]>"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+" let g:jedi#rename_command = "<leader>r"
+" let g:jedi#use_tabs_not_buffers = 1
+
+" -----------------------------------------------------------------------------
+"  < auto-pairs 插件配置 >
+" -----------------------------------------------------------------------------
+" 用于括号与引号自动补全，不过会与函数原型提示插件echofunc冲突
+" 所以我就没有加入echofunc插件
+" let g:AutoPairsMapCR = 1
+" imap <expr><CR> "\<CR>\<Plug>AutoPairsReturn"
+" inoremap <CR> <C-R>=neocomplcache#smart_close_popup()<CR><CR>
+" set runtimepath+=~/.vim/bundle/auto-pairs
+" 把BACKSPACE键映射为删除括号对和引号，默认为1。
+let g:AutoPairsMapBS = 1
+" 把ctrl+h键映射为删除括号对和引号，默认为1。
+let g:AutoPairsMapCh = 0
+
+" -----------------------------------------------------------------------------
+"  ycm
+" -----------------------------------------------------------------------------
+" Use homebrew's clangd
+" let g:ycm_clangd_binary_path = trim(system('brew --prefix llvm')).'/bin/clangd'
+let g:ycm_confirm_extra_conf = 0
+let g:syntastic_always_populate_loc_list = 0
+nnoremap <leader>jd :YcmCompleter GoToDefinition<CR> " 跳转到定义处
+nnoremap <leader>jt :YcmCompleter GetType<CR> " 跳转到定义处
+nnoremap <leader>dc :YcmCompleter GetDoc<CR> " 跳转到定义处
+nnoremap <leader>js :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nmap <F3> :YcmDiags<CR>
+
+"--------------------------------------------------------------------
+" put it to end
+"--------------------------------------------------------------------
+" 显示/隐藏菜单栏、工具栏、滚动条，可用 Ctrl + F11 切换
+" 在不使用 MiniBufExplorer 插件时也可用<C-k,j,h,l>切换到上下左右的窗口中去
+noremap <c-k> <c-w>k
+noremap <c-j> <c-w>j
+noremap <c-h> <c-w>h
+noremap <c-l> <c-w>l
+"------------------------------------------------------------------------------
+" Ctrl + K 插入模式下光标向上移动
+imap <c-k> <Up>
+
+" Ctrl + J 插入模式下光标向下移动
+imap <c-j> <Down>
+
+" Ctrl + H 插入模式下光标向左移动
+imap <c-h> <Left>
+
+" Ctrl + L 插入模式下光标向右移动
+imap <c-l> <Right>
