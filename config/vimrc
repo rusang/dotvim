@@ -27,7 +27,7 @@ set cmdheight=2                                       "设置命令行的高度�
 set cursorline                                        "突出显示当前行
 set wrap                                               "设置自动换行
 set shortmess=atI                                     "去掉欢迎界面
-
+nmap <F5> :terminal<CR>
 
 " -----------------------------------------------------------------------------
 "  < 编写文件时的配置 >
@@ -124,6 +124,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'preservim/nerdtree'
 Plugin 'francoiscabrol/ranger.vim'
 Plugin 'rdnetto/YCM-Generator'
+Plugin 'terryma/vim-multiple-cursors'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -248,7 +249,7 @@ let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
 " let g:formatterpath = ['/some/path/to/a/folder', '/home/superman/formatters']
-" let g:formatterpath = [ '~/.vim/formatter/bin']
+let g:formatterpath = [ '/opt/homebrew/bin']
 
 " -----------------------------------------------------------------------------
 " for Linux C
@@ -671,6 +672,23 @@ nnoremap <leader>jt :YcmCompleter GetType<CR> " 跳转到定义处
 nnoremap <leader>dc :YcmCompleter GetDoc<CR> " 跳转到定义处
 nnoremap <leader>js :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nmap <F3> :YcmDiags<CR>
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+"--------------------------------------------------------------------
+" vim-multiple-cursors settings
+"--------------------------------------------------------------------
+let g:multi_cursor_use_default_mapping=0
+
+" Default mapping
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
 
 "--------------------------------------------------------------------
 " put it to end
