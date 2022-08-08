@@ -4,6 +4,7 @@ else
    set pyx=2
 endif
 
+" set autochdir
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
 set backspace=indent,eol,start
 set list
@@ -146,6 +147,7 @@ filetype plugin indent on    " required
 "--------------------------------------------------------------------
 " colorscheme     molokai     "This is fine
 colorscheme     monokai
+" colorscheme eclipse
 " colorscheme     lucario
 " colorscheme     dracula
 " colorscheme         meta5       "This is fine
