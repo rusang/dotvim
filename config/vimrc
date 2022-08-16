@@ -81,26 +81,12 @@ filetype on
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
 Plugin 'git://git.wincent.com/command-t.git'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
 Plugin 'vim-scripts/a.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'preservim/nerdcommenter'
@@ -126,22 +112,12 @@ Plugin 'preservim/nerdtree'
 Plugin 'francoiscabrol/ranger.vim'
 Plugin 'rdnetto/YCM-Generator'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'junegunn/vim-easy-align'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 "--------------------------------------------------------------------
 "vim-colorscheme
@@ -543,23 +519,6 @@ let g:airline_powerline_fonts = 1
 " let g:airline#extensions#tabline#enabled = 1
 " let g:airline#extensions#hunks#enabled = 0
 
-" function! AccentDemo()
-  " let keys = ['a','b','c','d','e','f','g','h']
-  " for k in keys
-    " call airline#parts#define_text(k, k)
-  " endfor
-  " call airline#parts#define_accent('a', 'red')
-  " call airline#parts#define_accent('b', 'green')
-  " call airline#parts#define_accent('c', 'blue')
-  " call airline#parts#define_accent('d', 'yellow')
-  " call airline#parts#define_accent('e', 'orange')
-  " call airline#parts#define_accent('f', 'purple')
-  " call airline#parts#define_accent('g', 'bold')
-  " call airline#parts#define_accent('h', 'italic')
-  " let g:airline_section_a = airline#section#create(keys)
-" endfunction
-" autocmd VimEnter * call AccentDemo()
-"
 " let g:airline_detect_whitespace=0
 let g:airline#extensions#whitespace#enabled = 0
 " let g:airline_section_z='%3p%% %#__accent_italic#%#__accent_yellow#%4l%#__restore__#:%3v'

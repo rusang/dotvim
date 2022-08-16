@@ -264,3 +264,4 @@ zstyle ':completion:*:corrections' format $'\e[01;32m -- %d (errors: %e) --\e[0m
 zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'
 #}}}
 PATH=$(pyenv root)/shims:$PATH
+export PATH=/opt/homebrew/bin/:$PATH
