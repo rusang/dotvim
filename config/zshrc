@@ -124,7 +124,7 @@ export HOMEBREW_NO_INSTALL_CLEANUP=TRUE
 alias v="vim"
 alias t="tig"
 alias f='vf'
-alias n='nvim'
+alias grep="grep --color=auto"
 
 #vimf - Open select file in vim
 vf()
@@ -265,3 +265,12 @@ zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directori
 #}}}
 PATH=$(pyenv root)/shims:$PATH
 export PATH=/opt/homebrew/bin/:$PATH
+
+# alias -s py=v       # 在命令行直接输入 python 文件，会用 vim 中打开，以下类似
+alias -s js=v
+alias -s c=v
+alias -s h=v
+alias -s cpp=v
+alias -s java=v
+alias -s txt=v
+# alias -s pdf=okular
