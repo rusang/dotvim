@@ -274,3 +274,5 @@ alias -s cpp=v
 alias -s java=v
 alias -s txt=v
 # alias -s pdf=okular
+
+eval "$(zoxide init zsh)"
