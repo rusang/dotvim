@@ -124,10 +124,11 @@ filetype plugin indent on    " required
 "--------------------------------------------------------------------
 " colorscheme     molokai     "This is fine
 colorscheme     monokai
-" colorscheme eclipse
+" colorscheme     eclipse
 " colorscheme     lucario
 " colorscheme     dracula
-" colorscheme         meta5       "This is fine
+" colorscheme     meta5       "This is fine
+" colorscheme     256-jungle
 
 "--------------------------------------------------------------------
 "   pathogen
