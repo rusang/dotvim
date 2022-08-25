@@ -663,6 +663,13 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 "--------------------------------------------------------------------
+" vim-maximizer
+"--------------------------------------------------------------------
+nnoremap <silent><F10> :MaximizerToggle<CR>
+vnoremap <silent><F10> :MaximizerToggle<CR>gv
+inoremap <silent><F10> <C-o>:MaximizerToggle<CR>
+
+"--------------------------------------------------------------------
 " put it to end
 "--------------------------------------------------------------------
 " 显示/隐藏菜单栏、工具栏、滚动条，可用 Ctrl + F11 切换
