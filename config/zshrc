@@ -123,6 +123,7 @@ export HOMEBREW_NO_INSTALL_CLEANUP=TRUE
 
 alias v="vim"
 alias t="tig"
+alias r="ranger"
 alias f='vf'
 alias grep="grep --color=auto"
 
