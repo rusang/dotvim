@@ -265,7 +265,7 @@ zstyle ':completion:*:corrections' format $'\e[01;32m -- %d (errors: %e) --\e[0m
 zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'
 #}}}
 PATH=$(pyenv root)/shims:$PATH
-export PATH=/opt/homebrew/bin/:$PATH
+# export PATH=/opt/homebrew/bin:$PATH
 
 # alias -s py=v       # 在命令行直接输入 python 文件，会用 vim 中打开，以下类似
 alias -s js=v
@@ -277,3 +277,17 @@ alias -s txt=v
 # alias -s pdf=okular
 
 eval "$(zoxide init zsh)"
+export PATH=/opt/homebrew/opt/openjdk/bin:$PATH
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include -I/opt/homebrew/opt/tcl-tk/include"
+export PATH="/opt/homebrew/opt/tcl-tk/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/tcl-tk/lib"
+
+export PKG_CONFIG_PATH="/opt/homebrew/opt/tcl-tk/lib/pkgconfig"
+
+# brew link
+export SPARK_HOME=/opt/homebrew/Cellar/spark/spark-3.3.0-bin-hadoop3-scala2.13
+export PATH=$PATH:$SPARK_HOME/bin
+
+export HOMEBREW_NO_AUTO_UPDATE=1
+export JAVA_HOME=/opt/homebrew/Cellar/openjdk/18.0.2.1/libexec/openjdk.jdk/Contents/Home
+
