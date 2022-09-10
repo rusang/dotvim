@@ -34,7 +34,7 @@ nmap <F5> :terminal<CR>
 "  < 编写文件时的配置 >
 " -----------------------------------------------------------------------------
 let g:c_syntax_for_h=1
-filetype plugin on                                    "针对不同的文件类型加载对应的插件
+" filetype plugin on                                    "针对不同的文件类型加载对应的插件
 set smartindent                                       "启用智能对齐方式
 " set expandtab                                         "将Tab键转换为空格
 set noexpandtab                                         "no将Tab键转换为空格
@@ -84,7 +84,6 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
 Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'vim-scripts/a.vim'
@@ -107,11 +106,26 @@ Plugin 'preservim/vim-wheel'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'tpope/vim-surround'
-" Plugin 'SirVer/ultisnips'
 Plugin 'preservim/nerdtree'
 Plugin 'francoiscabrol/ranger.vim'
 Plugin 'rdnetto/YCM-Generator'
 Plugin 'terryma/vim-multiple-cursors'
+
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+
+" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
+" - https://github.com/Valloric/YouCompleteMe
+" - https://github.com/nvim-lua/completion-nvim
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -679,6 +693,9 @@ noremap <c-j> <c-w>j
 noremap <c-h> <c-w>h
 noremap <c-l> <c-w>l
 "------------------------------------------------------------------------------
+
+imap <C-o> <esc>o
+
 " Ctrl + K 插入模式下光标向上移动
 imap <c-k> <Up>
 

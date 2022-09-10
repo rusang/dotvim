@@ -285,9 +285,9 @@ export LDFLAGS="-L/opt/homebrew/opt/tcl-tk/lib"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/tcl-tk/lib/pkgconfig"
 
 # brew link
-export SPARK_HOME=/opt/homebrew/Cellar/spark/spark-3.3.0-bin-hadoop3-scala2.13
-export PATH=$PATH:$SPARK_HOME/bin
+# export SPARK_HOME=/opt/homebrew/Cellar/spark/spark-3.3.0-bin-hadoop3-scala2.13
+# export PATH=$PATH:$SPARK_HOME/bin
 
 export HOMEBREW_NO_AUTO_UPDATE=1
-export JAVA_HOME=/opt/homebrew/Cellar/openjdk/18.0.2.1/libexec/openjdk.jdk/Contents/Home
-
+# export JAVA_HOME=/opt/homebrew/Cellar/openjdk/18.0.2.1/libexec/openjdk.jdk/Contents/Home
+export JAVA_HOME=/opt/homebrew/Cellar/openjdk@11/11.0.16.1/libexec/openjdk.jdk/Contents/Home
